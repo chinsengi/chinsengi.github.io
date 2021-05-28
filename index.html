@@ -154,12 +154,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
       </div>
   </nav>
@@ -197,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/21/test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/23/12_22_9_12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -210,7 +210,621 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/21/test/" class="post-title-link" itemprop="url">妙啊</a>
+          <a href="/2020/12/23/12_22_9_12/" class="post-title-link" itemprop="url">如何求解 $\dot{x} = x+f(t)$</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 11:12:27" itemprop="dateCreated datePublished" datetime="2020-12-23T11:12:27+08:00">2020-12-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-28 20:22:43" itemprop="dateModified" datetime="2021-05-28T20:22:43+08:00">2021-05-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/differential-equation/" itemprop="url" rel="index"><span itemprop="name">differential equation</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><span class="math display">\[
+\begin{equation}
+\def\pr{\text{\rm pr}} 
+\def\sec{\text{\rm sect}} 
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\H{\mathcal{H}}
+\def\beq{\begin{equation}}
+\def\endeq{\end{equation}}
+\def\lesim{\lesssim}
+\def\mc{\mathcal}
+\def\h{\mathcal{H}}
+\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\def\mn{M^{(n)}}
+\def\lam{\lambda}
+\def\wide{\widehat}
+\def\uk{u^{(k_0)}}
+\def\uo{u^{(0)}}
+\def\pj{P^{(2)}}
+\def\pii{P^{(1)}}
+\def\pc{P^{Cone}}
+\def\tx{\tilde x}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\sgn}{sgn}
+\def\cplus{c\ci+}
+\def\cmin{c\ci-}
+\def\cplusmin{c\ci\pm}
+\def\chiplus{\chi\ci+}
+\def\chimin{\chi\ci-}
+\def\chiplusmin{\chi\ci\pm}
+\def\psiplus{\psi\ci+}
+\def\psimin{\psi\ci-}
+\def\psiplusmin{\psi\ci\pm}
+\def\sigmaplus{\sigma\ci+}
+\def\sigmamin{\sigma\ci-}
+\def\sigmaplusmin{\sigma\ci\pm}
+\def\bbone{\mathbbm 1}
+\newcommand{\dil}{\text{\rm Dil}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\ls}{\lesssim}
+\newcommand{\sL}{\mathscr L}
+\newcommand{\sJ}{\mathscr J}
+\newcommand{\sK}{\mathscr K}
+\newcommand{\wh}{\widehat}
+\newcommand{\wt}{\widetilde}
+\newcommand{\A}{\mathcal A}
+\newcommand{\E}{\mathcal E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\D}{\mathcal D}
+\newcommand{\K}{\mathcal K}
+\newcommand{\QQ}{\mathcal Q}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\term}{c(z,r)F^\Psi_r(\cdot-z)}
+\newcommand{\norm}[1]{ \left|  #1 \right| }
+\newcommand{\abs}[1]{ \left|  #1 \right| }
+\newcommand{\Norm}[1]{ \left\|  #1 \right\| }
+\newcommand{\iff}{\Leftrightarrow}
+\newcommand{\set}[1]{ \left\{ #1 \right\} }
+\newcommand{\Be}{\begin{equation}}
+\newcommand{\Ee}{\end{equation}}
+\newcommand{\Bm}{\begin{multline}}
+\newcommand{\Em}{\end{multline}}
+\newcommand{\Bea}{\begin{eqnarray}}
+\newcommand{\Eea}{\end{eqnarray}}
+\newcommand{\Beas}{\begin{eqnarray*}}
+\newcommand{\Eeas}{\end{eqnarray*}}
+\newcommand{\Benu}{\begin{enumerate}}
+\newcommand{\Eenu}{\end{enumerate}}
+\newcommand{\Bi}{\begin{itemize}}
+\newcommand{\Ei}{\end{itemize}}
+\def\conv{\text{Conv}}
+\def\tp{\tilde p}
+\def\tq{\tilde q}
+\def\crit{\text{\rm cr}}
+\def\sparse{\text{\rm sp}}
+\def\dyad{\text{\rm dyad}}
+\def\mart{\text{dyad}}
+\def\intslash{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int}
+\def\qsl{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
+\def\Re{\operatorname{Re\,}}
+\def\Im{\operatorname{Im\,}}
+\def\mx
+\def\mn
+\def\vth{\vartheta}
+\def\rn{\rr^{n}}
+\def\rr{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+\def\complex{\mathbb C}
+\def\emph#1{\it #1 }
+\def\diam{\text{\rm  diam}}
+\def\osc{\text{\rm osc}}
+\def\ffB{\mathcal B}
+\def\seq{\subseteq}
+\def\Ga{\Gamma}
+\def\ga{\gamma}
+\def\Th{\Theta}
+\def\prd{\text{\it prod}}
+\def\parab{\text{\it parabolic}}
+\def\eg{\it e.g. }
+\def\cf{\it cf}
+\def\Rn{\mathbb R^n}
+\def\Rd{\mathbb R^d}
+\def\sgn{\text{\rm sign }}
+\def\rank{\text{\rm rank }}
+\def\corank{\text{\rm corank }}
+\def\coker{\text{\rm Coker }}
+\def\loc{\text{\rm loc}}
+\def\spec{\text{\rm spec}}
+\def\comp{\text{comp}}
+\def\Coi{C^\infty_0}
+\def\dist{\text{\it dist}}
+\def\diag{\text{\rm diag}}
+\def\supp{text{\rm supp}}
+\def\rad{\text{\it rad}}
+\def\sph{\text{sph}}
+\def\Lip{\text{\rm Lip}}
+\def\ev{\text{\rm ev}}
+\def\odd{\text{\rm odd}}
+\def\inn#1#2{\langle#1,#2\rangle}
+\def\biginn#1#2{\big\langle#1,#2\big\rangle}
+\def\rta{\rightarrow}
+\def\lta{\leftarrow}
+\def\noi{\noindent}
+\def\lcontr{\rfloor}
+\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\def\meas{\text{\rm meas}}
+\def\card{\text{\rm card}}
+\def\lc{\lesssim}
+\def\gc{\gtrsim}
+\def\pv{\text{\rm p.v.}}
+\def\a{\alpha}
+\def\alp{\alpha}             \def\Alp{\Alpha}
+\def\bet{\beta}
+\def\gam{\gamma}             \def\Gam{\Gamma}
+\def\del{\delta}             \def\Del{\Delta}
+\def\eps{\varepsilon}
+\def\ep{\epsilon}
+\def\zet{\zeta}
+\def\tet{\theta}             \def\Tet{\Theta}
+\def\iot{\iota}
+\def\kap{\kappa}
+\def\ka{\kappa}
+\def\lam{\lambda}            \def\Lam{\Lambda}
+\def\la{\lambda}             \def\La{\Lambda}
+\def\sig{\sigma}             \def\Sig{\Sigma}
+\def\si{\sigma}              \def\Si{\Sigma}
+\def\vphi{\varphi}
+\def\ome{\omega}             \def\Ome{\Omega}
+\def\om{\omega}  
+\def\fA{\mathfrak {A}}
+\def\fB{\mathfrak {B}}
+\def\fC{\mathfrak {C}}
+\def\fD{\mathfrak {D}}
+\def\fE{\mathfrak {E}}
+\def\fF{\mathfrak {F}}
+\def\fG{mathfrak {G}}
+\def\fH{\mathfrak {H}}
+\def\fI{\mathfrak {I}}
+\def\fJ{\mathfrak {J}}
+\def\fK{\mathfrak {K}}
+\def\fL{\mathfrak {L}}
+\def\fM{\mathfrak {M}}
+\def\fN{\mathfrak {N}}
+\def\fO{\mathfrak {O}}
+\def\fP{\mathfrak {P}}
+\def\fQ{\mathfrak {Q}}
+\def\fR{\mathfrak {R}}
+\def\fS{\mathfrak {S}}
+\def\fT{\mathfrak {T}}
+\def\fU{\mathfrak {U}}
+\def\fV{\mathfrak {V}}
+\def\fW{\mathfrak {W}}
+\def\fX{\mathfrak {X}}
+\def\fY{\mathfrak {Y}}
+\def\fZ{\mathfrak {Z}}
+\def\fa{\mathfrak {a}}
+\def\fb{\mathfrak {b}}
+\def\fc{\mathfrak {c}}
+\def\fd{\mathfrak {d}}
+\def\fe{\mathfrak {e}}
+\def\ff{\mathfrak {f}}
+\def\fg{\mathfrak {g}}
+\def\fh{\mathfrak {h}}
+\def\fj{\mathfrak {j}}
+\def\fk{\mathfrak {k}}
+\def\fl{\mathfrak {l}}
+\def\fn{\mathfrak {n}}
+\def\fo{\mathfrak {o}}
+\def\fq{\mathfrak {q}}
+\def\fr{\mathfrak {r}}
+\def\fs{\mathfrak {s}}
+\def\ft{\mathfrak {t}}
+\def\fu{\mathfrak {u}}
+\def\fv{\mathfrak {v}}
+\def\fw{\mathfrak {w}}
+\def\fx{\mathfrak {x}}
+\def\fy{\mathfrak {y}}
+\def\fz{\mathfrak {z}}
+\def\bbA{\mathbb {A}}
+\def\bbB{\mathbb {B}}
+\def\bbC{\mathbb {C}}
+\def\bbD{\mathbb {D}}
+\def\bbE{\mathbb {E}}
+\def\bbF{\mathbb {F}}
+\def\bbG{\mathbb {G}}
+\def\bbH{\mathbb {H}}
+\def\bbI{\mathbb {I}}
+\def\bbJ{\mathbb {J}}
+\def\bbK{\mathbb {K}}
+\def\bbL{\mathbb {L}}
+\def\bbM{\mathbb {M}}
+\def\bbN{\mathbb {N}}
+\def\bbO{\mathbb {O}}
+\def\bbP{\mathbb {P}}
+\def\bbQ{\mathbb {Q}}
+\def\bbR{\mathbb {R}}
+\def\bbS{\mathbb {S}}
+\def\bbT{\mathbb {T}}
+\def\bbU{\mathbb {U}}
+\def\bbV{\mathbb {V}}
+\def\bbW{\mathbb {W}}
+\def\bbX{\mathbb {X}}
+\def\bbY{\mathbb {Y}}
+\def\bbZ{\mathbb {Z}}
+\def\cA{\mathcal {A}}
+\def\cB{\mathcal {B}}
+\def\cC{\mathcal {C}}
+\def\cD{\mathcal {D}}
+\def\cE{\mathcal {E}}
+\def\cF{\mathcal {F}}
+\def\cG{\mathcal {G}}
+\def\cH{\mathcal {H}}
+\def\cI{\mathcal {I}}
+\def\cJ{\mathcal {J}}
+\def\cK{\mathcal {K}}
+\def\cL{\mathcal {L}}
+\def\cM{\mathcal {M}}
+\def\cN{\mathcal {N}}
+\def\cO{\mathcal {O}}
+\def\cP{\mathcal {P}}
+\def\cQ{\mathcal {Q}}
+\def\cR{\mathcal {R}}
+\def\cS{\mathcal {S}}
+\def\cT{\mathcal {T}}
+\def\cU{\mathcal {U}}
+\def\cV{\mathcal {V}}
+\def\cW{\mathcal {W}}
+\def\cX{\mathcal {X}}
+\def\cY{\mathcal {Y}}
+\def\cZ{\mathcal {Z}}
+\def\tA{\widetilde{A}}
+\def\tB{\widetilde{B}}
+\def\tC{\widetilde{C}}
+\def\tD{\widetilde{D}}
+\def\tE{\widetilde{E}}
+\def\tF{\widetilde{F}}
+\def\tG{\widetilde{G}}
+\def\tH{\widetilde{H}}
+\def\tI{\widetilde{I}}
+\def\tJ{\widetilde{J}}
+\def\tK{\widetilde{K}}
+\def\tL{\widetilde{L}}
+\def\tM{\widetilde{M}}
+\def\tN{\widetilde{N}}
+\def\tO{\widetilde{O}}
+\def\tP{\widetilde{P}}
+\def\tQ{\widetilde{Q}}
+\def\tR{\widetilde{R}}
+\def\tS{\widetilde{S}}
+\def\tT{\widetilde{T}}
+\def\tU{\widetilde{U}}
+\def\tV{\widetilde{V}}
+\def\tW{\widetilde{W}}
+\def\tX{\widetilde{X}}
+\def\tY{\widetilde{Y}}
+\def\tZ{\widetilde{Z}}
+\def\tcA{\widetilde{\mathcal {A}}}
+\def\tcB{\widetilde{\mathcal {B}}}
+\def\tcC{\widetilde{\mathcal {C}}}
+\def\tcD{\widetilde{\mathcal {D}}}
+\def\tcE{\widetilde{\mathcal {E}}}
+\def\tcF{\widetilde{\mathcal {F}}}
+\def\tcG{\widetilde{\mathcal {G}}}
+\def\tcH{\widetilde{\mathcal {H}}}
+\def\tcI{\widetilde{\mathcal {I}}}
+\def\tcJ{\widetilde{\mathcal {J}}}
+\def\tcK{\widetilde{\mathcal {K}}}
+\def\tcL{\widetilde{\mathcal {L}}}
+\def\tcM{\widetilde{\mathcal {M}}}
+\def\tcN{\widetilde{\mathcal {N}}}
+\def\tcO{\widetilde{\mathcal {O}}}
+\def\tcP{\widetilde{\mathcal {P}}}
+\def\tcQ{\widetilde{\mathcal {Q}}}
+\def\tcR{\widetilde{\mathcal {R}}}
+\def\tcS{\widetilde{\mathcal {S}}}
+\def\tcT{\widetilde{\mathcal {T}}}
+\def\tcU{\widetilde{\mathcal {U}}}
+\def\tcV{\widetilde{\mathcal {V}}}
+\def\tcW{\widetilde{\mathcal {W}}}
+\def\tcX{\widetilde{\mathcal {X}}}
+\def\tcY{\widetilde{\mathcal {Y}}}
+\def\tcZ{\widetilde{\mathcal {Z}}}
+\def\tfA{\widetilde{\mathfrak {A}}}
+\def\tfB{\widetilde{\mathfrak {B}}}
+\def\tfC{\widetilde{\mathfrak {C}}}
+\def\tfD{\widetilde{\mathfrak {D}}}
+\def\tfE{\widetilde{\mathfrak {E}}}
+\def\tfF{\widetilde{\mathfrak {F}}}
+\def\tfG{\widetilde{\mathfrak {G}}}
+\def\tfH{\widetilde{\mathfrak {H}}}
+\def\tfI{\widetilde{\mathfrak {I}}}
+\def\tfJ{\widetilde{\mathfrak {J}}}
+\def\tfK{\widetilde{\mathfrak {K}}}
+\def\tfL{\widetilde{\mathfrak {L}}}
+\def\tfM{\widetilde{\mathfrak {M}}}
+\def\tfN{\widetilde{\mathfrak {N}}}
+\def\tfO{\widetilde{\mathfrak {O}}}
+\def\tfP{\widetilde{\mathfrak {P}}}
+\def\tfQ{\widetilde{\mathfrak {Q}}}
+\def\tfR{\widetilde{\mathfrak {R}}}
+\def\tfS{\widetilde{\mathfrak {S}}}
+\def\tfT{\widetilde{\mathfrak {T}}}
+\def\tfU{\widetilde{\mathfrak {U}}}
+\def\tfV{\widetilde{\mathfrak {V}}}
+\def\tfW{\widetilde{\mathfrak {W}}}
+\def\tfX{\widetilde{\mathfrak {X}}}
+\def\tfY{\widetilde{\mathfrak {Y}}}
+\def\tfZ{\widetilde{\mathfrak {Z}}}
+\def\Atil{\widetilde A}          \def\atil{\tilde a}
+\def\Btil{\widetilde B}          \def\btil{\tilde b}
+\def\Ctil{\widetilde C}          \def\ctil{\tilde c}
+\def\Dtil{\widetilde D}          \def\dtil{\tilde d}
+\def\Etil{\widetilde E}          \def\etil{\tilde e}
+\def\Ftil{\widetilde F}          \def\ftil{\tilde f}
+\def\Gtil{\widetilde G}          \def\gtil{\tilde g}
+\def\Htil{\widetilde H}          \def\htil{\tilde h}
+\def\Itil{\widetilde I}          \def\itil{\tilde i}
+\def\Jtil{\widetilde J}          \def\jtil{\tilde j}
+\def\Ktil{\widetilde K}          \def\ktil{\tilde k}
+\def\Ltil{\widetilde L}          \def\ltil{\tilde l}
+\def\Mtil{\widetilde M}          \def\mtil{\tilde m}
+\def\Ntil{\widetilde N}          \def\ntil{\tilde n}
+\def\Otil{\widetilde O}          \def\otil{\tilde o}
+\def\Ptil{\widetilde P}          \def\ptil{\tilde p}
+\def\Qtil{\widetilde Q}          \def\qtil{\tilde q}
+\def\Rtil{\widetilde R}          \def\rtil{\tilde r}
+\def\Stil{\widetilde S}          \def\stil{\tilde s}
+\def\Ttil{\widetilde T}          \def\ttil{\tilde t}
+\def\Util{\widetilde U}          \def\util{\tilde u}
+\def\Vtil{\widetilde V}          \def\vtil{\tilde v}
+\def\Wtil{\widetilde W}          \def\wtil{\tilde w}
+\def\Xtil{\widetilde X}          \def\xtil{\tilde x}
+\def\Ytil{\widetilde Y}          \def\ytil{\tilde y}
+\def\Ztil{\widetilde Z}          \def\ztil{\tilde z}
+\def\ahat{\hat a}          \def\Ahat{\widehat A}
+\def\bhat{\hat b}          \def\Bhat{\widehat B}
+\def\chat{\hat c}          \def\Chat{\widehat C}
+\def\dhat{\hat d}          \def\Dhat{\widehat D}
+\def\ehat{\hat e}          \def\Ehat{\widehat E}
+\def\fhat{\hat f}          \def\Fhat{\widehat F}
+\def\ghat{\hat g}          \def\Ghat{\widehat G}
+\def\hhat{\hat h}          \def\Hhat{\widehat H}
+\def\ihat{\hat i}          \def\Ihat{\widehat I}
+\def\jhat{\hat j}          \def\Jhat{\widehat J}
+\def\khat{\hat k}          \def\Khat{\widehat K}
+\def\lhat{\hat l}          \def\Lhat{\widehat L}
+\def\mhat{\hat m}          \def\Mhat{\widehat M}
+\def\nhat{\hat n}          \def\Nhat{\widehat N}
+\def\ohat{\hat o}          \def\Ohat{\widehat O}
+\def\phat{\hat p}          \def\Phat{\widehat P}
+\def\qhat{\hat q}          \def\Qhat{\widehat Q}
+\def\rhat{\hat r}          \def\Rhat{\widehat R}
+\def\shat{\hat s}          \def\Shat{\widehat S}
+\def\that{\hat t}          \def\That{\widehat T}
+\def\uhat{\hat u}          \def\Uhat{\widehat U}
+\def\vhat{\hat v}          \def\Vhat{\widehat V}
+\def\what{\hat w}          \def\What{\widehat W}
+\def\xhat{\hat x}          \def\Xhat{\widehat X}
+\def\yhat{\hat y}          \def\Yhat{\widehat Y}
+\def\zhat{\hat z}          \def\Zhat{\widehat Z}
+\def\be#1{\begin{equation}\label{ #1}}
+\def\endeq{\end{equation}}
+\def\endal{\end{align}}
+\def\bas{\begin{align*}}
+\def\eas{\end{align*}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\eps{\varepsilon}
+\def\textbf#1{\bf #1}
+\def\into{\hookrightarrow}
+\newcommand{\inf}{\infty}
+\newcommand{\os}[2]{\overset{#1}{#2}}
+\newcommand{\ms}{(X, \cM, \mu)}
+\newcommand{\salg}{\sig\text{-algebra}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\id}{\text{id}}
+\newcommand{\Stab}{\text{Stab}}
+\def \bl {\backslash}
+\def \sfin {\sig\text{-finite}}
+\def \mum {\mu\text{-measurable}}
+\def \emps {\varnothing}
+\newcommand{\m}[1]{\boldsymbol{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\Inf}{\text{inf}}
+\newcommand{\wb}[1]{\overline{#1}}
+\newcommand{\lto}{\longrightarrow}
+\newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}}
+\newcommand{\char}[1]{\cX_{#1}}
+\newcommand{\fp}{f^+}
+\newcommand{\fm}{f^-}
+\newcommand{\infm}{\text{inf}}
+\newcommand{\onorm}[1]{\Norm{#1}_1}
+\newcommand{\tnorm}[1]{\Norm{#1}_2}
+\newcommand{\infn}[1]{\Norm{#1}_\inf}
+\newcommand{\pnorm}[1]{\Norm{#1}_p}
+\newcommand{\End}{\text{End}}
+\newcommand{\Ob}{\text{Ob}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\intall}{\int_{-\inf}^{\inf}}
+\newcommand{\intpmpi}{\int_{-\pi}^{\pi}}
+\newcommand{\div}{\bigr|}
+\newcommand{\when}{\biggr|}
+\def \bsp {\begin{split}}
+\def \esp {\end{split}}
+\def \bc {\begin{cases}}
+\def \ec {\end{cases}}
+\newcommand{\sech}{\text{sech}}
+\newcommand{\vectk}{\text{Vect}_\text{k}}
+\newcommand{\top}{\text{Top}}
+\newcommand{\grp}{\text{Grp}}
+\newcommand{\pathx}{\text{Paths}_X}
+\newcommand{\from}{\leftarrow}
+\newcommand{\lfrom}{\longleftarrow}
+\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
+\newcommand{\sym}{\text{Sym}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\zn}{\Z/n\Z}
+\newcommand{\Mor}{\text{Mor}}
+\newcommand{\acton}{\circlearrowright}
+\DeclareMathOperator{\tr}{Tr}
+\newcommand{\par}{\partial}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\triv}{\text{triv}}
+\newcommand{\zmnz}[1]{\Z/{#1}\Z}
+\newcommand{\tl}{\triangleleft}
+\newcommand{\paren}[1]{\left({#1}\right)}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\end{equation}
+\]</span></p>
+<p>最近在看Dayan和Abbott的<a target="_blank" rel="noopener" href="https://mitpress.mit.edu/books/theoretical-neuroscience"><em>Theoretical Neuroscience</em></a>。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程： <span class="math display">\[
+\begin{equation}
+C\frac{dV}{dt} = \frac{E-V}{R} + I_e
+\end{equation}
+\]</span> 这是比较容易求解的，令<span class="math inline">\(W = -V+E+RI_e\)</span>, 我们有 <span class="math display">\[
+\begin{equation}
+RC(-W)&#39; = W
+\end{equation}
+\]</span> 愉快地分离变量就能得到<span class="math inline">\(W = C&#39;\exp(-t/\tau)\)</span>. 把<span class="math inline">\(V(0)\)</span> 这个初始条件代进去就有<span class="math inline">\(C&#39; = W(0) = -V(0)+E+RI_e\)</span>。 我们就能得到书上列出的解 <span class="math display">\[
+\begin{equation}
+V(t) = V_\inf +(V(0)- V_\inf) \exp(-t/\tau)
+\end{equation}
+\]</span></p>
+<p>其中<span class="math inline">\(V_\inf = E+RI_e\)</span>, <span class="math inline">\(\tau = RC\)</span>。接下来作者又假设了另外一种情况， 这种情况下<span class="math inline">\(I_e\)</span> 随时间振荡： <span class="math inline">\(I_e = I\cos(\omega t)\)</span>. 这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 <span class="math inline">\(\dot{x} = a(t)x+b(t)\)</span>, 我们有解 <span class="math display">\[
+\begin{equation}
+x(t) = \exp\paren{\int_0^t a(s)ds)}x(0)+\int_0^t \exp\paren{\int_s^ta(r)dr}b(s)ds 
+\end{equation}\label{eq:1}\tag{1}
+\]</span> 这个方程是这样解的， 两边同乘<span class="math inline">\(\mu(t) = \exp(-\int_0^t a(s) ds)\)</span> (别问我为啥是这个，问就是exponential的derivative可以把指数拿下来然后用链式法则，就硬凑)。这样方程就变成了 <span class="math display">\[
+\begin{equation}
+\bsp
+\mu(t)\dot{x} - \mu(t)a(t)x&amp;= b(t)\mu(t)\\
+\paren{\mu(t)x}&#39; &amp;= b(t)\mu(t)\\
+\mu(t)x &amp;=\int_0^t b(r)\mu(r)dr+C\\
+\esp
+\end{equation}
+\]</span></p>
+<p>把<span class="math inline">\(t = 0\)</span>带进去, 发现<span class="math inline">\(C = x(0)\)</span>, 把<span class="math inline">\(\mu(t)\)</span> 移到另一边，我们就得到了之前那个解<span class="math inline">\(\eqref{eq:1}\)</span>。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz integral rule</a>。接下来我们，开炮！我们把<span class="math inline">\(V\)</span>当成<span class="math inline">\(x\)</span>, <span class="math inline">\(a(t) = -1/\tau\)</span>, <span class="math inline">\(b(t) = E/\tau+I\cos(\om t)/C\)</span>, 所以解就是 <span class="math display">\[
+\begin{equation}
+V(t) = e^{-t/\tau}V(0)+\int_0^t e^{-(t-s)/\tau}b(s)ds
+\end{equation}
+\]</span></p>
+<p>可能大家读到这里都忘了我们是在解一本书里面的方程，书上是这么说的, &quot;once an initial transient has decayed to zero, we find&quot; <span class="math display">\[
+\begin{equation}
+V(t) = E+\f{RI\cos(wt- \phi)}{ \sqrt{1+\om^2 \tau^2} }
+\end{equation}
+\]</span> 其中<span class="math inline">\(\tan(\phi) = \om\tau\)</span>。啊这。。。我刚开始看的时候是懵逼的，啥是transient? 后来才知道可能这是电子工程里面的术语。 Transient的意思不是短暂的么，这里就是指在<span class="math inline">\(t\to \inf\)</span>时趋于0的项， 可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西 <span class="math display">\[
+\lim_{t\to\inf} \int_0^t e^{-(t-s)/\tau}b(s)ds
+\]</span> 这里的极限不是分析意义上的，只是表示去掉<span class="math inline">\(t\to \inf\)</span>时为0的项。东凑凑西算算， 最后发现还是把余弦化成复数形式会比较好： <span class="math display">\[
+\begin{equation}
+\cos(\omega t) = \frac{\exp(iwt)+\exp(-iwt)}{2}
+\end{equation}
+\]</span></p>
+<p>目的当然是好积分， 并不清楚作者是如何算的 <span class="math display">\[
+\bsp
+\int_0^te^{-(t-s)/\tau}(E/\tau+I\cos(\om s)/C)ds &amp;= A(t)+B(t)+C(t)\\
+A(t)&amp;=\f{E}{\tau}\int_0^t e^{-(t-s)/\tau}ds\\
+B(t)&amp;= \f{I}{2C}\int_0^t\exp(iws-(t-s)/\tau)ds\\
+C(t)&amp;= \f{I}{2C}\int_0^t\exp(-iws-(t-s)/\tau)ds
+\esp
+\]</span> 简单的积分: <span class="math display">\[
+\bsp
+A(t) &amp;= E(1-e^{-t/\tau})\\
+B(t) &amp;= \f{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\\
+C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\\
+\esp
+\]</span> 求个“极限” <span class="math display">\[
+\bsp
+\lim_{t\to\inf} A(t) &amp;= E\\
+\lim_{t\to\inf} B(t) &amp;=\f{I\tau}{2C(iw\tau +1)}\exp(iwt)\\
+\lim_{t\to \inf}C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\\
+\esp
+\]</span> 别忘了<span class="math inline">\(\tau = RC\)</span>, 于是我们有 <span class="math display">\[
+V(t) = E+\f{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2( 1+\om^2 \tau^2)}
+\]</span> 把指数再展开成三角函数 <span class="math display">\[
+V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
+\]</span> 诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和 <span class="math display">\[
+\cos(\alp-\bet) = \cos(\alp)\cos(\bet)+\sin(\alp)\sin(\bet)
+\]</span> 的相似性， 我们希望 <span class="math display">\[
+\bsp
+\cos(\phi) = 1\\
+\sin(\phi) = w\tau
+\esp
+\]</span> 这不可能，平方和要是1，于是上下同除<span class="math inline">\(1/\sqrt{1+w^2\tau^2}\)</span>即可。 <span class="math display">\[
+\bsp
+\cos(\phi) = 1/\sqrt{1+w^2\tau^2}\\
+\sin(\phi) = w\tau/\sqrt{1+w^2\tau^2}
+\esp
+\]</span> <span class="math inline">\(\tan(\phi) = w\tau\)</span>自然成立。到此我们终于得到了这个书上没有过程的结论。。。</p>
+<p>后记：打这篇文章主要是想体验一下在博客里面写有大量公式的文章的体验。 有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/22/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sengi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sengi's journal">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/22/test/" class="post-title-link" itemprop="url">妙啊</a>
         </h2>
 
         <div class="post-meta-container">
@@ -228,7 +842,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-23 03:48:35" itemprop="dateModified" datetime="2020-12-23T03:48:35+08:00">2020-12-23</time>
+        <time title="修改时间：2020-12-25 03:32:39" itemprop="dateModified" datetime="2020-12-25T03:32:39+08:00">2020-12-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -712,7 +1326,9 @@
 \begin{equation}
 e=\floor{m_1}c^2
 \end{equation}
-\]</span></p>
+\]</span> 感谢下列文章/回答：</p>
+<p>https://www.jianshu.com/p/a9f26f4cd4e6</p>
+<p>https://github.com/hexojs/hexo/issues/2231</p>
 
       
     </div>
@@ -739,7 +1355,7 @@ e=\floor{m_1}c^2
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/22/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -752,7 +1368,7 @@ e=\floor{m_1}c^2
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/21/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+          <a href="/2020/12/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta-container">
@@ -840,7 +1456,7 @@ e=\floor{m_1}c^2
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
