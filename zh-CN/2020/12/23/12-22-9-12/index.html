@@ -21,22 +21,22 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"chinsengi.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"chinsengi.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="\[ \begin{equation} \def\pr{\text{\rm pr}}  \def\sec{\text{\rm sect}}  \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="妙啊">
-<meta property="og:url" content="https://chinsengi.github.io/2020/12/22/test/index.html">
+<meta property="og:title" content="如何求解 $\dot{x} &#x3D; x+f(t)$">
+<meta property="og:url" content="https://chinsengi.github.io/zh-CN/2020/12/23/12-22-9-12/index.html">
 <meta property="og:site_name" content="sengi&#39;s journal">
 <meta property="og:description" content="\[ \begin{equation} \def\pr{\text{\rm pr}}  \def\sec{\text{\rm sect}}  \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-22T04:57:10.241Z">
-<meta property="article:modified_time" content="2020-12-24T19:32:39.985Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-23T03:12:27.302Z">
+<meta property="article:modified_time" content="2021-05-28T12:43:01.790Z">
 <meta property="article:author" content="sengi">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://chinsengi.github.io/2020/12/22/test/">
+<link rel="canonical" href="https://chinsengi.github.io/zh-CN/2020/12/23/12-22-9-12/">
 
 
 <script class="page-configurations">
@@ -45,10 +45,10 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
-<title>妙啊 | sengi's journal</title>
+<title>如何求解 $\dot{x} = x+f(t)$ | sengi's journal</title>
   
 
 
@@ -97,7 +97,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -124,10 +124,10 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
   </ul>
@@ -142,7 +142,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -172,10 +172,10 @@
     <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -195,14 +195,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
           <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
@@ -239,8 +239,8 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chinsengi.github.io/2020/12/22/test/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chinsengi.github.io/2020/12/23/12-22-9-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -253,7 +253,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          妙啊
+          如何求解 $\dot{x} = x+f(t)$
         </h1>
 
         <div class="post-meta-container">
@@ -262,24 +262,24 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2020-12-22 12:57:10" itemprop="dateCreated datePublished" datetime="2020-12-22T12:57:10+08:00">2020-12-22</time>
+      <time title="创建时间：2020-12-23 11:12:27" itemprop="dateCreated datePublished" datetime="2020-12-23T11:12:27+08:00">2020-12-23</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 03:32:39" itemprop="dateModified" datetime="2020-12-25T03:32:39+08:00">2020-12-25</time>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-28 20:43:01" itemprop="dateModified" datetime="2021-05-28T20:43:01+08:00">2021-05-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
+          <a href="/categories/differential-equation/" itemprop="url" rel="index"><span itemprop="name">differential equation</span></a>
         </span>
     </span>
 
@@ -313,7 +313,6 @@
 \def\wide{\widehat}
 \def\uk{u^{(k_0)}}
 \def\uo{u^{(0)}}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
 \def\pj{P^{(2)}}
 \def\pii{P^{(1)}}
 \def\pc{P^{Cone}}
@@ -355,7 +354,6 @@
 \newcommand{\Norm}[1]{ \left\|  #1 \right\| }
 \newcommand{\iff}{\Leftrightarrow}
 \newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\floor}[1]{\lfloor #1 \rfloor }
 \newcommand{\Be}{\begin{equation}}
 \newcommand{\Ee}{\end{equation}}
 \newcommand{\Bm}{\begin{multline}}
@@ -689,7 +687,7 @@
 \def\eps{\varepsilon}
 \def\textbf#1{\bf #1}
 \def\into{\hookrightarrow}
-\def\inf{\infty}
+\newcommand{\inf}{\infty}
 \newcommand{\os}[2]{\overset{#1}{#2}}
 \newcommand{\ms}{(X, \cM, \mu)}
 \newcommand{\salg}{\sig\text{-algebra}}
@@ -751,13 +749,85 @@
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
 \end{equation}
 \]</span></p>
-<p>忙活了半天总算把latex的macro搞好了， 接下来就可以轻松愉快地打公式了（误 <span class="math display">\[
+<p>最近在看Dayan和Abbott的<a target="_blank" rel="noopener" href="https://mitpress.mit.edu/books/theoretical-neuroscience"><em>Theoretical Neuroscience</em></a>。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程： <span class="math display">\[
 \begin{equation}
-e=\floor{m_1}c^2
+C\frac{dV}{dt} = \frac{E-V}{R} + I_e
 \end{equation}
-\]</span> 感谢下列文章/回答：</p>
-<p>https://www.jianshu.com/p/a9f26f4cd4e6</p>
-<p>https://github.com/hexojs/hexo/issues/2231</p>
+\]</span> 这是比较容易求解的，令<span class="math inline">\(W = -V+E+RI_e\)</span>, 我们有 <span class="math display">\[
+\begin{equation}
+RC(-W)&#39; = W
+\end{equation}
+\]</span> 愉快地分离变量就能得到<span class="math inline">\(W = C&#39;\exp(-t/\tau)\)</span>. 把<span class="math inline">\(V(0)\)</span> 这个初始条件代进去就有<span class="math inline">\(C&#39; = W(0) = -V(0)+E+RI_e\)</span>。 我们就能得到书上列出的解 <span class="math display">\[
+\begin{equation}
+V(t) = V_\inf +(V(0)- V_\inf) \exp(-t/\tau)
+\end{equation}
+\]</span></p>
+<p>其中<span class="math inline">\(V_\inf = E+RI_e\)</span>, <span class="math inline">\(\tau = RC\)</span>。接下来作者又假设了另外一种情况， 这种情况下<span class="math inline">\(I_e\)</span> 随时间振荡： <span class="math inline">\(I_e = I\cos(\omega t)\)</span>. 这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 <span class="math inline">\(\dot{x} = a(t)x+b(t)\)</span>, 我们有解 <span class="math display">\[
+\begin{equation}
+x(t) = \exp\paren{\int_0^t a(s)ds)}x(0)+\int_0^t \exp\paren{\int_s^ta(r)dr}b(s)ds 
+\end{equation}\label{eq:1}\tag{1}
+\]</span> 这个方程是这样解的， 两边同乘<span class="math inline">\(\mu(t) = \exp(-\int_0^t a(s) ds)\)</span> (别问我为啥是这个，问就是exponential的derivative可以把指数拿下来然后用链式法则，就硬凑)。这样方程就变成了 <span class="math display">\[
+\begin{equation}
+\bsp
+\mu(t)\dot{x} - \mu(t)a(t)x&amp;= b(t)\mu(t)\\
+\paren{\mu(t)x}&#39; &amp;= b(t)\mu(t)\\
+\mu(t)x &amp;=\int_0^t b(r)\mu(r)dr+C\\
+\esp
+\end{equation}
+\]</span></p>
+<p>把<span class="math inline">\(t = 0\)</span>带进去, 发现<span class="math inline">\(C = x(0)\)</span>, 把<span class="math inline">\(\mu(t)\)</span> 移到另一边，我们就得到了之前那个解<span class="math inline">\(\eqref{eq:1}\)</span>。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz integral rule</a>。接下来我们，开炮！我们把<span class="math inline">\(V\)</span>当成<span class="math inline">\(x\)</span>, <span class="math inline">\(a(t) = -1/\tau\)</span>, <span class="math inline">\(b(t) = E/\tau+I\cos(\om t)/C\)</span>, 所以解就是 <span class="math display">\[
+\begin{equation}
+V(t) = e^{-t/\tau}V(0)+\int_0^t e^{-(t-s)/\tau}b(s)ds
+\end{equation}
+\]</span></p>
+<p>可能大家读到这里都忘了我们是在解一本书里面的方程，书上是这么说的, &quot;once an initial transient has decayed to zero, we find&quot; <span class="math display">\[
+\begin{equation}
+V(t) = E+\f{RI\cos(wt- \phi)}{ \sqrt{1+\om^2 \tau^2} }
+\end{equation}
+\]</span> 其中<span class="math inline">\(\tan(\phi) = \om\tau\)</span>。啊这。。。我刚开始看的时候是懵逼的，啥是transient? 后来才知道可能这是电子工程里面的术语。 Transient的意思不是短暂的么，这里就是指在<span class="math inline">\(t\to \inf\)</span>时趋于0的项， 可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西 <span class="math display">\[
+\lim_{t\to\inf} \int_0^t e^{-(t-s)/\tau}b(s)ds
+\]</span> 这里的极限不是分析意义上的，只是表示去掉<span class="math inline">\(t\to \inf\)</span>时为0的项。东凑凑西算算， 最后发现还是把余弦化成复数形式会比较好： <span class="math display">\[
+\begin{equation}
+\cos(\omega t) = \frac{\exp(iwt)+\exp(-iwt)}{2}
+\end{equation}
+\]</span></p>
+<p>目的当然是好积分， 并不清楚作者是如何算的 <span class="math display">\[
+\bsp
+\int_0^te^{-(t-s)/\tau}(E/\tau+I\cos(\om s)/C)ds &amp;= A(t)+B(t)+C(t)\\
+A(t)&amp;=\f{E}{\tau}\int_0^t e^{-(t-s)/\tau}ds\\
+B(t)&amp;= \f{I}{2C}\int_0^t\exp(iws-(t-s)/\tau)ds\\
+C(t)&amp;= \f{I}{2C}\int_0^t\exp(-iws-(t-s)/\tau)ds
+\esp
+\]</span> 简单的积分: <span class="math display">\[
+\bsp
+A(t) &amp;= E(1-e^{-t/\tau})\\
+B(t) &amp;= \f{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\\
+C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\\
+\esp
+\]</span> 求个“极限” <span class="math display">\[
+\bsp
+\lim_{t\to\inf} A(t) &amp;= E\\
+\lim_{t\to\inf} B(t) &amp;=\f{I\tau}{2C(iw\tau +1)}\exp(iwt)\\
+\lim_{t\to \inf}C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\\
+\esp
+\]</span> 别忘了<span class="math inline">\(\tau = RC\)</span>, 于是我们有 <span class="math display">\[
+V(t) = E+\f{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2( 1+\om^2 \tau^2)}
+\]</span> 把指数再展开成三角函数 <span class="math display">\[
+V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
+\]</span> 诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和 <span class="math display">\[
+\cos(\alp-\bet) = \cos(\alp)\cos(\bet)+\sin(\alp)\sin(\bet)
+\]</span> 的相似性， 我们希望 <span class="math display">\[
+\bsp
+\cos(\phi) = 1\\
+\sin(\phi) = w\tau
+\esp
+\]</span> 这不可能，平方和要是1，于是上下同除<span class="math inline">\(1/\sqrt{1+w^2\tau^2}\)</span>即可。 <span class="math display">\[
+\bsp
+\cos(\phi) = 1/\sqrt{1+w^2\tau^2}\\
+\sin(\phi) = w\tau/\sqrt{1+w^2\tau^2}
+\esp
+\]</span> <span class="math inline">\(\tan(\phi) = w\tau\)</span>自然成立。到此我们终于得到了这个书上没有过程的结论。。。</p>
+<p>后记：打这篇文章主要是想体验一下在博客里面写有大量公式的文章的体验。 有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。</p>
 
     </div>
 
@@ -771,14 +841,11 @@ e=\floor{m_1}c^2
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/22/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2020/12/22/test/" rel="prev" title="妙啊">
+                  <i class="fa fa-chevron-left"></i> 妙啊
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/12/23/12-22-9-12/" rel="next" title="如何求解 $\dot{x} = x+f(t)$">
-                  如何求解 $\dot{x} = x+f(t)$ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -820,16 +887,16 @@ e=\floor{m_1}c^2
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
-      <span>English</span>
+      <span>简体中文</span>
       <i class="fa fa-angle-up" aria-hidden="true"></i>
     </label>
     <select class="lang-select" data-canonical="">
       
-        <option value="en" data-href="/2020/12/22/test/" selected="">
+        <option value="en" data-href="/2020/12/23/12-22-9-12/" selected="">
           English
         </option>
       
-        <option value="zh-CN" data-href="/zh-CN/2020/12/22/test/" selected="">
+        <option value="zh-CN" data-href="/zh-CN/2020/12/23/12-22-9-12/" selected="">
           简体中文
         </option>
       
@@ -845,7 +912,7 @@ e=\floor{m_1}c^2
   </span>
   <span class="author" itemprop="copyrightHolder">sengi</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
