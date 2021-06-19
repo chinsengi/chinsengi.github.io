@@ -21,22 +21,24 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"chinsengi.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"chinsengi.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="\[ \begin{equation} \def\pr{\text{\rm pr}}  \def\sec{\text{\rm sect}}  \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="妙啊">
-<meta property="og:url" content="https://chinsengi.github.io/2020/12/22/test/index.html">
+<meta property="og:title" content="Limit of Binomial Distribution">
+<meta property="og:url" content="https://chinsengi.github.io/zh-CN/2021/06/19/Limit-of-Binomial-Distribution/index.html">
 <meta property="og:site_name" content="sengi&#39;s journal">
 <meta property="og:description" content="\[ \begin{equation} \def\pr{\text{\rm pr}}  \def\sec{\text{\rm sect}}  \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-22T04:57:10.241Z">
-<meta property="article:modified_time" content="2020-12-24T19:32:39.985Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-19T12:28:13.000Z">
+<meta property="article:modified_time" content="2021-06-19T12:00:37.678Z">
 <meta property="article:author" content="sengi">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="Poisson">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://chinsengi.github.io/2020/12/22/test/">
+<link rel="canonical" href="https://chinsengi.github.io/zh-CN/2021/06/19/Limit-of-Binomial-Distribution/">
 
 
 <script class="page-configurations">
@@ -45,10 +47,10 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
-<title>妙啊 | sengi's journal</title>
+<title>Limit of Binomial Distribution | sengi's journal</title>
   
 
 
@@ -97,7 +99,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -124,10 +126,10 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
   </ul>
@@ -142,7 +144,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -172,10 +174,10 @@
     <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -195,19 +197,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
           <span class="site-state-item-count">4</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
         <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -244,8 +246,8 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chinsengi.github.io/2020/12/22/test/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chinsengi.github.io/2021/06/19/Limit-of-Binomial-Distribution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -258,7 +260,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          妙啊
+          Limit of Binomial Distribution
         </h1>
 
         <div class="post-meta-container">
@@ -267,25 +269,10 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="Created: 2020-12-22 12:57:10" itemprop="dateCreated datePublished" datetime="2020-12-22T12:57:10+08:00">2020-12-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 03:32:39" itemprop="dateModified" datetime="2020-12-25T03:32:39+08:00">2020-12-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
-        </span>
+      <time title="创建时间：2021-06-19 20:28:13 / 修改时间：20:00:37" itemprop="dateCreated datePublished" datetime="2021-06-19T20:28:13+08:00">2021-06-19</time>
     </span>
 
   
@@ -318,7 +305,6 @@
 \def\wide{\widehat}
 \def\uk{u^{(k_0)}}
 \def\uo{u^{(0)}}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
 \def\pj{P^{(2)}}
 \def\pii{P^{(1)}}
 \def\pc{P^{Cone}}
@@ -360,7 +346,6 @@
 \newcommand{\Norm}[1]{ \left\|  #1 \right\| }
 \newcommand{\iff}{\Leftrightarrow}
 \newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\floor}[1]{\lfloor #1 \rfloor }
 \newcommand{\Be}{\begin{equation}}
 \newcommand{\Ee}{\end{equation}}
 \newcommand{\Bm}{\begin{multline}}
@@ -694,7 +679,7 @@
 \def\eps{\varepsilon}
 \def\textbf#1{\bf #1}
 \def\into{\hookrightarrow}
-\def\inf{\infty}
+\newcommand{\inf}{\infty}
 \newcommand{\os}[2]{\overset{#1}{#2}}
 \newcommand{\ms}{(X, \cM, \mu)}
 \newcommand{\salg}{\sig\text{-algebra}}
@@ -756,13 +741,20 @@
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
 \end{equation}
 \]</span></p>
-<p>忙活了半天总算把latex的macro搞好了， 接下来就可以轻松愉快地打公式了（误 <span class="math display">\[
-\begin{equation}
-e=\floor{m_1}c^2
-\end{equation}
-\]</span> 感谢下列文章/回答：</p>
-<p>https://www.jianshu.com/p/a9f26f4cd4e6</p>
-<p>https://github.com/hexojs/hexo/issues/2231</p>
+<p>In computational neuroscience, Poisson distribution is very important in that spike trains are usually modeled as a Poisson process. This article demonstrates that the Poison distribution can be obtained as a limit of Binomial Distribution.</p>
+<span id="more"></span>
+<p>Consider a time interval <span class="math inline">\([0,T]\)</span> in which spikes occur. Let's assume that <span class="math inline">\(k\)</span> spikes occur within that interval. Now we divide the interval into <span class="math inline">\(n\)</span> bins, and within each time bin, a spike occurs with probability <span class="math inline">\(p\)</span>. Note that we only allow one spike per bin. So the probability of having <span class="math inline">\(k\)</span> spikes within <span class="math inline">\([0,T]\)</span> is <span class="math display">\[
+P(k) = {n\choose k}p^k(1-p)^{n-k}
+\]</span> Now this is the probability mass function of binomial distribution. If we take the limit of <span class="math inline">\(n\to \inf\)</span>, we quickly find that the result is zero. This is because it is upper-bounded by <span class="math inline">\(n^k (1-p)^n\)</span> times a constant. It suffices to show that <span class="math inline">\(n\alp^n\to 0\)</span> as <span class="math inline">\(n\to \inf\)</span>, where <span class="math inline">\(0&lt;\alp&lt;1\)</span>. Simply note that <span class="math inline">\(n\alp^{n-1}\)</span> is the derivative of <span class="math inline">\(\alp^n\)</span> which goes to 0 as <span class="math inline">\(n\)</span> goes to infinity. So we can always choose large enough <span class="math inline">\(n\)</span> such that any finite difference of <span class="math inline">\(\alp^n\)</span> around <span class="math inline">\(\alp\)</span> is below any small <span class="math inline">\(\eps\)</span>, QED.</p>
+<p>The question now is how do we take the limit in a proper sense so that the result is the probability mass function of Poisson distribution. We introduce a new concept called the firing rate <span class="math inline">\(r\)</span>, which indicates how often the neuron fires with the time interval <span class="math inline">\([0,T]\)</span>. Here is the key insight: as <span class="math inline">\(n\)</span> grows, each time bin gets smaller and smaller, so the probability of a spike occurring <span class="math inline">\(p\)</span> is also increasingly smaller. More specifically, they are related by <span class="math inline">\(\lam:=rT = np\)</span>.</p>
+<p>Now here is the mathematical show: <span class="math display">\[
+\bsp
+\lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
+&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
+&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{n^k}\exp(-\lam)\\
+&amp;=\f{\lam^k}{k!}\exp(-\lam)
+\esp
+\]</span> In the intermediate step we use the definition of Euler's number <span class="math inline">\(e\)</span>, and we arrive at the probability mass function of Poisson Distribution. We are done, have a nice day :)</p>
 
     </div>
 
@@ -771,19 +763,20 @@ e=\floor{m_1}c^2
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/Poisson/" rel="tag"># Poisson</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/22/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2020/12/23/diffeqsolve/" rel="prev" title="如何求解 $\dot{x} = x+f(t)$">
+                  <i class="fa fa-chevron-left"></i> 如何求解 $\dot{x} = x+f(t)$
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/12/23/diffeqsolve/" rel="next" title="如何求解 $\dot{x} = x+f(t)$">
-                  如何求解 $\dot{x} = x+f(t)$ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -825,16 +818,16 @@ e=\floor{m_1}c^2
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
-      <span>English</span>
+      <span>简体中文</span>
       <i class="fa fa-angle-up" aria-hidden="true"></i>
     </label>
     <select class="lang-select" data-canonical="">
       
-        <option value="en" data-href="/2020/12/22/test/" selected="">
+        <option value="en" data-href="/2021/06/19/Limit-of-Binomial-Distribution/" selected="">
           English
         </option>
       
-        <option value="zh-CN" data-href="/zh-CN/2020/12/22/test/" selected="">
+        <option value="zh-CN" data-href="/zh-CN/2021/06/19/Limit-of-Binomial-Distribution/" selected="">
           简体中文
         </option>
       
@@ -850,7 +843,7 @@ e=\floor{m_1}c^2
   </span>
   <span class="author" itemprop="copyrightHolder">sengi</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
