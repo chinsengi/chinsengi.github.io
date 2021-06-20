@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/12/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>妙啊</title>
     <url>/2020/12/22/test/</url>
-    <content><![CDATA[<p><span class="math display">\[
+    <content><![CDATA[<script type="math/tex; mode=display">
 \begin{equation}
 \def\pr{\text{\rm pr}} 
 \def\sec{\text{\rm sect}} 
@@ -479,24 +459,37 @@
 \newcommand{\paren}[1]{\left({#1}\right)}
 \newcommand{\ceil}[1]{\lceil{#1}\rceil}
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\end{equation}
-\]</span></p>
-<p>忙活了半天总算把latex的macro搞好了， 接下来就可以轻松愉快地打公式了（误 <span class="math display">\[
+\end{equation}</script><p>忙活了半天总算把latex的macro搞好了， 接下来就可以轻松愉快地打公式了（误</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 e=\floor{m_1}c^2
-\end{equation}
-\]</span> 感谢下列文章/回答：</p>
-<p>https://www.jianshu.com/p/a9f26f4cd4e6</p>
-<p>https://github.com/hexojs/hexo/issues/2231</p>
+\end{equation}</script><p>感谢下列文章/回答：</p>
+<p><a href="https://www.jianshu.com/p/a9f26f4cd4e6">https://www.jianshu.com/p/a9f26f4cd4e6</a></p>
+<p><a href="https://github.com/hexojs/hexo/issues/2231">https://github.com/hexojs/hexo/issues/2231</a></p>
 ]]></content>
       <categories>
         <category>other</category>
       </categories>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/12/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>如何求解 $\dot{x} = x+f(t)$</title>
     <url>/2020/12/23/diffeqsolve/</url>
-    <content><![CDATA[<p><span class="math display">\[
+    <content><![CDATA[<script type="math/tex; mode=display">
 \begin{equation}
 \def\pr{\text{\rm pr}} 
 \def\sec{\text{\rm sect}} 
@@ -950,88 +943,82 @@ e=\floor{m_1}c^2
 \newcommand{\paren}[1]{\left({#1}\right)}
 \newcommand{\ceil}[1]{\lceil{#1}\rceil}
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\end{equation}
-\]</span></p>
-<p>最近在看Dayan和Abbott的<a href="https://mitpress.mit.edu/books/theoretical-neuroscience"><em>Theoretical Neuroscience</em></a>。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程： <span class="math display">\[
+\end{equation}</script><p>最近在看Dayan和Abbott的<a href="https://mitpress.mit.edu/books/theoretical-neuroscience"><em>Theoretical Neuroscience</em></a>。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程：</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 C\frac{dV}{dt} = \frac{E-V}{R} + I_e
-\end{equation}
-\]</span> 这是比较容易求解的，令<span class="math inline">\(W = -V+E+RI_e\)</span>, 我们有 <span class="math display">\[
+\end{equation}</script><p>这是比较容易求解的，令$W = -V+E+RI_e$, 我们有</p>
+<script type="math/tex; mode=display">
 \begin{equation}
-RC(-W)&#39; = W
-\end{equation}
-\]</span> 愉快地分离变量就能得到<span class="math inline">\(W = C&#39;\exp(-t/\tau)\)</span>. 把<span class="math inline">\(V(0)\)</span> 这个初始条件代进去就有<span class="math inline">\(C&#39; = W(0) = -V(0)+E+RI_e\)</span>。 我们就能得到书上列出的解 <span class="math display">\[
+RC(-W)' = W
+\end{equation}</script><p>愉快地分离变量就能得到$W = C’\exp(-t/\tau)$. 把$V(0)$ 这个初始条件代进去就有$C’ = W(0) = -V(0)+E+RI_e$。 我们就能得到书上列出的解</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 V(t) = V_\inf +(V(0)- V_\inf) \exp(-t/\tau)
-\end{equation}
-\]</span></p>
-<span id="more"></span>
-<p>其中<span class="math inline">\(V_\inf = E+RI_e\)</span>, <span class="math inline">\(\tau = RC\)</span>。接下来作者又假设了另外一种情况， 这种情况下<span class="math inline">\(I_e\)</span> 随时间振荡： <span class="math inline">\(I_e = I\cos(\omega t)\)</span>. 这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 <span class="math inline">\(\dot{x} = a(t)x+b(t)\)</span>, 我们有解 <span class="math display">\[
+\end{equation}</script><span id="more"></span>
+<p>其中$V_\inf = E+RI_e$, $\tau = RC$。接下来作者又假设了另外一种情况， 这种情况下$I_e$ 随时间振荡： $I_e = I\cos(\omega t)$. 这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 $\dot{x} = a(t)x+b(t)$, 我们有解</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 x(t) = \exp\paren{\int_0^t a(s)ds)}x(0)+\int_0^t \exp\paren{\int_s^ta(r)dr}b(s)ds 
-\end{equation}\label{eq:1}\tag{1}
-\]</span> 这个方程是这样解的， 两边同乘<span class="math inline">\(\mu(t) = \exp(-\int_0^t a(s) ds)\)</span> (别问我为啥是这个，问就是exponential的derivative可以把指数拿下来然后用链式法则，就硬凑)。这样方程就变成了 <span class="math display">\[
+\end{equation}\label{eq:1}\tag{1}</script><p>这个方程是这样解的， 两边同乘$\mu(t) = \exp(-\int_0^t a(s) ds)$ (别问我为啥是这个，问就是exponential的derivative可以把指数拿下来然后用链式法则，就硬凑)。这样方程就变成了</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 \bsp
-\mu(t)\dot{x} - \mu(t)a(t)x&amp;= b(t)\mu(t)\\
-\paren{\mu(t)x}&#39; &amp;= b(t)\mu(t)\\
-\mu(t)x &amp;=\int_0^t b(r)\mu(r)dr+C\\
+\mu(t)\dot{x} - \mu(t)a(t)x&= b(t)\mu(t)\\
+\paren{\mu(t)x}' &= b(t)\mu(t)\\
+\mu(t)x &=\int_0^t b(r)\mu(r)dr+C\\
 \esp
-\end{equation}
-\]</span></p>
-<p>把<span class="math inline">\(t = 0\)</span>带进去, 发现<span class="math inline">\(C = x(0)\)</span>, 把<span class="math inline">\(\mu(t)\)</span> 移到另一边，我们就得到了之前那个解<span class="math inline">\(\eqref{eq:1}\)</span>。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz integral rule</a>。接下来我们，开炮！我们把<span class="math inline">\(V\)</span>当成<span class="math inline">\(x\)</span>, <span class="math inline">\(a(t) = -1/\tau\)</span>, <span class="math inline">\(b(t) = E/\tau+I\cos(\om t)/C\)</span>, 所以解就是 <span class="math display">\[
+\end{equation}</script><p>把$t = 0$带进去, 发现$C = x(0)$, 把$\mu(t)$ 移到另一边，我们就得到了之前那个解$\eqref{eq:1}$。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz integral rule</a>。接下来我们，开炮！我们把$V$当成$x$, $a(t) = -1/\tau$, $b(t) = E/\tau+I\cos(\om t)/C$, 所以解就是</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 V(t) = e^{-t/\tau}V(0)+\int_0^t e^{-(t-s)/\tau}b(s)ds
-\end{equation}
-\]</span></p>
-<p>可能大家读到这里都忘了我们是在解一本书里面的方程，书上是这么说的, &quot;once an initial transient has decayed to zero, we find&quot; <span class="math display">\[
+\end{equation}</script><p>可能大家读到这里都忘了我们是在解一本书里面的方程，书上是这么说的, “once an initial transient has decayed to zero, we find”</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 V(t) = E+\f{RI\cos(wt- \phi)}{ \sqrt{1+\om^2 \tau^2} }
-\end{equation}
-\]</span> 其中<span class="math inline">\(\tan(\phi) = \om\tau\)</span>。啊这。。。我刚开始看的时候是懵逼的，啥是transient? 后来才知道可能这是电子工程里面的术语。 Transient的意思不是短暂的么，这里就是指在<span class="math inline">\(t\to \inf\)</span>时趋于0的项， 可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西 <span class="math display">\[
-\lim_{t\to\inf} \int_0^t e^{-(t-s)/\tau}b(s)ds
-\]</span> 这里的极限不是分析意义上的，只是表示去掉<span class="math inline">\(t\to \inf\)</span>时为0的项。东凑凑西算算， 最后发现还是把余弦化成复数形式会比较好： <span class="math display">\[
+\end{equation}</script><p> 其中$\tan(\phi) = \om\tau$。啊这。。。我刚开始看的时候是懵逼的，啥是transient? 后来才知道可能这是电子工程里面的术语。 Transient的意思不是短暂的么，这里就是指在$t\to \inf$时趋于0的项， 可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西</p>
+<script type="math/tex; mode=display">
+\lim_{t\to\inf} \int_0^t e^{-(t-s)/\tau}b(s)ds</script><p>这里的极限不是分析意义上的，只是表示去掉$t\to \inf$时为0的项。东凑凑西算算， 最后发现还是把余弦化成复数形式会比较好：</p>
+<script type="math/tex; mode=display">
 \begin{equation}
 \cos(\omega t) = \frac{\exp(iwt)+\exp(-iwt)}{2}
-\end{equation}
-\]</span></p>
-<p>目的当然是好积分， 并不清楚作者是如何算的 <span class="math display">\[
+\end{equation}</script><p>目的当然是好积分， 并不清楚作者是如何算的</p>
+<script type="math/tex; mode=display">
 \bsp
-\int_0^te^{-(t-s)/\tau}(E/\tau+I\cos(\om s)/C)ds &amp;= A(t)+B(t)+C(t)\\
-A(t)&amp;=\f{E}{\tau}\int_0^t e^{-(t-s)/\tau}ds\\
-B(t)&amp;= \f{I}{2C}\int_0^t\exp(iws-(t-s)/\tau)ds\\
-C(t)&amp;= \f{I}{2C}\int_0^t\exp(-iws-(t-s)/\tau)ds
-\esp
-\]</span> 简单的积分: <span class="math display">\[
+\int_0^te^{-(t-s)/\tau}(E/\tau+I\cos(\om s)/C)ds &= A(t)+B(t)+C(t)\\
+A(t)&=\f{E}{\tau}\int_0^t e^{-(t-s)/\tau}ds\\
+B(t)&= \f{I}{2C}\int_0^t\exp(iws-(t-s)/\tau)ds\\
+C(t)&= \f{I}{2C}\int_0^t\exp(-iws-(t-s)/\tau)ds
+\esp</script><p>简单的积分:</p>
+<script type="math/tex; mode=display">
 \bsp
-A(t) &amp;= E(1-e^{-t/\tau})\\
-B(t) &amp;= \f{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\\
-C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\\
-\esp
-\]</span> 求个“极限” <span class="math display">\[
+A(t) &= E(1-e^{-t/\tau})\\
+B(t) &= \f{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\\
+C(t) &= \f{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\\
+\esp</script><p>求个“极限”</p>
+<script type="math/tex; mode=display">
 \bsp
-\lim_{t\to\inf} A(t) &amp;= E\\
-\lim_{t\to\inf} B(t) &amp;=\f{I\tau}{2C(iw\tau +1)}\exp(iwt)\\
-\lim_{t\to \inf}C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\\
-\esp
-\]</span> 别忘了<span class="math inline">\(\tau = RC\)</span>, 于是我们有 <span class="math display">\[
-V(t) = E+\f{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2( 1+\om^2 \tau^2)}
-\]</span> 把指数再展开成三角函数 <span class="math display">\[
-V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
-\]</span> 诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和 <span class="math display">\[
-\cos(\alp-\bet) = \cos(\alp)\cos(\bet)+\sin(\alp)\sin(\bet)
-\]</span> 的相似性， 我们希望 <span class="math display">\[
+\lim_{t\to\inf} A(t) &= E\\
+\lim_{t\to\inf} B(t) &=\f{I\tau}{2C(iw\tau +1)}\exp(iwt)\\
+\lim_{t\to \inf}C(t) &= \f{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\\
+\esp</script><p>别忘了$\tau = RC$, 于是我们有</p>
+<script type="math/tex; mode=display">
+V(t) = E+\f{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2( 1+\om^2 \tau^2)}</script><p>把指数再展开成三角函数</p>
+<script type="math/tex; mode=display">
+V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}</script><p>诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和</p>
+<script type="math/tex; mode=display">
+\cos(\alp-\bet) = \cos(\alp)\cos(\bet)+\sin(\alp)\sin(\bet)</script><p>的相似性， 我们希望</p>
+<script type="math/tex; mode=display">
 \bsp
 \cos(\phi) = 1\\
 \sin(\phi) = w\tau
-\esp
-\]</span> 这不可能，平方和要是1，于是上下同除<span class="math inline">\(1/\sqrt{1+w^2\tau^2}\)</span>即可。 <span class="math display">\[
+\esp</script><p>这不可能，平方和要是1，于是上下同除$1/\sqrt{1+w^2\tau^2}$即可。</p>
+<script type="math/tex; mode=display">
 \bsp
 \cos(\phi) = 1/\sqrt{1+w^2\tau^2}\\
 \sin(\phi) = w\tau/\sqrt{1+w^2\tau^2}
-\esp
-\]</span> <span class="math inline">\(\tan(\phi) = w\tau\)</span>自然成立。到此我们终于得到了这个书上没有过程的结论。。。</p>
-<p>后记：打这篇文章主要是想体验一下在博客里面写有大量公式的文章的体验。 有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。</p>
+\esp</script><p>$\tan(\phi) = w\tau$自然成立。到此我们终于得到了这个书上没有过程的结论。。。</p>
+<p>后记：打这篇文章主要是想体验一下在博客里面写有大量公式的文章的体验。 有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。 </p>
 ]]></content>
       <categories>
         <category>math</category>
@@ -1044,7 +1031,7 @@ V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
   <entry>
     <title>Limit of Binomial Distribution</title>
     <url>/2021/06/19/Limit-of-Binomial-Distribution/</url>
-    <content><![CDATA[<p><span class="math display">\[
+    <content><![CDATA[<script type="math/tex; mode=display">
 \begin{equation}
 \def\pr{\text{\rm pr}} 
 \def\sec{\text{\rm sect}} 
@@ -1498,22 +1485,20 @@ V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
 \newcommand{\paren}[1]{\left({#1}\right)}
 \newcommand{\ceil}[1]{\lceil{#1}\rceil}
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\end{equation}
-\]</span></p>
-<p>In computational neuroscience, Poisson distribution is very important in that spike trains are usually modeled as a Poisson process. This article demonstrates that the Poison distribution can be obtained as a limit of Binomial Distribution.</p>
+\end{equation}</script><p>In computational neuroscience, Poisson distribution is very important in that spike trains are usually modeled as a Poisson process. This article demonstrates that the Poison distribution can be obtained as a limit of Binomial Distribution. </p>
 <span id="more"></span>
-<p>Consider a time interval <span class="math inline">\([0,T]\)</span> in which spikes occur. Let's assume that <span class="math inline">\(k\)</span> spikes occur within that interval. Now we divide the interval into <span class="math inline">\(n\)</span> bins, and within each time bin, a spike occurs with probability <span class="math inline">\(p\)</span>. Note that we only allow one spike per bin. So the probability of having <span class="math inline">\(k\)</span> spikes within <span class="math inline">\([0,T]\)</span> is <span class="math display">\[
-P(k) = {n\choose k}p^k(1-p)^{n-k}
-\]</span> Now this is the probability mass function of binomial distribution. If we take the limit of <span class="math inline">\(n\to \inf\)</span>, we quickly find that the result is zero. This is because it is upper-bounded by <span class="math inline">\(n^k (1-p)^n\)</span> times a constant. It suffices to show that <span class="math inline">\(n\alp^n\to 0\)</span> as <span class="math inline">\(n\to \inf\)</span>, where <span class="math inline">\(0&lt;\alp&lt;1\)</span>. Simply note that <span class="math inline">\(n\alp^{n-1}\)</span> is the derivative of <span class="math inline">\(\alp^n\)</span> which goes to 0 as <span class="math inline">\(n\)</span> goes to infinity. So we can always choose large enough <span class="math inline">\(n\)</span> such that any finite difference of <span class="math inline">\(\alp^n\)</span> around <span class="math inline">\(\alp\)</span> is below any small <span class="math inline">\(\eps\)</span>, QED.</p>
-<p>The question now is how do we take the limit in a proper sense so that the result is the probability mass function of Poisson distribution. We introduce a new concept called the firing rate <span class="math inline">\(r\)</span>, which indicates how often the neuron fires with the time interval <span class="math inline">\([0,T]\)</span>. Here is the key insight: as <span class="math inline">\(n\)</span> grows, each time bin gets smaller and smaller, so the probability of a spike occurring <span class="math inline">\(p\)</span> is also increasingly smaller. More specifically, they are related by <span class="math inline">\(\lam:=rT = np\)</span>.</p>
-<p>Now here is the mathematical show: <span class="math display">\[
+<p>Consider a time interval $[0,T]$ in which spikes occur. Let’s assume that $k$ spikes occur within that interval. Now we divide the interval into $n$ bins, and within each time bin, a spike occurs with probability $p$. Note that we only allow one spike per bin. So the probability of having $k$ spikes within $[0,T]$ is </p>
+<script type="math/tex; mode=display">
+P(k) = {n\choose k}p^k(1-p)^{n-k}</script><p> Now this is the probability mass function of binomial distribution. If we take the limit of $n\to \inf$, we quickly find that the result is zero. This is because it is upper-bounded by $n^k (1-p)^n$ times a constant. It suffices to show that $n\alp^n\to 0$ as $n\to \inf$, where $0&lt;\alp&lt;1$. Simply note that $n\alp^{n-1}$ is the derivative of $\alp^n$ which goes to 0 as $n$ goes to infinity. So we can always choose large enough $n$ such that any finite difference of $\alp^n$ around $\alp$ is below any small $\eps$, QED. </p>
+<p>The question now is how do we take the limit in a proper sense so that the result is the probability mass function of Poisson distribution. We introduce a new concept called the firing rate $r$, which indicates how often the neuron fires with the time interval $[0,T]$. Here is the key insight: as $n$ grows, each time bin gets smaller and smaller, so the probability of a spike occurring $p$ is also increasingly smaller. More specifically, they are related by $\lam:=rT = np$. </p>
+<p>Now here is the mathematical show: </p>
+<script type="math/tex; mode=display">
 \bsp
-\lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
-&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
-&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{n^k}\exp(-\lam)\\
-&amp;=\f{\lam^k}{k!}\exp(-\lam)
-\esp
-\]</span> In the intermediate step we use the definition of Euler's number <span class="math inline">\(e\)</span>, and we arrive at the probability mass function of Poisson Distribution. We are done, have a nice day :)</p>
+\lim_{\lam = np,\ n\to \inf}P(k) &= \lim_{rT = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
+&=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
+&=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{n^k}\exp(-\lam)\\
+&=\f{\lam^k}{k!}\exp(-\lam)
+\esp</script><p> In the intermediate step we use the definition of Euler’s number $e$, and we arrive at the probability mass function of Poisson Distribution. We are done, have a nice day :) </p>
 ]]></content>
       <tags>
         <tag>math</tag>
