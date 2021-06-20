@@ -28,7 +28,7 @@
 <meta property="og:description" content="\[ \begin{equation} \def\pr{\text{\rm pr}}  \def\sec{\text{\rm sect}}  \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-19T12:28:13.000Z">
-<meta property="article:modified_time" content="2021-06-20T02:19:13.993Z">
+<meta property="article:modified_time" content="2021-06-20T02:23:39.442Z">
 <meta property="article:author" content="sengi">
 <meta property="article:tag" content="math">
 <meta property="article:tag" content="Poisson">
@@ -88,6 +88,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -169,6 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
@@ -239,7 +241,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-20 10:19:13" itemprop="dateModified" datetime="2021-06-20T10:19:13+08:00">2021-06-20</time>
+        <time title="修改时间：2021-06-20 10:23:39" itemprop="dateModified" datetime="2021-06-20T10:23:39+08:00">2021-06-20</time>
       </span>
 
   
@@ -718,7 +720,7 @@ P(k) = {n\choose k}p^k(1-p)^{n-k}
 \bsp
 \lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
 &amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
-&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{(n-^k}\exp(-\lam)\\
+&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{(n-\lam)^k}\exp(-\lam)\\
 &amp;=\f{\lam^k}{k!}\exp(-\lam)
 \esp
 \]</span> In the intermediate step we use the definition of Euler's number <span class="math inline">\(e\)</span>, and we arrive at the probability mass function of Poisson Distribution. We are done, have a nice day :)</p>
@@ -755,6 +757,7 @@ P(k) = {n\choose k}p^k(1-p)^{n-k}
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -819,6 +822,10 @@ P(k) = {n\choose k}p^k(1-p)^{n-k}
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;chinsengi&quot;,&quot;repo&quot;:&quot;https:&#x2F;&#x2F;github.com&#x2F;chinsengi&#x2F;blog_comments.git&quot;,&quot;client_id&quot;:&quot;ff354edc0715e209d19a&quot;,&quot;client_secret&quot;:&quot;d2d0a69da72f2dc38de874155543486ced53da71&quot;,&quot;admin_user&quot;:&quot;chinsengi# GitHub repo owner and collaborators, only these guys can initialize gitHub issues&quot;,&quot;distraction_free_mode&quot;:true,&quot;language&quot;:null,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;7e574ef03a8bcc0203e05b14853e8ee6&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>
