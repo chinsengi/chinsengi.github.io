@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/2020/12/22/hello-world/</url>
+    <url>/2020/12/21/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 <h2 id="quick-start">Quick Start</h2>
@@ -22,7 +22,7 @@
   </entry>
   <entry>
     <title>妙啊</title>
-    <url>/2020/12/22/test/</url>
+    <url>/2020/12/21/test/</url>
     <content><![CDATA[<p><span class="math display">\[
 \begin{equation}
 \def\pr{\text{\rm pr}} 
@@ -498,8 +498,8 @@ e=\floor{m_1}c^2
     <url>/2021/06/19/Limit-of-Binomial-Distribution/</url>
     <content><![CDATA[<p><span class="math display">\[
 \begin{equation}
-\def\pr{\text{\rm pr}} 
-\def\sec{\text{\rm sect}} 
+\def\pr{\text{\rm pr}}
+\def\sec{\text{\rm sect}}
 \def\R{\mathbb{R}}
 \def\N{\mathbb{N}}
 \def\C{\mathbb{C}}
@@ -952,20 +952,48 @@ e=\floor{m_1}c^2
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
 \end{equation}
 \]</span></p>
-<p>In computational neuroscience, Poisson distribution is very important in that spike trains are usually modeled as a Poisson process. This article demonstrates that the Poison distribution can be obtained as a limit of Binomial Distribution.</p>
+<p>In computational neuroscience, Poisson distribution is very important
+in that spike trains are usually modeled as a Poisson process. This
+article demonstrates that the Poisson distribution can be obtained as a
+limit of Binomial Distribution.</p>
 <span id="more"></span>
-<p>Consider a time interval <span class="math inline">\([0,T]\)</span> in which spikes occur. Let's assume that <span class="math inline">\(k\)</span> spikes occur within that interval. Now we divide the interval into <span class="math inline">\(n\)</span> bins, and within each time bin, a spike occurs with probability <span class="math inline">\(p\)</span>. Note that we only allow one spike per bin. So the probability of having <span class="math inline">\(k\)</span> spikes within <span class="math inline">\([0,T]\)</span> is <span class="math display">\[
+<p>Consider a time interval <span class="math inline">\([0,T]\)</span>
+in which spikes occur. Let's assume that <span class="math inline">\(k\)</span> spikes occur within that interval. Now
+we divide the interval into <span class="math inline">\(n\)</span> bins,
+and within each time bin, a spike occurs with probability <span class="math inline">\(p\)</span>. Note that we only allow one spike per
+bin. So the probability of having <span class="math inline">\(k\)</span>
+spikes within <span class="math inline">\([0,T]\)</span> is <span class="math display">\[
 P(k) = {n\choose k}p^k(1-p)^{n-k}
-\]</span> Now this is the probability mass function of binomial distribution. If we take the limit of <span class="math inline">\(n\to \inf\)</span>, we quickly find that the result is zero. This is because it is upper-bounded by <span class="math inline">\(n^k (1-p)^n\)</span> times a constant. It suffices to show that <span class="math inline">\(n\alp^n\to 0\)</span> as <span class="math inline">\(n\to \inf\)</span>, where <span class="math inline">\(0&lt;\alp&lt;1\)</span>. Simply note that <span class="math inline">\(n\alp^{n-1}\)</span> is the derivative of <span class="math inline">\(\alp^n\)</span> which goes to 0 as <span class="math inline">\(n\)</span> goes to infinity. So we can always choose large enough <span class="math inline">\(n\)</span> such that any finite difference of <span class="math inline">\(\alp^n\)</span> around <span class="math inline">\(\alp\)</span> is below any small <span class="math inline">\(\eps\)</span>, QED.</p>
-<p>The question now is how do we take the limit in a proper sense so that the result is the probability mass function of Poisson distribution. We introduce a new concept called the firing rate <span class="math inline">\(r\)</span>, which indicates how often the neuron fires with the time interval <span class="math inline">\([0,T]\)</span>. Here is the key insight: as <span class="math inline">\(n\)</span> grows, each time bin gets smaller and smaller, so the probability of a spike occurring <span class="math inline">\(p\)</span> is also increasingly smaller. More specifically, they are related by <span class="math inline">\(\lam:=rT = np\)</span>.</p>
+\]</span> Now this is the probability mass function of binomial
+distribution. If we take the limit of <span class="math inline">\(n\to
+\inf\)</span>, we quickly find that the result is zero. This is because
+it is upper-bounded by <span class="math inline">\(n^k (1-p)^n\)</span>
+times a constant. It suffices to show that <span class="math inline">\(n\alp^n\to 0\)</span> as <span class="math inline">\(n\to \inf\)</span>, where <span class="math inline">\(0&lt;\alp&lt;1\)</span>. Simply note that <span class="math inline">\(n\alp^{n-1}\)</span> is the derivative of <span class="math inline">\(\alp^n\)</span> which goes to 0 as <span class="math inline">\(n\)</span> goes to infinity. So we can always
+choose large enough <span class="math inline">\(n\)</span> such that any
+finite difference of <span class="math inline">\(\alp^n\)</span> around
+<span class="math inline">\(\alp\)</span> is below any small <span class="math inline">\(\eps\)</span>, QED.</p>
+<p>The question now is how do we take the limit in a proper sense so
+that the result is the probability mass function of Poisson
+distribution. We introduce a new concept called the firing rate <span class="math inline">\(r\)</span>, which indicates how often the neuron
+fires with the time interval <span class="math inline">\([0,T]\)</span>.
+Here is the key insight: as <span class="math inline">\(n\)</span>
+grows, each time bin gets smaller and smaller, so the probability of a
+spike occurring <span class="math inline">\(p\)</span> is also
+increasingly smaller. More specifically, they are related by <span class="math inline">\(\lam:=rT = np\)</span>.</p>
 <p>Now here is the mathematical show: <span class="math display">\[
 \bsp
-\lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
-&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
-&amp;=\lim_{\lam = np,\ n\to \inf}\f{n!}{k!(n-k)!}\f{\lam^k}{(n-\lam)^k}\exp(-\lam)\\
+\lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to
+\inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{n-k}\\
+&amp;=\lim_{\lam = np,\ n\to
+\inf}\f{n!}{k!(n-k)!}(\lam/n)^k(1-\lam/n)^{-k}((1-\lam/n)^{-n/\lam})^{-\lam}\\
+&amp;=\lim_{\lam = np,\ n\to
+\inf}\f{n!}{k!(n-k)!}\f{\lam^k}{(n-\lam)^k}\exp(-\lam)\\
 &amp;=\f{\lam^k}{k!}\exp(-\lam)
 \esp
-\]</span> In the intermediate step we use the definition of Euler's number <span class="math inline">\(e\)</span>, and we arrive at the probability mass function of Poisson Distribution. We are done, have a nice day :)</p>
+\]</span> In the intermediate step we use the definition of Euler's
+number <span class="math inline">\(e\)</span>, and we arrive at the
+probability mass function of Poisson Distribution. We are done, have a
+nice day :)</p>
 ]]></content>
       <tags>
         <tag>math</tag>
@@ -974,7 +1002,7 @@ P(k) = {n\choose k}p^k(1-p)^{n-k}
   </entry>
   <entry>
     <title>如何求解 $\dot{x} = x+f(t)$</title>
-    <url>/2020/12/23/diffeqsolve/</url>
+    <url>/2020/12/22/diffeqsolve/</url>
     <content><![CDATA[<p><span class="math display">\[
 \begin{equation}
 \def\pr{\text{\rm pr}} 
@@ -1518,6 +1546,1130 @@ V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}
       <tags>
         <tag>math</tag>
         <tag>differential equation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Chinese Remainder Theorem</title>
+    <url>/2021/06/30/Chinese-Remainder-Theorem/</url>
+    <content><![CDATA[<p><span class="math display">\[
+\begin{equation}
+\def\pr{\text{\rm pr}}
+\def\sec{\text{\rm sect}}
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\H{\mathcal{H}}
+\def\beq{\begin{equation}}
+\def\endeq{\end{equation}}
+\def\lesim{\lesssim}
+\def\mc{\mathcal}
+\def\h{\mathcal{H}}
+\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\def\mn{M^{(n)}}
+\def\lam{\lambda}
+\def\wide{\widehat}
+\def\uk{u^{(k_0)}}
+\def\uo{u^{(0)}}
+\def\pj{P^{(2)}}
+\def\pii{P^{(1)}}
+\def\pc{P^{Cone}}
+\def\tx{\tilde x}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\sgn}{sgn}
+\def\cplus{c\ci+}
+\def\cmin{c\ci-}
+\def\cplusmin{c\ci\pm}
+\def\chiplus{\chi\ci+}
+\def\chimin{\chi\ci-}
+\def\chiplusmin{\chi\ci\pm}
+\def\psiplus{\psi\ci+}
+\def\psimin{\psi\ci-}
+\def\psiplusmin{\psi\ci\pm}
+\def\sigmaplus{\sigma\ci+}
+\def\sigmamin{\sigma\ci-}
+\def\sigmaplusmin{\sigma\ci\pm}
+\def\bbone{\mathbbm 1}
+\newcommand{\dil}{\text{\rm Dil}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\ls}{\lesssim}
+\newcommand{\sL}{\mathscr L}
+\newcommand{\sJ}{\mathscr J}
+\newcommand{\sK}{\mathscr K}
+\newcommand{\wh}{\widehat}
+\newcommand{\wt}{\widetilde}
+\newcommand{\A}{\mathcal A}
+\newcommand{\E}{\mathcal E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\D}{\mathcal D}
+\newcommand{\K}{\mathcal K}
+\newcommand{\QQ}{\mathcal Q}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\term}{c(z,r)F^\Psi_r(\cdot-z)}
+\newcommand{\norm}[1]{ \left|  #1 \right| }
+\newcommand{\abs}[1]{ \left|  #1 \right| }
+\newcommand{\Norm}[1]{ \left\|  #1 \right\| }
+\newcommand{\iff}{\Leftrightarrow}
+\newcommand{\set}[1]{ \left\{ #1 \right\} }
+\newcommand{\Be}{\begin{equation}}
+\newcommand{\Ee}{\end{equation}}
+\newcommand{\Bm}{\begin{multline}}
+\newcommand{\Em}{\end{multline}}
+\newcommand{\Bea}{\begin{eqnarray}}
+\newcommand{\Eea}{\end{eqnarray}}
+\newcommand{\Beas}{\begin{eqnarray*}}
+\newcommand{\Eeas}{\end{eqnarray*}}
+\newcommand{\Benu}{\begin{enumerate}}
+\newcommand{\Eenu}{\end{enumerate}}
+\newcommand{\Bi}{\begin{itemize}}
+\newcommand{\Ei}{\end{itemize}}
+\def\conv{\text{Conv}}
+\def\tp{\tilde p}
+\def\tq{\tilde q}
+\def\crit{\text{\rm cr}}
+\def\sparse{\text{\rm sp}}
+\def\dyad{\text{\rm dyad}}
+\def\mart{\text{dyad}}
+\def\intslash{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int}
+\def\qsl{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
+\def\Re{\operatorname{Re\,}}
+\def\Im{\operatorname{Im\,}}
+\def\mx
+\def\mn
+\def\vth{\vartheta}
+\def\rn{\rr^{n}}
+\def\rr{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+\def\complex{\mathbb C}
+\def\emph#1{\it #1 }
+\def\diam{\text{\rm  diam}}
+\def\osc{\text{\rm osc}}
+\def\ffB{\mathcal B}
+\def\seq{\subseteq}
+\def\Ga{\Gamma}
+\def\ga{\gamma}
+\def\Th{\Theta}
+\def\prd{\text{\it prod}}
+\def\parab{\text{\it parabolic}}
+\def\eg{\it e.g. }
+\def\cf{\it cf}
+\def\Rn{\mathbb R^n}
+\def\Rd{\mathbb R^d}
+\def\sgn{\text{\rm sign }}
+\def\rank{\text{\rm rank }}
+\def\corank{\text{\rm corank }}
+\def\coker{\text{\rm Coker }}
+\def\loc{\text{\rm loc}}
+\def\spec{\text{\rm spec}}
+\def\comp{\text{comp}}
+\def\Coi{C^\infty_0}
+\def\dist{\text{\it dist}}
+\def\diag{\text{\rm diag}}
+\def\supp{text{\rm supp}}
+\def\rad{\text{\it rad}}
+\def\sph{\text{sph}}
+\def\Lip{\text{\rm Lip}}
+\def\ev{\text{\rm ev}}
+\def\odd{\text{\rm odd}}
+\def\inn#1#2{\langle#1,#2\rangle}
+\def\biginn#1#2{\big\langle#1,#2\big\rangle}
+\def\rta{\rightarrow}
+\def\lta{\leftarrow}
+\def\noi{\noindent}
+\def\lcontr{\rfloor}
+\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\def\meas{\text{\rm meas}}
+\def\card{\text{\rm card}}
+\def\lc{\lesssim}
+\def\gc{\gtrsim}
+\def\pv{\text{\rm p.v.}}
+\def\a{\alpha}
+\def\alp{\alpha}             \def\Alp{\Alpha}
+\def\bet{\beta}
+\def\gam{\gamma}             \def\Gam{\Gamma}
+\def\del{\delta}             \def\Del{\Delta}
+\def\eps{\varepsilon}
+\def\ep{\epsilon}
+\def\zet{\zeta}
+\def\tet{\theta}             \def\Tet{\Theta}
+\def\iot{\iota}
+\def\kap{\kappa}
+\def\ka{\kappa}
+\def\lam{\lambda}            \def\Lam{\Lambda}
+\def\la{\lambda}             \def\La{\Lambda}
+\def\sig{\sigma}             \def\Sig{\Sigma}
+\def\si{\sigma}              \def\Si{\Sigma}
+\def\vphi{\varphi}
+\def\ome{\omega}             \def\Ome{\Omega}
+\def\om{\omega}  
+\def\fA{\mathfrak {A}}
+\def\fB{\mathfrak {B}}
+\def\fC{\mathfrak {C}}
+\def\fD{\mathfrak {D}}
+\def\fE{\mathfrak {E}}
+\def\fF{\mathfrak {F}}
+\def\fG{mathfrak {G}}
+\def\fH{\mathfrak {H}}
+\def\fI{\mathfrak {I}}
+\def\fJ{\mathfrak {J}}
+\def\fK{\mathfrak {K}}
+\def\fL{\mathfrak {L}}
+\def\fM{\mathfrak {M}}
+\def\fN{\mathfrak {N}}
+\def\fO{\mathfrak {O}}
+\def\fP{\mathfrak {P}}
+\def\fQ{\mathfrak {Q}}
+\def\fR{\mathfrak {R}}
+\def\fS{\mathfrak {S}}
+\def\fT{\mathfrak {T}}
+\def\fU{\mathfrak {U}}
+\def\fV{\mathfrak {V}}
+\def\fW{\mathfrak {W}}
+\def\fX{\mathfrak {X}}
+\def\fY{\mathfrak {Y}}
+\def\fZ{\mathfrak {Z}}
+\def\fa{\mathfrak {a}}
+\def\fb{\mathfrak {b}}
+\def\fc{\mathfrak {c}}
+\def\fd{\mathfrak {d}}
+\def\fe{\mathfrak {e}}
+\def\ff{\mathfrak {f}}
+\def\fg{\mathfrak {g}}
+\def\fh{\mathfrak {h}}
+\def\fj{\mathfrak {j}}
+\def\fk{\mathfrak {k}}
+\def\fl{\mathfrak {l}}
+\def\fn{\mathfrak {n}}
+\def\fo{\mathfrak {o}}
+\def\fq{\mathfrak {q}}
+\def\fr{\mathfrak {r}}
+\def\fs{\mathfrak {s}}
+\def\ft{\mathfrak {t}}
+\def\fu{\mathfrak {u}}
+\def\fv{\mathfrak {v}}
+\def\fw{\mathfrak {w}}
+\def\fx{\mathfrak {x}}
+\def\fy{\mathfrak {y}}
+\def\fz{\mathfrak {z}}
+\def\bbA{\mathbb {A}}
+\def\bbB{\mathbb {B}}
+\def\bbC{\mathbb {C}}
+\def\bbD{\mathbb {D}}
+\def\bbE{\mathbb {E}}
+\def\bbF{\mathbb {F}}
+\def\bbG{\mathbb {G}}
+\def\bbH{\mathbb {H}}
+\def\bbI{\mathbb {I}}
+\def\bbJ{\mathbb {J}}
+\def\bbK{\mathbb {K}}
+\def\bbL{\mathbb {L}}
+\def\bbM{\mathbb {M}}
+\def\bbN{\mathbb {N}}
+\def\bbO{\mathbb {O}}
+\def\bbP{\mathbb {P}}
+\def\bbQ{\mathbb {Q}}
+\def\bbR{\mathbb {R}}
+\def\bbS{\mathbb {S}}
+\def\bbT{\mathbb {T}}
+\def\bbU{\mathbb {U}}
+\def\bbV{\mathbb {V}}
+\def\bbW{\mathbb {W}}
+\def\bbX{\mathbb {X}}
+\def\bbY{\mathbb {Y}}
+\def\bbZ{\mathbb {Z}}
+\def\cA{\mathcal {A}}
+\def\cB{\mathcal {B}}
+\def\cC{\mathcal {C}}
+\def\cD{\mathcal {D}}
+\def\cE{\mathcal {E}}
+\def\cF{\mathcal {F}}
+\def\cG{\mathcal {G}}
+\def\cH{\mathcal {H}}
+\def\cI{\mathcal {I}}
+\def\cJ{\mathcal {J}}
+\def\cK{\mathcal {K}}
+\def\cL{\mathcal {L}}
+\def\cM{\mathcal {M}}
+\def\cN{\mathcal {N}}
+\def\cO{\mathcal {O}}
+\def\cP{\mathcal {P}}
+\def\cQ{\mathcal {Q}}
+\def\cR{\mathcal {R}}
+\def\cS{\mathcal {S}}
+\def\cT{\mathcal {T}}
+\def\cU{\mathcal {U}}
+\def\cV{\mathcal {V}}
+\def\cW{\mathcal {W}}
+\def\cX{\mathcal {X}}
+\def\cY{\mathcal {Y}}
+\def\cZ{\mathcal {Z}}
+\def\tA{\widetilde{A}}
+\def\tB{\widetilde{B}}
+\def\tC{\widetilde{C}}
+\def\tD{\widetilde{D}}
+\def\tE{\widetilde{E}}
+\def\tF{\widetilde{F}}
+\def\tG{\widetilde{G}}
+\def\tH{\widetilde{H}}
+\def\tI{\widetilde{I}}
+\def\tJ{\widetilde{J}}
+\def\tK{\widetilde{K}}
+\def\tL{\widetilde{L}}
+\def\tM{\widetilde{M}}
+\def\tN{\widetilde{N}}
+\def\tO{\widetilde{O}}
+\def\tP{\widetilde{P}}
+\def\tQ{\widetilde{Q}}
+\def\tR{\widetilde{R}}
+\def\tS{\widetilde{S}}
+\def\tT{\widetilde{T}}
+\def\tU{\widetilde{U}}
+\def\tV{\widetilde{V}}
+\def\tW{\widetilde{W}}
+\def\tX{\widetilde{X}}
+\def\tY{\widetilde{Y}}
+\def\tZ{\widetilde{Z}}
+\def\tcA{\widetilde{\mathcal {A}}}
+\def\tcB{\widetilde{\mathcal {B}}}
+\def\tcC{\widetilde{\mathcal {C}}}
+\def\tcD{\widetilde{\mathcal {D}}}
+\def\tcE{\widetilde{\mathcal {E}}}
+\def\tcF{\widetilde{\mathcal {F}}}
+\def\tcG{\widetilde{\mathcal {G}}}
+\def\tcH{\widetilde{\mathcal {H}}}
+\def\tcI{\widetilde{\mathcal {I}}}
+\def\tcJ{\widetilde{\mathcal {J}}}
+\def\tcK{\widetilde{\mathcal {K}}}
+\def\tcL{\widetilde{\mathcal {L}}}
+\def\tcM{\widetilde{\mathcal {M}}}
+\def\tcN{\widetilde{\mathcal {N}}}
+\def\tcO{\widetilde{\mathcal {O}}}
+\def\tcP{\widetilde{\mathcal {P}}}
+\def\tcQ{\widetilde{\mathcal {Q}}}
+\def\tcR{\widetilde{\mathcal {R}}}
+\def\tcS{\widetilde{\mathcal {S}}}
+\def\tcT{\widetilde{\mathcal {T}}}
+\def\tcU{\widetilde{\mathcal {U}}}
+\def\tcV{\widetilde{\mathcal {V}}}
+\def\tcW{\widetilde{\mathcal {W}}}
+\def\tcX{\widetilde{\mathcal {X}}}
+\def\tcY{\widetilde{\mathcal {Y}}}
+\def\tcZ{\widetilde{\mathcal {Z}}}
+\def\tfA{\widetilde{\mathfrak {A}}}
+\def\tfB{\widetilde{\mathfrak {B}}}
+\def\tfC{\widetilde{\mathfrak {C}}}
+\def\tfD{\widetilde{\mathfrak {D}}}
+\def\tfE{\widetilde{\mathfrak {E}}}
+\def\tfF{\widetilde{\mathfrak {F}}}
+\def\tfG{\widetilde{\mathfrak {G}}}
+\def\tfH{\widetilde{\mathfrak {H}}}
+\def\tfI{\widetilde{\mathfrak {I}}}
+\def\tfJ{\widetilde{\mathfrak {J}}}
+\def\tfK{\widetilde{\mathfrak {K}}}
+\def\tfL{\widetilde{\mathfrak {L}}}
+\def\tfM{\widetilde{\mathfrak {M}}}
+\def\tfN{\widetilde{\mathfrak {N}}}
+\def\tfO{\widetilde{\mathfrak {O}}}
+\def\tfP{\widetilde{\mathfrak {P}}}
+\def\tfQ{\widetilde{\mathfrak {Q}}}
+\def\tfR{\widetilde{\mathfrak {R}}}
+\def\tfS{\widetilde{\mathfrak {S}}}
+\def\tfT{\widetilde{\mathfrak {T}}}
+\def\tfU{\widetilde{\mathfrak {U}}}
+\def\tfV{\widetilde{\mathfrak {V}}}
+\def\tfW{\widetilde{\mathfrak {W}}}
+\def\tfX{\widetilde{\mathfrak {X}}}
+\def\tfY{\widetilde{\mathfrak {Y}}}
+\def\tfZ{\widetilde{\mathfrak {Z}}}
+\def\Atil{\widetilde A}          \def\atil{\tilde a}
+\def\Btil{\widetilde B}          \def\btil{\tilde b}
+\def\Ctil{\widetilde C}          \def\ctil{\tilde c}
+\def\Dtil{\widetilde D}          \def\dtil{\tilde d}
+\def\Etil{\widetilde E}          \def\etil{\tilde e}
+\def\Ftil{\widetilde F}          \def\ftil{\tilde f}
+\def\Gtil{\widetilde G}          \def\gtil{\tilde g}
+\def\Htil{\widetilde H}          \def\htil{\tilde h}
+\def\Itil{\widetilde I}          \def\itil{\tilde i}
+\def\Jtil{\widetilde J}          \def\jtil{\tilde j}
+\def\Ktil{\widetilde K}          \def\ktil{\tilde k}
+\def\Ltil{\widetilde L}          \def\ltil{\tilde l}
+\def\Mtil{\widetilde M}          \def\mtil{\tilde m}
+\def\Ntil{\widetilde N}          \def\ntil{\tilde n}
+\def\Otil{\widetilde O}          \def\otil{\tilde o}
+\def\Ptil{\widetilde P}          \def\ptil{\tilde p}
+\def\Qtil{\widetilde Q}          \def\qtil{\tilde q}
+\def\Rtil{\widetilde R}          \def\rtil{\tilde r}
+\def\Stil{\widetilde S}          \def\stil{\tilde s}
+\def\Ttil{\widetilde T}          \def\ttil{\tilde t}
+\def\Util{\widetilde U}          \def\util{\tilde u}
+\def\Vtil{\widetilde V}          \def\vtil{\tilde v}
+\def\Wtil{\widetilde W}          \def\wtil{\tilde w}
+\def\Xtil{\widetilde X}          \def\xtil{\tilde x}
+\def\Ytil{\widetilde Y}          \def\ytil{\tilde y}
+\def\Ztil{\widetilde Z}          \def\ztil{\tilde z}
+\def\ahat{\hat a}          \def\Ahat{\widehat A}
+\def\bhat{\hat b}          \def\Bhat{\widehat B}
+\def\chat{\hat c}          \def\Chat{\widehat C}
+\def\dhat{\hat d}          \def\Dhat{\widehat D}
+\def\ehat{\hat e}          \def\Ehat{\widehat E}
+\def\fhat{\hat f}          \def\Fhat{\widehat F}
+\def\ghat{\hat g}          \def\Ghat{\widehat G}
+\def\hhat{\hat h}          \def\Hhat{\widehat H}
+\def\ihat{\hat i}          \def\Ihat{\widehat I}
+\def\jhat{\hat j}          \def\Jhat{\widehat J}
+\def\khat{\hat k}          \def\Khat{\widehat K}
+\def\lhat{\hat l}          \def\Lhat{\widehat L}
+\def\mhat{\hat m}          \def\Mhat{\widehat M}
+\def\nhat{\hat n}          \def\Nhat{\widehat N}
+\def\ohat{\hat o}          \def\Ohat{\widehat O}
+\def\phat{\hat p}          \def\Phat{\widehat P}
+\def\qhat{\hat q}          \def\Qhat{\widehat Q}
+\def\rhat{\hat r}          \def\Rhat{\widehat R}
+\def\shat{\hat s}          \def\Shat{\widehat S}
+\def\that{\hat t}          \def\That{\widehat T}
+\def\uhat{\hat u}          \def\Uhat{\widehat U}
+\def\vhat{\hat v}          \def\Vhat{\widehat V}
+\def\what{\hat w}          \def\What{\widehat W}
+\def\xhat{\hat x}          \def\Xhat{\widehat X}
+\def\yhat{\hat y}          \def\Yhat{\widehat Y}
+\def\zhat{\hat z}          \def\Zhat{\widehat Z}
+\def\be#1{\begin{equation}\label{ #1}}
+\def\endeq{\end{equation}}
+\def\endal{\end{align}}
+\def\bas{\begin{align*}}
+\def\eas{\end{align*}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\eps{\varepsilon}
+\def\textbf#1{\bf #1}
+\def\into{\hookrightarrow}
+\newcommand{\inf}{\infty}
+\newcommand{\os}[2]{\overset{#1}{#2}}
+\newcommand{\ms}{(X, \cM, \mu)}
+\newcommand{\salg}{\sig\text{-algebra}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\id}{\text{id}}
+\newcommand{\Stab}{\text{Stab}}
+\def \bl {\backslash}
+\def \sfin {\sig\text{-finite}}
+\def \mum {\mu\text{-measurable}}
+\def \emps {\varnothing}
+\newcommand{\m}[1]{\boldsymbol{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\Inf}{\text{inf}}
+\newcommand{\wb}[1]{\overline{#1}}
+\newcommand{\lto}{\longrightarrow}
+\newcommand{\todo}[1]{\bf\color{red}{[ToDo]
+\text{#1}}}
+\newcommand{\char}[1]{\cX_{#1}}
+\newcommand{\fp}{f^+}
+\newcommand{\fm}{f^-}
+\newcommand{\infm}{\text{inf}}
+\newcommand{\onorm}[1]{\Norm{#1}_1}
+\newcommand{\tnorm}[1]{\Norm{#1}_2}
+\newcommand{\infn}[1]{\Norm{#1}_\inf}
+\newcommand{\pnorm}[1]{\Norm{#1}_p}
+\newcommand{\End}{\text{End}}
+\newcommand{\Ob}{\text{Ob}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\intall}{\int_{-\inf}^{\inf}}
+\newcommand{\intpmpi}{\int_{-\pi}^{\pi}}
+\newcommand{\div}{\bigr|}
+\newcommand{\when}{\biggr|}
+\def \bsp {\begin{split}}
+\def \esp {\end{split}}
+\def \bc {\begin{cases}}
+\def \ec {\end{cases}}
+\newcommand{\sech}{\text{sech}}
+\newcommand{\vectk}{\text{Vect}_\text{k}}
+\newcommand{\top}{\text{Top}}
+\newcommand{\grp}{\text{Grp}}
+\newcommand{\pathx}{\text{Paths}_X}
+\newcommand{\from}{\leftarrow}
+\newcommand{\lfrom}{\longleftarrow}
+\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
+\newcommand{\sym}{\text{Sym}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\zn}{\Z/n\Z}
+\newcommand{\Mor}{\text{Mor}}
+\newcommand{\acton}{\circlearrowright}
+\DeclareMathOperator{\tr}{Tr}
+\newcommand{\par}{\partial}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\triv}{\text{triv}}
+\newcommand{\zmnz}[1]{\Z/{#1}\Z}
+\newcommand{\tl}{\triangleleft}
+\newcommand{\paren}[1]{\left({#1}\right)}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\mod}{\textrm{mod}}
+\newcommand{\ndiv}{\nmid}
+\end{equation}
+\]</span></p>
+<p>I recently decided to pick up competitive programming, not only
+because I enjoy programming, but also because this is a fail safe for my
+academic career. With the tension between China and US rises, any
+Chinese research personnel in the US is bound to be persecuted in one
+way or another (it already begins with the visa application). It will be
+increasingly risky to put all the eggs in one basket. And the recent <a href="https://www.universityworldnews.com/post.php?story=20210611084120155">Wenhua
+Jiang Incident</a> further dims the light on the path to tenure in China
+for many researchers. So in short, doing competitive programming is an
+act of interest (pun intended).</p>
+<p>So much gibberish, today we are going to talk about Chinese Remainder
+Theorem, which basically says that given a set of coprime integers, and
+we know the remainders of an unknown integer modulo those coprime
+numbers, then the smallest such unknown number can be uniquely
+determined. For a rigorous definition, see <a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">wiki</a>.
+The proof is quite simply, say the set of coprime numbers are <span class="math inline">\(n_1, n_2, \dots, n_k\)</span>, and <span class="math inline">\(N = \Pi_i n_i\)</span>. And the aforementioned
+remainders are <span class="math inline">\(r_1, r_2, \dots,
+r_k\)</span>. We only consider integers in the range <span class="math inline">\([1, N]\)</span>. The key observation is that if
+two <em>different</em> numbers have the same set of remainders, the
+absolute difference between them will be divisible by all <span class="math inline">\(n_i\)</span> s, and since the difference is capped
+by <span class="math inline">\(N-1\)</span>, it is zero, contradiction!
+Therefore a one-to-one correspondence can be established between each
+integer within that range and a set of all possible remainders. Note
+that the range of each <span class="math inline">\(r_i\)</span> is <span class="math inline">\([0, r_i-1]\)</span>, so both sides have the same
+cardinality.</p>
+<p>Now let's look at implementation of this theorem in competitive
+programming. An example problem is <a href="https://atcoder.jp/contests/abc193/tasks/abc193_e">here</a>. So
+the problem is to solve the following set of congruence equations <span class="math display">\[
+x \equiv a_1 \pmod{m_1}\\
+x\equiv a_2 \pmod{m_2}
+\]</span> which is equivalent to <span class="math display">\[
+x = a_1+n_1 m_1 = a_2+n_2m_2
+\]</span> for some integer <span class="math inline">\(n_1\)</span> and
+<span class="math inline">\(n_2\)</span>, i.e. <span class="math display">\[
+\beq
+a_2 - a_1 = n_1m_1 - n_2m_2 \tag{1} \label{eq:1}
+\end{equation}
+\]</span> We can use extended Euclidean algorithm to solve for <span class="math inline">\(n_i\)</span> given <span class="math inline">\(m_i\)</span> in the following equation <span class="math display">\[
+\beq
+n_1m_1 - n_2m_2 = \gcd(m_1, m_2) := d \tag{2}\label{eq:2}
+\endeq
+\]</span> <em>Detour (please skip at will)</em>: There is a proof of
+existence of an integer solution that I really like about the above
+equation. Since we can divide both sides by <span class="math inline">\(\gcd(m_1, m_2)\)</span>, we can just deal with the
+case <span class="math inline">\(n_1m_1 - n_2m_2 = 1\)</span> where
+<span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> are coprime to each other. Now here
+is the clever proof: Let <span class="math inline">\(r\)</span> be the
+smallest positive integer such that <span class="math inline">\(n_1m_1 -
+n_2m_2 = r\)</span> has an integer solution. And we can express <span class="math inline">\(m_1\)</span> as multiple of <span class="math inline">\(r\)</span> plus a remainder term, i.e. <span class="math inline">\(m_1 = q_1r+r_1\)</span>. So the equation becomes
+<span class="math display">\[
+n_1m_1 - n_2m_2 = r = (m_1 - r_1)/q_1
+\]</span> Some algebra shows that <span class="math inline">\((1-q_1n_1)m_1+n_2q_1m_2 = r_1\)</span>, note that
+<span class="math inline">\(r_1\)</span>, as a remainder of division by
+<span class="math inline">\(r\)</span>, is strictly smaller than <span class="math inline">\(r\)</span>. So there is only one possibility:
+<span class="math inline">\(r_1 = 0\)</span>. So <span class="math inline">\(m_1\)</span> is actually a multiple of <span class="math inline">\(r\)</span> ! By symmetry, <span class="math inline">\(m_2\)</span> is a multiple of <span class="math inline">\(r\)</span> as well. However since <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> are coprime, $r $ can only be 1. Note
+that this is effectively a proof of existence since such smallest <span class="math inline">\(r\)</span> must exist as everything here is
+finite. <span class="math inline">\(\blacksquare\)</span></p>
+<p>Now if <span class="math inline">\(d\ndiv a_1 - a_2\)</span>, then we
+can already claim that the pair of congruent equations have no solution.
+If otherwise, we can multiply both sides of <span class="math inline">\(\eqref{eq:2}\)</span> by <span class="math inline">\((a_2 - a_1)/d\)</span> to get <span class="math inline">\(\eqref{eq:1}\)</span>. For equation sets that
+contain 3 or more equations, we can process and merge two of them at a
+time</p>
+<p>Coding time!</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="comment">//extended euler&#x27;s algorithm</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gcd</span><span class="params">(ll a, ll b, ll&amp; d, ll&amp; x, ll&amp; y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!b)&#123;d  = a; x = <span class="number">1</span>; y = <span class="number">0</span>;&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;<span class="built_in">gcd</span>(b, a%b, d, y, x); y -= (a/b)*x;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">china</span><span class="params">(<span class="keyword">int</span> n, ll* a, ll* m)</span></span>&#123;</span><br><span class="line">	ll d,y,x = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">rep</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="built_in">gcd</span>(m[i],m[i+<span class="number">1</span>],d,x,y);</span><br><span class="line">		<span class="keyword">if</span>((a[i+<span class="number">1</span>] - a[i])%d!=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		a[i+<span class="number">1</span>] = a[i]+((x*((a[i+<span class="number">1</span>] - a[i])/d))%(m[i+<span class="number">1</span>]/d))*m[i];</span><br><span class="line">		m[i+<span class="number">1</span>] = m[i]*(m[i+<span class="number">1</span>]/d);</span><br><span class="line">		a[i+<span class="number">1</span>] = a[i+<span class="number">1</span>]%m[i+<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	ll M = m[n<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">return</span> (a[n<span class="number">-1</span>]+M)%M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The extended Euler's algorithm can be implemented by just two lines
+of C++, pretty surprising, isn't it? One last thing to note, as there is
+a 10^18 numeric limit in most competitive programming contest, we need
+to handle the overflow problem using <span class="math inline">\(c(a\pmod{b})\equiv ca \pmod{cb}\)</span> in the
+following line of code</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">a[i+<span class="number">1</span>] = a[i]+((x*((a[i+<span class="number">1</span>] - a[i])/d))%(m[i+<span class="number">1</span>]/d))*m[i];</span><br></pre></td></tr></table></figure>
+<p>That's it, happy coding until next time!</p>
+<h6 id="reference">Reference</h6>
+<p>[<a href="https://codeforces.com/blog/entry/61290">Tutorial] Chinese
+Remainder Theorem - Codeforces</a></p>
+]]></content>
+      <tags>
+        <tag>Competitive Programming</tag>
+        <tag>Chinese Remainder Theorem</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sprague-Grundy Theorem and the Game of Nim</title>
+    <url>/2021/07/17/Sprague-Grundy-Theorem-and-the-Game-of-Nim/</url>
+    <content><![CDATA[<p><span class="math display">\[
+\begin{equation}
+\def\pr{\text{\rm pr}}
+\def\sec{\text{\rm sect}}
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\H{\mathcal{H}}
+\def\beq{\begin{equation}}
+\def\endeq{\end{equation}}
+\def\lesim{\lesssim}
+\def\mc{\mathcal}
+\def\h{\mathcal{H}}
+\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\def\mn{M^{(n)}}
+\def\lam{\lambda}
+\def\wide{\widehat}
+\def\uk{u^{(k_0)}}
+\def\uo{u^{(0)}}
+\def\pj{P^{(2)}}
+\def\pii{P^{(1)}}
+\def\pc{P^{Cone}}
+\def\tx{\tilde x}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\sgn}{sgn}
+\def\cplus{c\ci+}
+\def\cmin{c\ci-}
+\def\cplusmin{c\ci\pm}
+\def\chiplus{\chi\ci+}
+\def\chimin{\chi\ci-}
+\def\chiplusmin{\chi\ci\pm}
+\def\psiplus{\psi\ci+}
+\def\psimin{\psi\ci-}
+\def\psiplusmin{\psi\ci\pm}
+\def\sigmaplus{\sigma\ci+}
+\def\sigmamin{\sigma\ci-}
+\def\sigmaplusmin{\sigma\ci\pm}
+\def\bbone{\mathbbm 1}
+\newcommand{\dil}{\text{\rm Dil}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\ls}{\lesssim}
+\newcommand{\sL}{\mathscr L}
+\newcommand{\sJ}{\mathscr J}
+\newcommand{\sK}{\mathscr K}
+\newcommand{\wh}{\widehat}
+\newcommand{\wt}{\widetilde}
+\newcommand{\A}{\mathcal A}
+\newcommand{\E}{\mathcal E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\D}{\mathcal D}
+\newcommand{\K}{\mathcal K}
+\newcommand{\QQ}{\mathcal Q}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\term}{c(z,r)F^\Psi_r(\cdot-z)}
+\newcommand{\norm}[1]{ \left|  #1 \right| }
+\newcommand{\abs}[1]{ \left|  #1 \right| }
+\newcommand{\Norm}[1]{ \left\|  #1 \right\| }
+\newcommand{\iff}{\Leftrightarrow}
+\newcommand{\set}[1]{ \left\{ #1 \right\} }
+\newcommand{\Be}{\begin{equation}}
+\newcommand{\Ee}{\end{equation}}
+\newcommand{\Bm}{\begin{multline}}
+\newcommand{\Em}{\end{multline}}
+\newcommand{\Bea}{\begin{eqnarray}}
+\newcommand{\Eea}{\end{eqnarray}}
+\newcommand{\Beas}{\begin{eqnarray*}}
+\newcommand{\Eeas}{\end{eqnarray*}}
+\newcommand{\Benu}{\begin{enumerate}}
+\newcommand{\Eenu}{\end{enumerate}}
+\newcommand{\Bi}{\begin{itemize}}
+\newcommand{\Ei}{\end{itemize}}
+\def\conv{\text{Conv}}
+\def\tp{\tilde p}
+\def\tq{\tilde q}
+\def\crit{\text{\rm cr}}
+\def\sparse{\text{\rm sp}}
+\def\dyad{\text{\rm dyad}}
+\def\mart{\text{dyad}}
+\def\intslash{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int}
+\def\qsl{\rlap{\kern  .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
+\def\Re{\operatorname{Re\,}}
+\def\Im{\operatorname{Im\,}}
+\def\mx
+\def\mn
+\def\vth{\vartheta}
+\def\rn{\rr^{n}}
+\def\rr{\mathbb R}
+\def\Q{\mathbb Q}
+\def\N{\mathbb N}
+\def\complex{\mathbb C}
+\def\emph#1{\it #1 }
+\def\diam{\text{\rm  diam}}
+\def\osc{\text{\rm osc}}
+\def\ffB{\mathcal B}
+\def\seq{\subseteq}
+\def\Ga{\Gamma}
+\def\ga{\gamma}
+\def\Th{\Theta}
+\def\prd{\text{\it prod}}
+\def\parab{\text{\it parabolic}}
+\def\eg{\it e.g. }
+\def\cf{\it cf}
+\def\Rn{\mathbb R^n}
+\def\Rd{\mathbb R^d}
+\def\sgn{\text{\rm sign }}
+\def\rank{\text{\rm rank }}
+\def\corank{\text{\rm corank }}
+\def\coker{\text{\rm Coker }}
+\def\loc{\text{\rm loc}}
+\def\spec{\text{\rm spec}}
+\def\comp{\text{comp}}
+\def\Coi{C^\infty_0}
+\def\dist{\text{\it dist}}
+\def\diag{\text{\rm diag}}
+\def\supp{text{\rm supp}}
+\def\rad{\text{\it rad}}
+\def\sph{\text{sph}}
+\def\Lip{\text{\rm Lip}}
+\def\ev{\text{\rm ev}}
+\def\odd{\text{\rm odd}}
+\def\inn#1#2{\langle#1,#2\rangle}
+\def\biginn#1#2{\big\langle#1,#2\big\rangle}
+\def\rta{\rightarrow}
+\def\lta{\leftarrow}
+\def\noi{\noindent}
+\def\lcontr{\rfloor}
+\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\def\meas{\text{\rm meas}}
+\def\card{\text{\rm card}}
+\def\lc{\lesssim}
+\def\gc{\gtrsim}
+\def\pv{\text{\rm p.v.}}
+\def\a{\alpha}
+\def\alp{\alpha}             \def\Alp{\Alpha}
+\def\bet{\beta}
+\def\gam{\gamma}             \def\Gam{\Gamma}
+\def\del{\delta}             \def\Del{\Delta}
+\def\eps{\varepsilon}
+\def\ep{\epsilon}
+\def\zet{\zeta}
+\def\tet{\theta}             \def\Tet{\Theta}
+\def\iot{\iota}
+\def\kap{\kappa}
+\def\ka{\kappa}
+\def\lam{\lambda}            \def\Lam{\Lambda}
+\def\la{\lambda}             \def\La{\Lambda}
+\def\sig{\sigma}             \def\Sig{\Sigma}
+\def\si{\sigma}              \def\Si{\Sigma}
+\def\vphi{\varphi}
+\def\ome{\omega}             \def\Ome{\Omega}
+\def\om{\omega}  
+\def\fA{\mathfrak {A}}
+\def\fB{\mathfrak {B}}
+\def\fC{\mathfrak {C}}
+\def\fD{\mathfrak {D}}
+\def\fE{\mathfrak {E}}
+\def\fF{\mathfrak {F}}
+\def\fG{mathfrak {G}}
+\def\fH{\mathfrak {H}}
+\def\fI{\mathfrak {I}}
+\def\fJ{\mathfrak {J}}
+\def\fK{\mathfrak {K}}
+\def\fL{\mathfrak {L}}
+\def\fM{\mathfrak {M}}
+\def\fN{\mathfrak {N}}
+\def\fO{\mathfrak {O}}
+\def\fP{\mathfrak {P}}
+\def\fQ{\mathfrak {Q}}
+\def\fR{\mathfrak {R}}
+\def\fS{\mathfrak {S}}
+\def\fT{\mathfrak {T}}
+\def\fU{\mathfrak {U}}
+\def\fV{\mathfrak {V}}
+\def\fW{\mathfrak {W}}
+\def\fX{\mathfrak {X}}
+\def\fY{\mathfrak {Y}}
+\def\fZ{\mathfrak {Z}}
+\def\fa{\mathfrak {a}}
+\def\fb{\mathfrak {b}}
+\def\fc{\mathfrak {c}}
+\def\fd{\mathfrak {d}}
+\def\fe{\mathfrak {e}}
+\def\ff{\mathfrak {f}}
+\def\fg{\mathfrak {g}}
+\def\fh{\mathfrak {h}}
+\def\fj{\mathfrak {j}}
+\def\fk{\mathfrak {k}}
+\def\fl{\mathfrak {l}}
+\def\fn{\mathfrak {n}}
+\def\fo{\mathfrak {o}}
+\def\fq{\mathfrak {q}}
+\def\fr{\mathfrak {r}}
+\def\fs{\mathfrak {s}}
+\def\ft{\mathfrak {t}}
+\def\fu{\mathfrak {u}}
+\def\fv{\mathfrak {v}}
+\def\fw{\mathfrak {w}}
+\def\fx{\mathfrak {x}}
+\def\fy{\mathfrak {y}}
+\def\fz{\mathfrak {z}}
+\def\bbA{\mathbb {A}}
+\def\bbB{\mathbb {B}}
+\def\bbC{\mathbb {C}}
+\def\bbD{\mathbb {D}}
+\def\bbE{\mathbb {E}}
+\def\bbF{\mathbb {F}}
+\def\bbG{\mathbb {G}}
+\def\bbH{\mathbb {H}}
+\def\bbI{\mathbb {I}}
+\def\bbJ{\mathbb {J}}
+\def\bbK{\mathbb {K}}
+\def\bbL{\mathbb {L}}
+\def\bbM{\mathbb {M}}
+\def\bbN{\mathbb {N}}
+\def\bbO{\mathbb {O}}
+\def\bbP{\mathbb {P}}
+\def\bbQ{\mathbb {Q}}
+\def\bbR{\mathbb {R}}
+\def\bbS{\mathbb {S}}
+\def\bbT{\mathbb {T}}
+\def\bbU{\mathbb {U}}
+\def\bbV{\mathbb {V}}
+\def\bbW{\mathbb {W}}
+\def\bbX{\mathbb {X}}
+\def\bbY{\mathbb {Y}}
+\def\bbZ{\mathbb {Z}}
+\def\cA{\mathcal {A}}
+\def\cB{\mathcal {B}}
+\def\cC{\mathcal {C}}
+\def\cD{\mathcal {D}}
+\def\cE{\mathcal {E}}
+\def\cF{\mathcal {F}}
+\def\cG{\mathcal {G}}
+\def\cH{\mathcal {H}}
+\def\cI{\mathcal {I}}
+\def\cJ{\mathcal {J}}
+\def\cK{\mathcal {K}}
+\def\cL{\mathcal {L}}
+\def\cM{\mathcal {M}}
+\def\cN{\mathcal {N}}
+\def\cO{\mathcal {O}}
+\def\cP{\mathcal {P}}
+\def\cQ{\mathcal {Q}}
+\def\cR{\mathcal {R}}
+\def\cS{\mathcal {S}}
+\def\cT{\mathcal {T}}
+\def\cU{\mathcal {U}}
+\def\cV{\mathcal {V}}
+\def\cW{\mathcal {W}}
+\def\cX{\mathcal {X}}
+\def\cY{\mathcal {Y}}
+\def\cZ{\mathcal {Z}}
+\def\tA{\widetilde{A}}
+\def\tB{\widetilde{B}}
+\def\tC{\widetilde{C}}
+\def\tD{\widetilde{D}}
+\def\tE{\widetilde{E}}
+\def\tF{\widetilde{F}}
+\def\tG{\widetilde{G}}
+\def\tH{\widetilde{H}}
+\def\tI{\widetilde{I}}
+\def\tJ{\widetilde{J}}
+\def\tK{\widetilde{K}}
+\def\tL{\widetilde{L}}
+\def\tM{\widetilde{M}}
+\def\tN{\widetilde{N}}
+\def\tO{\widetilde{O}}
+\def\tP{\widetilde{P}}
+\def\tQ{\widetilde{Q}}
+\def\tR{\widetilde{R}}
+\def\tS{\widetilde{S}}
+\def\tT{\widetilde{T}}
+\def\tU{\widetilde{U}}
+\def\tV{\widetilde{V}}
+\def\tW{\widetilde{W}}
+\def\tX{\widetilde{X}}
+\def\tY{\widetilde{Y}}
+\def\tZ{\widetilde{Z}}
+\def\tcA{\widetilde{\mathcal {A}}}
+\def\tcB{\widetilde{\mathcal {B}}}
+\def\tcC{\widetilde{\mathcal {C}}}
+\def\tcD{\widetilde{\mathcal {D}}}
+\def\tcE{\widetilde{\mathcal {E}}}
+\def\tcF{\widetilde{\mathcal {F}}}
+\def\tcG{\widetilde{\mathcal {G}}}
+\def\tcH{\widetilde{\mathcal {H}}}
+\def\tcI{\widetilde{\mathcal {I}}}
+\def\tcJ{\widetilde{\mathcal {J}}}
+\def\tcK{\widetilde{\mathcal {K}}}
+\def\tcL{\widetilde{\mathcal {L}}}
+\def\tcM{\widetilde{\mathcal {M}}}
+\def\tcN{\widetilde{\mathcal {N}}}
+\def\tcO{\widetilde{\mathcal {O}}}
+\def\tcP{\widetilde{\mathcal {P}}}
+\def\tcQ{\widetilde{\mathcal {Q}}}
+\def\tcR{\widetilde{\mathcal {R}}}
+\def\tcS{\widetilde{\mathcal {S}}}
+\def\tcT{\widetilde{\mathcal {T}}}
+\def\tcU{\widetilde{\mathcal {U}}}
+\def\tcV{\widetilde{\mathcal {V}}}
+\def\tcW{\widetilde{\mathcal {W}}}
+\def\tcX{\widetilde{\mathcal {X}}}
+\def\tcY{\widetilde{\mathcal {Y}}}
+\def\tcZ{\widetilde{\mathcal {Z}}}
+\def\tfA{\widetilde{\mathfrak {A}}}
+\def\tfB{\widetilde{\mathfrak {B}}}
+\def\tfC{\widetilde{\mathfrak {C}}}
+\def\tfD{\widetilde{\mathfrak {D}}}
+\def\tfE{\widetilde{\mathfrak {E}}}
+\def\tfF{\widetilde{\mathfrak {F}}}
+\def\tfG{\widetilde{\mathfrak {G}}}
+\def\tfH{\widetilde{\mathfrak {H}}}
+\def\tfI{\widetilde{\mathfrak {I}}}
+\def\tfJ{\widetilde{\mathfrak {J}}}
+\def\tfK{\widetilde{\mathfrak {K}}}
+\def\tfL{\widetilde{\mathfrak {L}}}
+\def\tfM{\widetilde{\mathfrak {M}}}
+\def\tfN{\widetilde{\mathfrak {N}}}
+\def\tfO{\widetilde{\mathfrak {O}}}
+\def\tfP{\widetilde{\mathfrak {P}}}
+\def\tfQ{\widetilde{\mathfrak {Q}}}
+\def\tfR{\widetilde{\mathfrak {R}}}
+\def\tfS{\widetilde{\mathfrak {S}}}
+\def\tfT{\widetilde{\mathfrak {T}}}
+\def\tfU{\widetilde{\mathfrak {U}}}
+\def\tfV{\widetilde{\mathfrak {V}}}
+\def\tfW{\widetilde{\mathfrak {W}}}
+\def\tfX{\widetilde{\mathfrak {X}}}
+\def\tfY{\widetilde{\mathfrak {Y}}}
+\def\tfZ{\widetilde{\mathfrak {Z}}}
+\def\Atil{\widetilde A}          \def\atil{\tilde a}
+\def\Btil{\widetilde B}          \def\btil{\tilde b}
+\def\Ctil{\widetilde C}          \def\ctil{\tilde c}
+\def\Dtil{\widetilde D}          \def\dtil{\tilde d}
+\def\Etil{\widetilde E}          \def\etil{\tilde e}
+\def\Ftil{\widetilde F}          \def\ftil{\tilde f}
+\def\Gtil{\widetilde G}          \def\gtil{\tilde g}
+\def\Htil{\widetilde H}          \def\htil{\tilde h}
+\def\Itil{\widetilde I}          \def\itil{\tilde i}
+\def\Jtil{\widetilde J}          \def\jtil{\tilde j}
+\def\Ktil{\widetilde K}          \def\ktil{\tilde k}
+\def\Ltil{\widetilde L}          \def\ltil{\tilde l}
+\def\Mtil{\widetilde M}          \def\mtil{\tilde m}
+\def\Ntil{\widetilde N}          \def\ntil{\tilde n}
+\def\Otil{\widetilde O}          \def\otil{\tilde o}
+\def\Ptil{\widetilde P}          \def\ptil{\tilde p}
+\def\Qtil{\widetilde Q}          \def\qtil{\tilde q}
+\def\Rtil{\widetilde R}          \def\rtil{\tilde r}
+\def\Stil{\widetilde S}          \def\stil{\tilde s}
+\def\Ttil{\widetilde T}          \def\ttil{\tilde t}
+\def\Util{\widetilde U}          \def\util{\tilde u}
+\def\Vtil{\widetilde V}          \def\vtil{\tilde v}
+\def\Wtil{\widetilde W}          \def\wtil{\tilde w}
+\def\Xtil{\widetilde X}          \def\xtil{\tilde x}
+\def\Ytil{\widetilde Y}          \def\ytil{\tilde y}
+\def\Ztil{\widetilde Z}          \def\ztil{\tilde z}
+\def\ahat{\hat a}          \def\Ahat{\widehat A}
+\def\bhat{\hat b}          \def\Bhat{\widehat B}
+\def\chat{\hat c}          \def\Chat{\widehat C}
+\def\dhat{\hat d}          \def\Dhat{\widehat D}
+\def\ehat{\hat e}          \def\Ehat{\widehat E}
+\def\fhat{\hat f}          \def\Fhat{\widehat F}
+\def\ghat{\hat g}          \def\Ghat{\widehat G}
+\def\hhat{\hat h}          \def\Hhat{\widehat H}
+\def\ihat{\hat i}          \def\Ihat{\widehat I}
+\def\jhat{\hat j}          \def\Jhat{\widehat J}
+\def\khat{\hat k}          \def\Khat{\widehat K}
+\def\lhat{\hat l}          \def\Lhat{\widehat L}
+\def\mhat{\hat m}          \def\Mhat{\widehat M}
+\def\nhat{\hat n}          \def\Nhat{\widehat N}
+\def\ohat{\hat o}          \def\Ohat{\widehat O}
+\def\phat{\hat p}          \def\Phat{\widehat P}
+\def\qhat{\hat q}          \def\Qhat{\widehat Q}
+\def\rhat{\hat r}          \def\Rhat{\widehat R}
+\def\shat{\hat s}          \def\Shat{\widehat S}
+\def\that{\hat t}          \def\That{\widehat T}
+\def\uhat{\hat u}          \def\Uhat{\widehat U}
+\def\vhat{\hat v}          \def\Vhat{\widehat V}
+\def\what{\hat w}          \def\What{\widehat W}
+\def\xhat{\hat x}          \def\Xhat{\widehat X}
+\def\yhat{\hat y}          \def\Yhat{\widehat Y}
+\def\zhat{\hat z}          \def\Zhat{\widehat Z}
+\def\be#1{\begin{equation}\label{ #1}}
+\def\endeq{\end{equation}}
+\def\endal{\end{align}}
+\def\bas{\begin{align*}}
+\def\eas{\end{align*}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\eps{\varepsilon}
+\def\textbf#1{\bf #1}
+\def\into{\hookrightarrow}
+\newcommand{\inf}{\infty}
+\newcommand{\os}[2]{\overset{#1}{#2}}
+\newcommand{\ms}{(X, \cM, \mu)}
+\newcommand{\salg}{\sig\text{-algebra}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\id}{\text{id}}
+\newcommand{\Stab}{\text{Stab}}
+\def \bl {\backslash}
+\def \sfin {\sig\text{-finite}}
+\def \mum {\mu\text{-measurable}}
+\def \emps {\varnothing}
+\newcommand{\m}[1]{\boldsymbol{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\Inf}{\text{inf}}
+\newcommand{\wb}[1]{\overline{#1}}
+\newcommand{\lto}{\longrightarrow}
+\newcommand{\todo}[1]{\bf\color{red}{[ToDo]
+\text{#1}}}
+\newcommand{\char}[1]{\cX_{#1}}
+\newcommand{\fp}{f^+}
+\newcommand{\fm}{f^-}
+\newcommand{\infm}{\text{inf}}
+\newcommand{\onorm}[1]{\Norm{#1}_1}
+\newcommand{\tnorm}[1]{\Norm{#1}_2}
+\newcommand{\infn}[1]{\Norm{#1}_\inf}
+\newcommand{\pnorm}[1]{\Norm{#1}_p}
+\newcommand{\End}{\text{End}}
+\newcommand{\Ob}{\text{Ob}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\intall}{\int_{-\inf}^{\inf}}
+\newcommand{\intpmpi}{\int_{-\pi}^{\pi}}
+\newcommand{\div}{\bigr|}
+\newcommand{\when}{\biggr|}
+\def \bsp {\begin{split}}
+\def \esp {\end{split}}
+\def \bc {\begin{cases}}
+\def \ec {\end{cases}}
+\newcommand{\sech}{\text{sech}}
+\newcommand{\vectk}{\text{Vect}_\text{k}}
+\newcommand{\top}{\text{Top}}
+\newcommand{\grp}{\text{Grp}}
+\newcommand{\pathx}{\text{Paths}_X}
+\newcommand{\from}{\leftarrow}
+\newcommand{\lfrom}{\longleftarrow}
+\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
+\newcommand{\sym}{\text{Sym}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\zn}{\Z/n\Z}
+\newcommand{\Mor}{\text{Mor}}
+\newcommand{\acton}{\circlearrowright}
+\DeclareMathOperator{\tr}{Tr}
+\newcommand{\par}{\partial}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\triv}{\text{triv}}
+\newcommand{\zmnz}[1]{\Z/{#1}\Z}
+\newcommand{\tl}{\triangleleft}
+\newcommand{\paren}[1]{\left({#1}\right)}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\mod}{\textrm{mod}}
+\newcommand{\ndiv}{\nmid}
+\end{equation}
+\]</span></p>
+<p>Halo, recently I reacquainted myself with the Sprague-Grundy theorem
+and would like to introduce the gist of it. I think <a href="https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem">Wikipedia</a>
+does a great job explaining the detailed proof, but I would like to fill
+in some gaps and provide some intuitions. It is recommended to read
+about the rule of the game of nim (and the wiki page if you are
+interested in technical details) before reading.</p>
+<p>Basically the theorem says that every impartial game is equivalent to
+a game of nim with a pile of <span class="math inline">\(n\)</span>
+stones. The number <span class="math inline">\(n\)</span> is called the
+Grundy number of the impartial game. Now there are two things to
+explain.</p>
+<ol type="1">
+<li>impartial game means that both players of the game have the same set
+of operations given a fixed position of the game. Chess and Go are not
+impartial games, because one player can only move or place pieces that
+have the same color (either black or white).</li>
+<li>What does it mean that two games <span class="math inline">\(G\)</span> and <span class="math inline">\(G&#39;\)</span>are "equivalent"? One may give a
+definition stating that if one game has a winning strategy for the
+player that goes first (or the second player), so does the equivalent
+game and vice versa. However, having this condition is not enough.
+Consider any game that has a winning strategy for the second player.
+Clearly every nim game with non-zero number of stones is equivalent to
+that game, making Grundy number an ill-defined number. Therefore, we
+additionally require that the combined games of <span class="math inline">\(G+H\)</span> and <span class="math inline">\(G&#39;+H\)</span> have winning strategies for the
+same player for any given impartial game <span class="math inline">\(H\)</span>.</li>
+</ol>
+<p>Now the Sprague-Grundy theorem gives a recursive definition of what
+the Grundy number of any given impartial game is: Suppose we can go from
+the current position <span class="math inline">\(G_0\)</span> of the
+game to <span class="math inline">\(k\)</span> other positions, <span class="math inline">\(\set{G_1, G_2, \dots, G_k}\)</span>, and each of
+<span class="math inline">\(G_i\)</span> is equivalent to the game of
+nim with <span class="math inline">\(n_i\)</span> stones. Then <span class="math inline">\(G_0\)</span> is equivalent to the game of nim with
+<span class="math inline">\(n_0\)</span> stones given by <span class="math display">\[
+n_0 = \text{mex}(n_1, n_2,\dots, n_k)
+\]</span> Here <span class="math inline">\(\text{mex}(A)\)</span> for
+some non-negative integer set <span class="math inline">\(A\)</span> is
+the smallest non-negative integer that is not in <span class="math inline">\(A\)</span>.</p>
+<p>This is useful, but not that useful, consider a game of nim consists
+of multiple heaps of stones, where i-th heap has <span class="math inline">\(n_i\)</span> stones. How do we determine the
+Grundy number and whether we have a winning strategy for the game? If we
+still use the recursive definition, we will have <span class="math inline">\(\prod n_i\)</span> states to calculate, which can
+be huge. This is where bit xor operation comes to rescue!</p>
+<p>In the following we will consider just one quantity: the xor of all
+numbers of stones in each heap, i.e. <span class="math inline">\(Q =
+\bigoplus n_i\)</span>. Let's consider the game bottom-up. Which
+position will the losing player face at the end? Obviously, the position
+where no stone is left, and <span class="math inline">\(Q = \bigoplus 0
+= 0\)</span>. It turns out that the winning strategy is to keep leaving
+the opponent with a position where <span class="math inline">\(Q =
+0\)</span>! In order to show that, we have to show two things</p>
+<ol type="1">
+<li>If right now <span class="math inline">\(Q = 0\)</span>, any valid
+operation will lead to a position where <span class="math inline">\(Q\neq 0\)</span>.</li>
+<li>If right now <span class="math inline">\(Q\neq 0\)</span>, there is
+always a valid operation that can lead to a position where <span class="math inline">\(Q = 0\)</span></li>
+</ol>
+<p>The first statement is easy. Consider you are moving the <span class="math inline">\(k\)</span>-th heap. Since we have <span class="math inline">\(Q = (\bigoplus_{i\neq k} n_i) \oplus n_k =
+0\)</span>, i.e. <span class="math inline">\(\bigoplus_{i\neq k} n_i =
+n_k\)</span> right now, changing the number of stones in heap <span class="math inline">\(k\)</span> will make <span class="math inline">\(Q\)</span> not equal to 0.</p>
+<p>The second statement: First we convert everything into numbers with
+base of 2 and fill in zeros so that every <span class="math inline">\(n_i\)</span> has the same length. Consider the
+left-most digit of <span class="math inline">\(Q\)</span> that is not 0,
+say it is <span class="math inline">\(m\)</span>-th digit from the left.
+Since <span class="math inline">\(Q\)</span> is 1 at <span class="math inline">\(m\)</span>, we can pick <span class="math inline">\(n_k\)</span> such that <span class="math inline">\(n_k\)</span> has 1 at that position. Now since
+<span class="math inline">\(\bigoplus_{i\neq k} n_i\)</span> has 0 at
+that position, we can set <span class="math inline">\(n_k\)</span> to
+<span class="math inline">\(\bigoplus_{i\neq k} n_i\)</span>. To see
+that this value is strictly smaller than <span class="math inline">\(n_k\)</span>, simply note that both have the same
+<span class="math inline">\(1\)</span>st to <span class="math inline">\((m-1)\)</span>-th digits.</p>
+<p>So the winning strategy exists for the first player if we start off
+with a non-zero <span class="math inline">\(Q\)</span>, and for the
+second player if we start off with <span class="math inline">\(Q =
+0\)</span>. One more thing: how do we show that the Grundy number is
+exactly <span class="math inline">\(Q\)</span>, instead of any non-zero
+number in the case of non-zero <span class="math inline">\(Q\)</span>?
+This actually follows from the conclusion of the theorem. Let's consider
+a simplified case where there are only two heaps. Situations where there
+are 3 or more heaps can be reduced by merging two of them at a time.
+Following the notation convention in Wikipedia, we denote a single heap
+nim game of size <span class="math inline">\(n\)</span> as <span class="math inline">\(\set{*n}\)</span>. We want to show that <span class="math inline">\(\set{*a}+\set{*b}\equiv \set{*(a\oplus
+b)}\)</span>, i.e. the combined game of two single heap nim games is
+equivalent to one single heap nim game in the sense defined in the
+theorem. From the theorem we know that <span class="math display">\[
+\set{*a}+\set{*b}\equiv \text{mex}\left(\bigcup_{i = 0}^{a-1}
+(\set{*i}+\set{*b})\cup\bigcup_{j =
+0}^{b-1}(\set{*a}+\set{*j})\right):=\text{mex}(A)
+\]</span> By induction on <span class="math inline">\(a+b\)</span>, we
+assume that <span class="math inline">\(\set{*i}+\set{*b}\equiv
+\set{*(i\oplus b)}\)</span> and $+ $ holds. To see that the right hand
+side is exactly <span class="math inline">\(a\oplus b\)</span>, we note
+that <span class="math display">\[
+\bsp
+i\oplus b\oplus a\oplus b &amp;= i\oplus a \neq 0\\
+a\oplus j\oplus a\oplus b &amp;= j\oplus b \neq 0\\
+i\oplus b\oplus i&#39;\oplus b &amp;= i\oplus i&#39;\\
+a\oplus j\oplus a\oplus j&#39; &amp;= j\oplus j&#39;
+\esp
+\]</span> i.e. no element in <span class="math inline">\(A\)</span> is
+equal to <span class="math inline">\(a\oplus b\)</span>. Moreover, there
+are at least <span class="math inline">\(\max(a,b)\)</span> different
+elements in <span class="math inline">\(A\)</span>. The result follows,
+because <span class="math inline">\(a\oplus b \leq \max(a,b)\)</span>.
+It's left to check the base cases, but they are trivial, so we are done.
+<span class="math inline">\(\blacksquare\)</span></p>
+<p>Now the Grundy theorem is much more practically useful, since it can
+deal with games that have multiple component games efficiently. Remember
+that each component game is equivalent to a single heap nim game!</p>
+<p>Coding time! <a href="https://atcoder.jp/contests/abc206/tasks/abc206_f">Here</a> is a
+sample problem. Consider the game to be played on interval <span class="math inline">\([1,100]\)</span>, and choosing an interval results
+in a position that can be split into two component games. For each
+position we can apply the bit xor operation to get the Grundy number.
+Applying the mex function to Grundy numbers of all positions gives the
+answer.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,s,n) for(int i = s; i &lt; n; i++)</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">int</span> T; <span class="keyword">int</span> N; <span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; ii;</span><br><span class="line">vector&lt;ii&gt; intervals;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">105</span>;</span><br><span class="line"><span class="keyword">int</span> dp[maxn][maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">recur</span><span class="params">(<span class="keyword">int</span> st, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(st&gt;=end) <span class="keyword">return</span> dp[st][end] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(dp[st][end]!=<span class="number">-1</span>) <span class="keyword">return</span> dp[st][end];</span><br><span class="line">	<span class="keyword">int</span> all[maxn]; <span class="built_in">memset</span>(all,<span class="number">0</span>,<span class="keyword">sizeof</span> all);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span>&amp; p : intervals)<span class="keyword">if</span>(p.first&gt;=st&amp;&amp; p.second&lt;=end)&#123;</span><br><span class="line">		<span class="keyword">int</span> a = <span class="built_in">recur</span>(st, p.first);</span><br><span class="line">		<span class="keyword">int</span> b = <span class="built_in">recur</span>(p.second, end);</span><br><span class="line">		<span class="keyword">int</span> res = a^b; <span class="comment">// merge two component games</span></span><br><span class="line">		<span class="keyword">if</span>(res&lt;maxn) all[res] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">rep</span>(i,<span class="number">0</span>,maxn)<span class="keyword">if</span>(all[i]==<span class="number">0</span>)&#123; <span class="comment">// calculate the mex</span></span><br><span class="line">		<span class="keyword">return</span> dp[st][end] = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;T;</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		cin&gt;&gt;N;</span><br><span class="line">		intervals.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="built_in">rep</span>(i,<span class="number">0</span>,N) &#123;</span><br><span class="line">			<span class="keyword">int</span> l,r;cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">			intervals.<span class="built_in">push_back</span>(&#123;l,r&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="keyword">sizeof</span> dp);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">recur</span>(<span class="number">1</span>,<span class="number">100</span>)!=<span class="number">0</span>)cout&lt;&lt;<span class="string">&quot;Alice&quot;</span>&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;Bob&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Competitive Programming</tag>
+        <tag>Game Theory</tag>
+        <tag>Combinatorics</tag>
       </tags>
   </entry>
 </search>
