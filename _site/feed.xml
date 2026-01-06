@@ -1,1033 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-05T08:17:49+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Shirui (Carl) Chen</title><subtitle>Ph.D. Candidate in Applied Mathematics at University of Washington</subtitle><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><entry><title type="html">如何求解 $\dot{x} = x+f(t)$</title><link href="http://localhost:4000/posts/2021/09/diffeqsolve/" rel="alternate" type="text/html" title="如何求解 $\dot{x} = x+f(t)$" /><published>2021-09-29T00:00:00+00:00</published><updated>2021-09-29T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/09/diffeqsolve</id><content type="html" xml:base="http://localhost:4000/posts/2021/09/diffeqsolve/"><![CDATA[<p>$$
-\begin{equation}
-\def\pr{\text{\rm pr}}
-\def\sec{\text{\rm sect}}
-\def\R{\mathbb{R}}
-\def\N{\mathbb{N}}
-\def\C{\mathbb{C}}
-\def\Z{\mathbb{Z}}
-\def\H{\mathcal{H}}
-\def\beq{\begin{equation}}
-\def\endeq{\end{equation}}
-\def\lesim{\lesssim}
-\def\mc{\mathcal}
-\def\h{\mathcal{H}}
-\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
-\def\mn{M\^{(n)}}
-\def\lam{\lambda}
-\def\wide{\widehat}
-\def\uk{u\^{(k_0)}}
-\def\uo{u\^{(0)}}
-\def\pj{P\^{(2)}}
-\def\pii{P\^{(1)}}
-\def\pc{P\^{Cone}}
-\def\tx{\tilde x}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\sgn}{sgn}
-\def\cplus{c\ci+}
-\def\cmin{c\ci-}
-\def\cplusmin{c\ci\pm}
-\def\chiplus{\chi\ci+}
-\def\chimin{\chi\ci-}
-\def\chiplusmin{\chi\ci\pm}
-\def\psiplus{\psi\ci+}
-\def\psimin{\psi\ci-}
-\def\psiplusmin{\psi\ci\pm}
-\def\sigmaplus{\sigma\ci+}
-\def\sigmamin{\sigma\ci-}
-\def\sigmaplusmin{\sigma\ci\pm}
-\def\bbone{\mathbbm 1}
-\newcommand{\dil}{\text{\rm Dil}}
-\newcommand{\spec}{\operatorname{spec}}
-\newcommand{\ls}{\lesssim}
-\newcommand{\sL}{\mathscr L}
-\newcommand{\sJ}{\mathscr J}
-\newcommand{\sK}{\mathscr K}
-\newcommand{\wh}{\widehat}
-\newcommand{\wt}{\widetilde}
-\newcommand{\A}{\mathcal A}
-\newcommand{\E}{\mathcal E}
-\newcommand{\F}{\mathcal F}
-\newcommand{\D}{\mathcal D}
-\newcommand{\K}{\mathcal K}
-\newcommand{\QQ}{\mathcal Q}
-\newcommand{\RR}{\mathcal R}
-\newcommand{\f}[2]{\frac{#1}{#2}}
-\newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)}
-\newcommand{\norm}[1]{ \left| #1 \right| }
-\newcommand{\abs}[1]{ \left| #1 \right| }
-\newcommand{\Norm}[1]{ \left\| #1 \right\| }
-\newcommand{\iff}{\Leftrightarrow}
-\newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\Be}{\begin{equation}}
-\newcommand{\Ee}{\end{equation}}
-\newcommand{\Bm}{\begin{multline}}
-\newcommand{\Em}{\end{multline}}
-\newcommand{\Bea}{\begin{eqnarray}}
-\newcommand{\Eea}{\end{eqnarray}}
-\newcommand{\Beas}{\begin{eqnarray*}}
-\newcommand{\Eeas}{\end{eqnarray*}}
-\newcommand{\Benu}{\begin{enumerate}}
-\newcommand{\Eenu}{\end{enumerate}}
-\newcommand{\Bi}{\begin{itemize}}
-\newcommand{\Ei}{\end{itemize}}
-\def\conv{\text{Conv}}
-\def\tp{\tilde p}
-\def\tq{\tilde q}
-\def\crit{\text{\rm cr}}
-\def\sparse{\text{\rm sp}}
-\def\dyad{\text{\rm dyad}}
-\def\mart{\text{dyad}}
-\def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int}
-\def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
-\def\Re{\operatorname{Re\,}}
-\def\Im{\operatorname{Im\,}}
-\def\mx
-\def\mn
-\def\vth{\vartheta}
-\def\rn{\rr\^{n}}
-\def\rr{\mathbb R}
-\def\Q{\mathbb Q}
-\def\N{\mathbb N}
-\def\complex{\mathbb C}
-\def\emph#1{\it #1 }
-\def\diam{\text{\rm diam}}
-\def\osc{\text{\rm osc}}
-\def\ffB{\mathcal B}
-\def\seq{\subseteq}
-\def\Ga{\Gamma}
-\def\ga{\gamma}
-\def\Th{\Theta}
-\def\prd{\text{\it prod}}
-\def\parab{\text{\it parabolic}}
-\def\eg{\it e.g. }
-\def\cf{\it cf}
-\def\Rn{\mathbb R\^n}
-\def\Rd{\mathbb R\^d}
-\def\sgn{\text{\rm sign }}
-\def\rank{\text{\rm rank }}
-\def\corank{\text{\rm corank }}
-\def\coker{\text{\rm Coker }}
-\def\loc{\text{\rm loc}}
-\def\spec{\text{\rm spec}}
-\def\comp{\text{comp}}
-\def\Coi{C\^\infty_0}
-\def\dist{\text{\it dist}}
-\def\diag{\text{\rm diag}}
-\def\supp{text{\rm supp}}
-\def\rad{\text{\it rad}}
-\def\sph{\text{sph}}
-\def\Lip{\text{\rm Lip}}
-\def\ev{\text{\rm ev}}
-\def\odd{\text{\rm odd}}
-\def\inn#1#2{\langle#1,#2\rangle}
-\def\biginn#1#2{\big\langle#1,#2\big\rangle}
-\def\rta{\rightarrow}
-\def\lta{\leftarrow}
-\def\noi{\noindent}
-\def\lcontr{\rfloor}
-\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
-\def\meas{\text{\rm meas}}
-\def\card{\text{\rm card}}
-\def\lc{\lesssim}
-\def\gc{\gtrsim}
-\def\pv{\text{\rm p.v.}}
-\def\a{\alpha}
-\def\alp{\alpha} \def\Alp{\Alpha}
-\def\bet{\beta}
-\def\gam{\gamma} \def\Gam{\Gamma}
-\def\del{\delta} \def\Del{\Delta}
-\def\eps{\varepsilon}
-\def\ep{\epsilon}
-\def\zet{\zeta}
-\def\tet{\theta} \def\Tet{\Theta}
-\def\iot{\iota}
-\def\kap{\kappa}
-\def\ka{\kappa}
-\def\lam{\lambda} \def\Lam{\Lambda}
-\def\la{\lambda} \def\La{\Lambda}
-\def\sig{\sigma} \def\Sig{\Sigma}
-\def\si{\sigma} \def\Si{\Sigma}
-\def\vphi{\varphi}
-\def\ome{\omega} \def\Ome{\Omega}
-\def\om{\omega}
-\def\fA{\mathfrak {A}}
-\def\fB{\mathfrak {B}}
-\def\fC{\mathfrak {C}}
-\def\fD{\mathfrak {D}}
-\def\fE{\mathfrak {E}}
-\def\fF{\mathfrak {F}}
-\def\fG{mathfrak {G}}
-\def\fH{\mathfrak {H}}
-\def\fI{\mathfrak {I}}
-\def\fJ{\mathfrak {J}}
-\def\fK{\mathfrak {K}}
-\def\fL{\mathfrak {L}}
-\def\fM{\mathfrak {M}}
-\def\fN{\mathfrak {N}}
-\def\fO{\mathfrak {O}}
-\def\fP{\mathfrak {P}}
-\def\fQ{\mathfrak {Q}}
-\def\fR{\mathfrak {R}}
-\def\fS{\mathfrak {S}}
-\def\fT{\mathfrak {T}}
-\def\fU{\mathfrak {U}}
-\def\fV{\mathfrak {V}}
-\def\fW{\mathfrak {W}}
-\def\fX{\mathfrak {X}}
-\def\fY{\mathfrak {Y}}
-\def\fZ{\mathfrak {Z}}
-\def\fa{\mathfrak {a}}
-\def\fb{\mathfrak {b}}
-\def\fc{\mathfrak {c}}
-\def\fd{\mathfrak {d}}
-\def\fe{\mathfrak {e}}
-\def\ff{\mathfrak {f}}
-\def\fg{\mathfrak {g}}
-\def\fh{\mathfrak {h}}
-\def\fj{\mathfrak {j}}
-\def\fk{\mathfrak {k}}
-\def\fl{\mathfrak {l}}
-\def\fn{\mathfrak {n}}
-\def\fo{\mathfrak {o}}
-\def\fq{\mathfrak {q}}
-\def\fr{\mathfrak {r}}
-\def\fs{\mathfrak {s}}
-\def\ft{\mathfrak {t}}
-\def\fu{\mathfrak {u}}
-\def\fv{\mathfrak {v}}
-\def\fw{\mathfrak {w}}
-\def\fx{\mathfrak {x}}
-\def\fy{\mathfrak {y}}
-\def\fz{\mathfrak {z}}
-\def\bbA{\mathbb {A}}
-\def\bbB{\mathbb {B}}
-\def\bbC{\mathbb {C}}
-\def\bbD{\mathbb {D}}
-\def\bbE{\mathbb {E}}
-\def\bbF{\mathbb {F}}
-\def\bbG{\mathbb {G}}
-\def\bbH{\mathbb {H}}
-\def\bbI{\mathbb {I}}
-\def\bbJ{\mathbb {J}}
-\def\bbK{\mathbb {K}}
-\def\bbL{\mathbb {L}}
-\def\bbM{\mathbb {M}}
-\def\bbN{\mathbb {N}}
-\def\bbO{\mathbb {O}}
-\def\bbP{\mathbb {P}}
-\def\bbQ{\mathbb {Q}}
-\def\bbR{\mathbb {R}}
-\def\bbS{\mathbb {S}}
-\def\bbT{\mathbb {T}}
-\def\bbU{\mathbb {U}}
-\def\bbV{\mathbb {V}}
-\def\bbW{\mathbb {W}}
-\def\bbX{\mathbb {X}}
-\def\bbY{\mathbb {Y}}
-\def\bbZ{\mathbb {Z}}
-\def\cA{\mathcal {A}}
-\def\cB{\mathcal {B}}
-\def\cC{\mathcal {C}}
-\def\cD{\mathcal {D}}
-\def\cE{\mathcal {E}}
-\def\cF{\mathcal {F}}
-\def\cG{\mathcal {G}}
-\def\cH{\mathcal {H}}
-\def\cI{\mathcal {I}}
-\def\cJ{\mathcal {J}}
-\def\cK{\mathcal {K}}
-\def\cL{\mathcal {L}}
-\def\cM{\mathcal {M}}
-\def\cN{\mathcal {N}}
-\def\cO{\mathcal {O}}
-\def\cP{\mathcal {P}}
-\def\cQ{\mathcal {Q}}
-\def\cR{\mathcal {R}}
-\def\cS{\mathcal {S}}
-\def\cT{\mathcal {T}}
-\def\cU{\mathcal {U}}
-\def\cV{\mathcal {V}}
-\def\cW{\mathcal {W}}
-\def\cX{\mathcal {X}}
-\def\cY{\mathcal {Y}}
-\def\cZ{\mathcal {Z}}
-\def\tA{\widetilde{A}}
-\def\tB{\widetilde{B}}
-\def\tC{\widetilde{C}}
-\def\tD{\widetilde{D}}
-\def\tE{\widetilde{E}}
-\def\tF{\widetilde{F}}
-\def\tG{\widetilde{G}}
-\def\tH{\widetilde{H}}
-\def\tI{\widetilde{I}}
-\def\tJ{\widetilde{J}}
-\def\tK{\widetilde{K}}
-\def\tL{\widetilde{L}}
-\def\tM{\widetilde{M}}
-\def\tN{\widetilde{N}}
-\def\tO{\widetilde{O}}
-\def\tP{\widetilde{P}}
-\def\tQ{\widetilde{Q}}
-\def\tR{\widetilde{R}}
-\def\tS{\widetilde{S}}
-\def\tT{\widetilde{T}}
-\def\tU{\widetilde{U}}
-\def\tV{\widetilde{V}}
-\def\tW{\widetilde{W}}
-\def\tX{\widetilde{X}}
-\def\tY{\widetilde{Y}}
-\def\tZ{\widetilde{Z}}
-\def\tcA{\widetilde{\mathcal {A}}}
-\def\tcB{\widetilde{\mathcal {B}}}
-\def\tcC{\widetilde{\mathcal {C}}}
-\def\tcD{\widetilde{\mathcal {D}}}
-\def\tcE{\widetilde{\mathcal {E}}}
-\def\tcF{\widetilde{\mathcal {F}}}
-\def\tcG{\widetilde{\mathcal {G}}}
-\def\tcH{\widetilde{\mathcal {H}}}
-\def\tcI{\widetilde{\mathcal {I}}}
-\def\tcJ{\widetilde{\mathcal {J}}}
-\def\tcK{\widetilde{\mathcal {K}}}
-\def\tcL{\widetilde{\mathcal {L}}}
-\def\tcM{\widetilde{\mathcal {M}}}
-\def\tcN{\widetilde{\mathcal {N}}}
-\def\tcO{\widetilde{\mathcal {O}}}
-\def\tcP{\widetilde{\mathcal {P}}}
-\def\tcQ{\widetilde{\mathcal {Q}}}
-\def\tcR{\widetilde{\mathcal {R}}}
-\def\tcS{\widetilde{\mathcal {S}}}
-\def\tcT{\widetilde{\mathcal {T}}}
-\def\tcU{\widetilde{\mathcal {U}}}
-\def\tcV{\widetilde{\mathcal {V}}}
-\def\tcW{\widetilde{\mathcal {W}}}
-\def\tcX{\widetilde{\mathcal {X}}}
-\def\tcY{\widetilde{\mathcal {Y}}}
-\def\tcZ{\widetilde{\mathcal {Z}}}
-\def\tfA{\widetilde{\mathfrak {A}}}
-\def\tfB{\widetilde{\mathfrak {B}}}
-\def\tfC{\widetilde{\mathfrak {C}}}
-\def\tfD{\widetilde{\mathfrak {D}}}
-\def\tfE{\widetilde{\mathfrak {E}}}
-\def\tfF{\widetilde{\mathfrak {F}}}
-\def\tfG{\widetilde{\mathfrak {G}}}
-\def\tfH{\widetilde{\mathfrak {H}}}
-\def\tfI{\widetilde{\mathfrak {I}}}
-\def\tfJ{\widetilde{\mathfrak {J}}}
-\def\tfK{\widetilde{\mathfrak {K}}}
-\def\tfL{\widetilde{\mathfrak {L}}}
-\def\tfM{\widetilde{\mathfrak {M}}}
-\def\tfN{\widetilde{\mathfrak {N}}}
-\def\tfO{\widetilde{\mathfrak {O}}}
-\def\tfP{\widetilde{\mathfrak {P}}}
-\def\tfQ{\widetilde{\mathfrak {Q}}}
-\def\tfR{\widetilde{\mathfrak {R}}}
-\def\tfS{\widetilde{\mathfrak {S}}}
-\def\tfT{\widetilde{\mathfrak {T}}}
-\def\tfU{\widetilde{\mathfrak {U}}}
-\def\tfV{\widetilde{\mathfrak {V}}}
-\def\tfW{\widetilde{\mathfrak {W}}}
-\def\tfX{\widetilde{\mathfrak {X}}}
-\def\tfY{\widetilde{\mathfrak {Y}}}
-\def\tfZ{\widetilde{\mathfrak {Z}}}
-\def\Atil{\widetilde A} \def\atil{\tilde a}
-\def\Btil{\widetilde B} \def\btil{\tilde b}
-\def\Ctil{\widetilde C} \def\ctil{\tilde c}
-\def\Dtil{\widetilde D} \def\dtil{\tilde d}
-\def\Etil{\widetilde E} \def\etil{\tilde e}
-\def\Ftil{\widetilde F} \def\ftil{\tilde f}
-\def\Gtil{\widetilde G} \def\gtil{\tilde g}
-\def\Htil{\widetilde H} \def\htil{\tilde h}
-\def\Itil{\widetilde I} \def\itil{\tilde i}
-\def\Jtil{\widetilde J} \def\jtil{\tilde j}
-\def\Ktil{\widetilde K} \def\ktil{\tilde k}
-\def\Ltil{\widetilde L} \def\ltil{\tilde l}
-\def\Mtil{\widetilde M} \def\mtil{\tilde m}
-\def\Ntil{\widetilde N} \def\ntil{\tilde n}
-\def\Otil{\widetilde O} \def\otil{\tilde o}
-\def\Ptil{\widetilde P} \def\ptil{\tilde p}
-\def\Qtil{\widetilde Q} \def\qtil{\tilde q}
-\def\Rtil{\widetilde R} \def\rtil{\tilde r}
-\def\Stil{\widetilde S} \def\stil{\tilde s}
-\def\Ttil{\widetilde T} \def\ttil{\tilde t}
-\def\Util{\widetilde U} \def\util{\tilde u}
-\def\Vtil{\widetilde V} \def\vtil{\tilde v}
-\def\Wtil{\widetilde W} \def\wtil{\tilde w}
-\def\Xtil{\widetilde X} \def\xtil{\tilde x}
-\def\Ytil{\widetilde Y} \def\ytil{\tilde y}
-\def\Ztil{\widetilde Z} \def\ztil{\tilde z}
-\def\ahat{\hat a} \def\Ahat{\widehat A}
-\def\bhat{\hat b} \def\Bhat{\widehat B}
-\def\chat{\hat c} \def\Chat{\widehat C}
-\def\dhat{\hat d} \def\Dhat{\widehat D}
-\def\ehat{\hat e} \def\Ehat{\widehat E}
-\def\fhat{\hat f} \def\Fhat{\widehat F}
-\def\ghat{\hat g} \def\Ghat{\widehat G}
-\def\hhat{\hat h} \def\Hhat{\widehat H}
-\def\ihat{\hat i} \def\Ihat{\widehat I}
-\def\jhat{\hat j} \def\Jhat{\widehat J}
-\def\khat{\hat k} \def\Khat{\widehat K}
-\def\lhat{\hat l} \def\Lhat{\widehat L}
-\def\mhat{\hat m} \def\Mhat{\widehat M}
-\def\nhat{\hat n} \def\Nhat{\widehat N}
-\def\ohat{\hat o} \def\Ohat{\widehat O}
-\def\phat{\hat p} \def\Phat{\widehat P}
-\def\qhat{\hat q} \def\Qhat{\widehat Q}
-\def\rhat{\hat r} \def\Rhat{\widehat R}
-\def\shat{\hat s} \def\Shat{\widehat S}
-\def\that{\hat t} \def\That{\widehat T}
-\def\uhat{\hat u} \def\Uhat{\widehat U}
-\def\vhat{\hat v} \def\Vhat{\widehat V}
-\def\what{\hat w} \def\What{\widehat W}
-\def\xhat{\hat x} \def\Xhat{\widehat X}
-\def\yhat{\hat y} \def\Yhat{\widehat Y}
-\def\zhat{\hat z} \def\Zhat{\widehat Z}
-\def\be#1{\begin{equation}\label{ #1}}
-\def\endeq{\end{equation}}
-\def\endal{\end{align}}
-\def\bas{\begin{align*}}
-\def\eas{\end{align*}}
-\def\bi{\begin{itemize}}
-\def\ei{\end{itemize}}
-\def\eps{\varepsilon}
-\def\textbf#1{\bf #1}
-\def\into{\hookrightarrow}
-\newcommand{\inf}{\infty}
-\newcommand{\os}[2]{\overset{#1}{#2}}
-\newcommand{\ms}{(X, \cM, \mu)}
-\newcommand{\salg}{\sig\text{-algebra}}
-\newcommand{\ol}[1]{\overline{#1}}
-\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
-\newcommand{\onto}{\twoheadrightarrow}
-\newcommand{\id}{\text{id}}
-\newcommand{\Stab}{\text{Stab}}
-\def \bl {\backslash}
-\def \sfin {\sig\text{-finite}}
-\def \mum {\mu\text{-measurable}}
-\def \emps {\varnothing}
-\newcommand{\m}[1]{\boldsymbol{#1}}
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\Inf}{\text{inf}}
-\newcommand{\wb}[1]{\overline{#1}}
-\newcommand{\lto}{\longrightarrow}
-\newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}}
-\newcommand{\char}[1]{\cX_{#1}}
-\newcommand{\fp}{f\^+}
-\newcommand{\fm}{f\^-}
-\newcommand{\infm}{\text{inf}}
-\newcommand{\onorm}[1]{\Norm{#1}_1}
-\newcommand{\tnorm}[1]{\Norm{#1}_2}
-\newcommand{\infn}[1]{\Norm{#1}_\inf}
-\newcommand{\pnorm}[1]{\Norm{#1}_p}
-\newcommand{\End}{\text{End}}
-\newcommand{\Ob}{\text{Ob}}
-\newcommand{\Hom}{\text{Hom}}
-\newcommand{\intall}{\int_{-\inf}\^{\inf}}
-\newcommand{\intpmpi}{\int_{-\pi}\^{\pi}}
-\newcommand{\div}{\bigr|}
-\newcommand{\when}{\biggr|}
-\def \bsp {\begin{split}}
-\def \esp {\end{split}}
-\def \bc {\begin{cases}}
-\def \ec {\end{cases}}
-\newcommand{\sech}{\text{sech}}
-\newcommand{\vectk}{\text{Vect}_\text{k}}
-\newcommand{\top}{\text{Top}}
-\newcommand{\grp}{\text{Grp}}
-\newcommand{\pathx}{\text{Paths}_X}
-\newcommand{\from}{\leftarrow}
-\newcommand{\lfrom}{\longleftarrow}
-\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
-\newcommand{\sym}{\text{Sym}}
-\newcommand{\Set}{\text{Set}}
-\newcommand{\zn}{\Z/n\Z}
-\newcommand{\Mor}{\text{Mor}}
-\newcommand{\acton}{\circlearrowright}
-\DeclareMathOperator{\tr}{Tr}
-\newcommand{\par}{\partial}
-\newcommand{\Fun}{\text{Fun}}
-\newcommand{\triv}{\text{triv}}
-\newcommand{\zmnz}[1]{\Z/{#1}\Z}
-\newcommand{\tl}{\triangleleft}
-\newcommand{\paren}[1]{\left({#1}\right)}
-\newcommand{\ceil}[1]{\lceil{#1}\rceil}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\end{equation}
-$$</p>
-
-<p>最近在看Dayan和Abbott的<a href="https://mitpress.mit.edu/books/theoretical-neuroscience"><em>Theoretical
-Neuroscience</em></a>{rel=”noopener” target=”_blank”}。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-06T09:18:34+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Shirui (Carl) Chen</title><subtitle>Ph.D. Candidate in Applied Mathematics at University of Washington</subtitle><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><entry><title type="html">如何求解 $\dot{x} = x+f(t)$</title><link href="http://localhost:4000/posts/2021/09/diffeqsolve/" rel="alternate" type="text/html" title="如何求解 $\dot{x} = x+f(t)$" /><published>2021-09-29T00:00:00+00:00</published><updated>2021-09-29T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/09/diffeqsolve</id><content type="html" xml:base="http://localhost:4000/posts/2021/09/diffeqsolve/"><![CDATA[<p>最近在看Dayan和Abbott的<a href="https://mitpress.mit.edu/books/theoretical-neuroscience" rel="noopener" target="_blank"><em>Theoretical
+Neuroscience</em></a>。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。
 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程：
-$$
-\begin{equation}
+\(\begin{equation}
 C\frac{dV}{dt} = \frac{E-V}{R} + I_e
-\end{equation}
-$$ 这是比较容易求解的，令$W =
--V+E+RI_e$, 我们有 $$
-\begin{equation}
+\end{equation}\) 这是比较容易求解的，令$W =
+-V+E+RI_e$, 我们有 \(\begin{equation}
 RC(-W)' = W
-\end{equation}
-$$ 愉快地分离变量就能得到$W =
-C'\exp(-t/\tau)$. 把$V(0)$ 这个初始条件代进去就有$C' = W(0) = -V(0)+E+RI_e$。
-我们就能得到书上列出的解 $$
-\begin{equation}
-V(t) = V_\inf +(V(0)- V_\inf) \exp(-t/\tau)
-\end{equation}
-$$</p>
+\end{equation}\) 愉快地分离变量就能得到$W =
+C’\exp(-t/\tau)$. 把$V(0)$ 这个初始条件代进去就有$C’ = W(0) = -V(0)+E+RI_e$。
+我们就能得到书上列出的解 \(\begin{equation}
+V(t) = V\_\inf +(V(0)- V\_\inf) \exp(-t/\tau)
+\end{equation}\)</p>
 
 <p>[]{#more}</p>
 
 <p>其中$V_\inf = E+RI_e$, $\tau =
 RC$。接下来作者又假设了另外一种情况， 这种情况下$I_e$ 随时间振荡： $I_e = I\cos(\omega t)$.
-这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 $\dot{x} = a(t)x+b(t)$, 我们有解 $$
-\begin{equation}
-x(t) = \exp\paren{\int_0\^t a(s)ds)}x(0)+\int_0\^t
-\exp\paren{\int_s\^ta(r)dr}b(s)ds
-\end{equation}\label{eq:1}\tag{1}
-$$ 这个方程是这样解的， 两边同乘$\mu(t) = \exp(-\int_0\^t a(s) ds)$
+这下就有点难办，不过没关系，把我们的意大利炮拉上来: 对于方程 $\dot{x} = a(t)x+b(t)$, 我们有解 \(\begin{equation}
+x(t) = \exp\left(\int_0^t a(s)\,ds\right)x(0)+\int_0^t
+\exp\left(\int_s^t a(r)\,dr\right)b(s)\,ds
+\end{equation}\label{eq:1}\tag{1}\) 这个方程是这样解的， 两边同乘$\mu(t) = \exp(-\int_0^t a(s) ds)$
 (别问我为啥是这个，问就是exponential的derivative可以把指数拿下来然后用链式法则，就硬凑)。这样方程就变成了
-$$
-\begin{equation}
-\bsp
-\mu(t)\dot{x} - \mu(t)a(t)x&amp;= b(t)\mu(t)\<br />
-\paren{\mu(t)x}' &amp;= b(t)\mu(t)\<br />
-\mu(t)x &amp;=\int_0\^t b(r)\mu(r)dr+C\<br />
-\esp
-\end{equation}
-$$</p>
+\(\begin{equation}
+\begin{split}
+\mu(t)\dot{x} - \mu(t)a(t)x&amp;= b(t)\mu(t)\\
+\left(\mu(t)x\right)' &amp;= b(t)\mu(t)\\
+\mu(t)x &amp;=\int_0^t b(r)\mu(r)dr+C\\
+\end{split}
+\end{equation}\)</p>
 
 <p>把$t = 0$带进去, 发现$C = x(0)$, 把$\mu(t)$
-移到另一边，我们就得到了之前那个解$\eqref{eq:1}$。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule">Leibniz
-integral rule</a>{rel=”noopener” target=”_blank”}。接下来我们，开炮！我们把$V$当成$x$, $a(t) =
--1/\tau$, $b(t) = E/\tau+I\cos(\om
-t)/C$, 所以解就是 $$
-\begin{equation}
-V(t) = e\^{-t/\tau}V(0)+\int_0\^t e\^{-(t-s)/\tau}b(s)ds
-\end{equation}
-$$</p>
+移到另一边，我们就得到了之前那个解$\eqref{eq:1}$。直接把答案代到方程里面验算当然也可以证明，但那就是明目张胆的作弊了。而且应该会用到<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule" rel="noopener" target="_blank">Leibniz
+integral rule</a>。接下来我们，开炮！我们把$V$当成$x$, $a(t) =
+-1/\tau$, $b(t) = E/\tau+I\cos(\omega
+t)/C$, 所以解就是 \(\begin{equation}
+V(t) = e^{-t/\tau}V(0)+\int_0^t e^{-(t-s)/\tau}b(s)ds
+\end{equation}\)</p>
 
 <p>可能大家读到这里都忘了我们是在解一本书里面的方程，书上是这么说的,
-"once an initial transient has decayed to zero, we find" $$
-\begin{equation}
-V(t) = E+\f{RI\cos(wt- \phi)}{ \sqrt{1+\om\^2 \tau\^2} }
-\end{equation}
-$$ 其中$\tan(\phi) =
-\om\tau$。啊这。。。我刚开始看的时候是懵逼的，啥是transient?
+"once an initial transient has decayed to zero, we find" \(\begin{equation}
+V(t) = E+\frac{RI\cos(wt- \phi)}{ \sqrt{1+\omega^2 \tau^2} }
+\end{equation}\) 其中$\tan(\phi) =
+\omega\tau$。啊这。。。我刚开始看的时候是懵逼的，啥是transient?
 后来才知道可能这是电子工程里面的术语。
 Transient的意思不是短暂的么，这里就是指在$t\to \inf$时趋于0的项，
-可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西 $$
-\lim_{t\to\inf} \int_0\^t e\^{-(t-s)/\tau}b(s)ds
-$$ 这里的极限不是分析意义上的，只是表示去掉$t\to \inf$时为0的项。东凑凑西算算，
-最后发现还是把余弦化成复数形式会比较好： $$
-\begin{equation}
+可以想象成时间长了后散逸掉的能量。我们相当于要求下面这个东西 \(\lim\_{t\to\inf} \int_0^t e^{-(t-s)/\tau}b(s)ds\) 这里的极限不是分析意义上的，只是表示去掉$t\to \inf$时为0的项。东凑凑西算算，
+最后发现还是把余弦化成复数形式会比较好： \(\begin{equation}
 \cos(\omega t) = \frac{\exp(iwt)+\exp(-iwt)}{2}
-\end{equation}
-$$</p>
+\end{equation}\)</p>
 
-<p>目的当然是好积分， 并不清楚作者是如何算的 $$
-\bsp
-\int_0\^te\^{-(t-s)/\tau}(E/\tau+I\cos(\om s)/C)ds &amp;= A(t)+B(t)+C(t)\<br />
-A(t)&amp;=\f{E}{\tau}\int_0\^t e\^{-(t-s)/\tau}ds\<br />
-B(t)&amp;= \f{I}{2C}\int_0\^t\exp(iws-(t-s)/\tau)ds\<br />
-C(t)&amp;= \f{I}{2C}\int_0\^t\exp(-iws-(t-s)/\tau)ds
-\esp
-$$ 简单的积分: $$
-\bsp
-A(t) &amp;= E(1-e\^{-t/\tau})\<br />
-B(t) &amp;= \f{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\<br />
-C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\<br />
-\esp
-$$ 求个”极限” $$
-\bsp
-\lim_{t\to\inf} A(t) &amp;= E\<br />
-\lim_{t\to\inf} B(t) &amp;=\f{I\tau}{2C(iw\tau +1)}\exp(iwt)\<br />
-\lim_{t\to \inf}C(t) &amp;= \f{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\<br />
-\esp
-$$ 别忘了$\tau = RC$,
-于是我们有 $$
-V(t) = E+\f{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2(
-1+\om\^2 \tau\^2)}
-$$ 把指数再展开成三角函数 $$
-V(t) = E+\f{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w\^2\tau\^2}
-$$
-诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和 $$
-\cos(\alp-\bet) = \cos(\alp)\cos(\bet)+\sin(\alp)\sin(\bet)
-$$ 的相似性， 我们希望 $$
-\bsp
-\cos(\phi) = 1\<br />
+<p>目的当然是好积分， 并不清楚作者是如何算的 \(\begin{split}
+\int_0^te^{-(t-s)/\tau}(E/\tau+I\cos(\omega s)/C)ds &amp;= A(t)+B(t)+C(t)\\
+A(t)&amp;=\frac{E}{\tau}\int_0^t e^{-(t-s)/\tau}ds\\
+B(t)&amp;= \frac{I}{2C}\int_0^t\exp(iws-(t-s)/\tau)ds\\
+C(t)&amp;= \frac{I}{2C}\int_0^t\exp(-iws-(t-s)/\tau)ds
+\end{split}\) 简单的积分: \(\begin{split}
+A(t) &amp;= E(1-e^{-t/\tau})\\
+B(t) &amp;= \frac{I\tau}{2C(iw\tau +1)}(\exp(iwt) - \exp(-t/\tau))\\
+C(t) &amp;= \frac{I\tau}{2C(-iw\tau +1)}(\exp(-iwt) - \exp(-t/\tau))\\
+\end{split}\) 求个”极限” \(\begin{split}
+\lim\_{t\to\inf} A(t) &amp;= E\\
+\lim\_{t\to\inf} B(t) &amp;=\frac{I\tau}{2C(iw\tau +1)}\exp(iwt)\\
+\lim\_{t\to \inf}C(t) &amp;= \frac{I\tau}{2C(-iw\tau +1)}\exp(-iwt)\\
+\end{split}\) 别忘了$\tau = RC$,
+于是我们有 \(V(t) = E+\frac{RI\left[\exp(iwt)(-iw\tau+1)+\exp(-iwt)(iw\tau+1)\right]}{2(
+1+\omega^2 \tau^2)}\) 把指数再展开成三角函数 \(V(t) = E+\frac{RI(\cos(w\tau)+w\tau \sin(w\tau) )}{1+w^2\tau^2}\)
+诶和书上的答案不一样，gg。小丑竟是我自己。其实是这样，观察分子和 \(\cos(\alpha-\beta) = \cos(\alpha)\cos(\beta)+\sin(\alpha)\sin(\beta)\) 的相似性， 我们希望 \(\begin{split}
+\cos(\phi) = 1\\
 \sin(\phi) = w\tau
-\esp
-$$ 这不可能，平方和要是1，于是上下同除$1/\sqrt{1+w\^2\tau\^2}$即可。 $$
-\bsp
-\cos(\phi) = 1/\sqrt{1+w\^2\tau\^2}\<br />
-\sin(\phi) = w\tau/\sqrt{1+w\^2\tau\^2}
-\esp
-$$ $\tan(\phi) =
+\end{split}\) 这不可能，平方和要是1，于是上下同除$1/\sqrt{1+w^2\tau^2}$即可。 \(\begin{split}
+\cos(\phi) = 1/\sqrt{1+w^2\tau^2}\\
+\sin(\phi) = w\tau/\sqrt{1+w^2\tau^2}
+\end{split}\) $\tan(\phi) =
 w\tau$自然成立。到此我们终于得到了这个书上没有过程的结论。。。</p>
 
 <p>后记：打这篇文章主要是想体验一下在博客里面写有大量公式的文章的体验。
-有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。</p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="math" /><category term="differential equation" /><summary type="html"><![CDATA[$$ \begin{equation} \def\pr{\text{\rm pr}} \def\sec{\text{\rm sect}} \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation}} \def\endeq{\end{equation}} \def\lesim{\lesssim} \def\mc{\mathcal} \def\h{\mathcal{H}} \newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}} \def\mn{M\^{(n)}} \def\lam{\lambda} \def\wide{\widehat} \def\uk{u\^{(k_0)}} \def\uo{u\^{(0)}} \def\pj{P\^{(2)}} \def\pii{P\^{(1)}} \def\pc{P\^{Cone}} \def\tx{\tilde x} \DeclareMathOperator{\re}{Re} \DeclareMathOperator{\sgn}{sgn} \def\cplus{c\ci+} \def\cmin{c\ci-} \def\cplusmin{c\ci\pm} \def\chiplus{\chi\ci+} \def\chimin{\chi\ci-} \def\chiplusmin{\chi\ci\pm} \def\psiplus{\psi\ci+} \def\psimin{\psi\ci-} \def\psiplusmin{\psi\ci\pm} \def\sigmaplus{\sigma\ci+} \def\sigmamin{\sigma\ci-} \def\sigmaplusmin{\sigma\ci\pm} \def\bbone{\mathbbm 1} \newcommand{\dil}{\text{\rm Dil}} \newcommand{\spec}{\operatorname{spec}} \newcommand{\ls}{\lesssim} \newcommand{\sL}{\mathscr L} \newcommand{\sJ}{\mathscr J} \newcommand{\sK}{\mathscr K} \newcommand{\wh}{\widehat} \newcommand{\wt}{\widetilde} \newcommand{\A}{\mathcal A} \newcommand{\E}{\mathcal E} \newcommand{\F}{\mathcal F} \newcommand{\D}{\mathcal D} \newcommand{\K}{\mathcal K} \newcommand{\QQ}{\mathcal Q} \newcommand{\RR}{\mathcal R} \newcommand{\f}[2]{\frac{#1}{#2}} \newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)} \newcommand{\norm}[1]{ \left| #1 \right| } \newcommand{\abs}[1]{ \left| #1 \right| } \newcommand{\Norm}[1]{ \left\| #1 \right\| } \newcommand{\iff}{\Leftrightarrow} \newcommand{\set}[1]{ \left\{ #1 \right\} } \newcommand{\Be}{\begin{equation}} \newcommand{\Ee}{\end{equation}} \newcommand{\Bm}{\begin{multline}} \newcommand{\Em}{\end{multline}} \newcommand{\Bea}{\begin{eqnarray}} \newcommand{\Eea}{\end{eqnarray}} \newcommand{\Beas}{\begin{eqnarray*}} \newcommand{\Eeas}{\end{eqnarray*}} \newcommand{\Benu}{\begin{enumerate}} \newcommand{\Eenu}{\end{enumerate}} \newcommand{\Bi}{\begin{itemize}} \newcommand{\Ei}{\end{itemize}} \def\conv{\text{Conv}} \def\tp{\tilde p} \def\tq{\tilde q} \def\crit{\text{\rm cr}} \def\sparse{\text{\rm sp}} \def\dyad{\text{\rm dyad}} \def\mart{\text{dyad}} \def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int} \def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}} \def\Re{\operatorname{Re\,}} \def\Im{\operatorname{Im\,}} \def\mx \def\mn \def\vth{\vartheta} \def\rn{\rr\^{n}} \def\rr{\mathbb R} \def\Q{\mathbb Q} \def\N{\mathbb N} \def\complex{\mathbb C} \def\emph#1{\it #1 } \def\diam{\text{\rm diam}} \def\osc{\text{\rm osc}} \def\ffB{\mathcal B} \def\seq{\subseteq} \def\Ga{\Gamma} \def\ga{\gamma} \def\Th{\Theta} \def\prd{\text{\it prod}} \def\parab{\text{\it parabolic}} \def\eg{\it e.g. } \def\cf{\it cf} \def\Rn{\mathbb R\^n} \def\Rd{\mathbb R\^d} \def\sgn{\text{\rm sign }} \def\rank{\text{\rm rank }} \def\corank{\text{\rm corank }} \def\coker{\text{\rm Coker }} \def\loc{\text{\rm loc}} \def\spec{\text{\rm spec}} \def\comp{\text{comp}} \def\Coi{C\^\infty_0} \def\dist{\text{\it dist}} \def\diag{\text{\rm diag}} \def\supp{text{\rm supp}} \def\rad{\text{\it rad}} \def\sph{\text{sph}} \def\Lip{\text{\rm Lip}} \def\ev{\text{\rm ev}} \def\odd{\text{\rm odd}} \def\inn#1#2{\langle#1,#2\rangle} \def\biginn#1#2{\big\langle#1,#2\big\rangle} \def\rta{\rightarrow} \def\lta{\leftarrow} \def\noi{\noindent} \def\lcontr{\rfloor} \newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}} \def\meas{\text{\rm meas}} \def\card{\text{\rm card}} \def\lc{\lesssim} \def\gc{\gtrsim} \def\pv{\text{\rm p.v.}} \def\a{\alpha} \def\alp{\alpha} \def\Alp{\Alpha} \def\bet{\beta} \def\gam{\gamma} \def\Gam{\Gamma} \def\del{\delta} \def\Del{\Delta} \def\eps{\varepsilon} \def\ep{\epsilon} \def\zet{\zeta} \def\tet{\theta} \def\Tet{\Theta} \def\iot{\iota} \def\kap{\kappa} \def\ka{\kappa} \def\lam{\lambda} \def\Lam{\Lambda} \def\la{\lambda} \def\La{\Lambda} \def\sig{\sigma} \def\Sig{\Sigma} \def\si{\sigma} \def\Si{\Sigma} \def\vphi{\varphi} \def\ome{\omega} \def\Ome{\Omega} \def\om{\omega} \def\fA{\mathfrak {A}} \def\fB{\mathfrak {B}} \def\fC{\mathfrak {C}} \def\fD{\mathfrak {D}} \def\fE{\mathfrak {E}} \def\fF{\mathfrak {F}} \def\fG{mathfrak {G}} \def\fH{\mathfrak {H}} \def\fI{\mathfrak {I}} \def\fJ{\mathfrak {J}} \def\fK{\mathfrak {K}} \def\fL{\mathfrak {L}} \def\fM{\mathfrak {M}} \def\fN{\mathfrak {N}} \def\fO{\mathfrak {O}} \def\fP{\mathfrak {P}} \def\fQ{\mathfrak {Q}} \def\fR{\mathfrak {R}} \def\fS{\mathfrak {S}} \def\fT{\mathfrak {T}} \def\fU{\mathfrak {U}} \def\fV{\mathfrak {V}} \def\fW{\mathfrak {W}} \def\fX{\mathfrak {X}} \def\fY{\mathfrak {Y}} \def\fZ{\mathfrak {Z}} \def\fa{\mathfrak {a}} \def\fb{\mathfrak {b}} \def\fc{\mathfrak {c}} \def\fd{\mathfrak {d}} \def\fe{\mathfrak {e}} \def\ff{\mathfrak {f}} \def\fg{\mathfrak {g}} \def\fh{\mathfrak {h}} \def\fj{\mathfrak {j}} \def\fk{\mathfrak {k}} \def\fl{\mathfrak {l}} \def\fn{\mathfrak {n}} \def\fo{\mathfrak {o}} \def\fq{\mathfrak {q}} \def\fr{\mathfrak {r}} \def\fs{\mathfrak {s}} \def\ft{\mathfrak {t}} \def\fu{\mathfrak {u}} \def\fv{\mathfrak {v}} \def\fw{\mathfrak {w}} \def\fx{\mathfrak {x}} \def\fy{\mathfrak {y}} \def\fz{\mathfrak {z}} \def\bbA{\mathbb {A}} \def\bbB{\mathbb {B}} \def\bbC{\mathbb {C}} \def\bbD{\mathbb {D}} \def\bbE{\mathbb {E}} \def\bbF{\mathbb {F}} \def\bbG{\mathbb {G}} \def\bbH{\mathbb {H}} \def\bbI{\mathbb {I}} \def\bbJ{\mathbb {J}} \def\bbK{\mathbb {K}} \def\bbL{\mathbb {L}} \def\bbM{\mathbb {M}} \def\bbN{\mathbb {N}} \def\bbO{\mathbb {O}} \def\bbP{\mathbb {P}} \def\bbQ{\mathbb {Q}} \def\bbR{\mathbb {R}} \def\bbS{\mathbb {S}} \def\bbT{\mathbb {T}} \def\bbU{\mathbb {U}} \def\bbV{\mathbb {V}} \def\bbW{\mathbb {W}} \def\bbX{\mathbb {X}} \def\bbY{\mathbb {Y}} \def\bbZ{\mathbb {Z}} \def\cA{\mathcal {A}} \def\cB{\mathcal {B}} \def\cC{\mathcal {C}} \def\cD{\mathcal {D}} \def\cE{\mathcal {E}} \def\cF{\mathcal {F}} \def\cG{\mathcal {G}} \def\cH{\mathcal {H}} \def\cI{\mathcal {I}} \def\cJ{\mathcal {J}} \def\cK{\mathcal {K}} \def\cL{\mathcal {L}} \def\cM{\mathcal {M}} \def\cN{\mathcal {N}} \def\cO{\mathcal {O}} \def\cP{\mathcal {P}} \def\cQ{\mathcal {Q}} \def\cR{\mathcal {R}} \def\cS{\mathcal {S}} \def\cT{\mathcal {T}} \def\cU{\mathcal {U}} \def\cV{\mathcal {V}} \def\cW{\mathcal {W}} \def\cX{\mathcal {X}} \def\cY{\mathcal {Y}} \def\cZ{\mathcal {Z}} \def\tA{\widetilde{A}} \def\tB{\widetilde{B}} \def\tC{\widetilde{C}} \def\tD{\widetilde{D}} \def\tE{\widetilde{E}} \def\tF{\widetilde{F}} \def\tG{\widetilde{G}} \def\tH{\widetilde{H}} \def\tI{\widetilde{I}} \def\tJ{\widetilde{J}} \def\tK{\widetilde{K}} \def\tL{\widetilde{L}} \def\tM{\widetilde{M}} \def\tN{\widetilde{N}} \def\tO{\widetilde{O}} \def\tP{\widetilde{P}} \def\tQ{\widetilde{Q}} \def\tR{\widetilde{R}} \def\tS{\widetilde{S}} \def\tT{\widetilde{T}} \def\tU{\widetilde{U}} \def\tV{\widetilde{V}} \def\tW{\widetilde{W}} \def\tX{\widetilde{X}} \def\tY{\widetilde{Y}} \def\tZ{\widetilde{Z}} \def\tcA{\widetilde{\mathcal {A}}} \def\tcB{\widetilde{\mathcal {B}}} \def\tcC{\widetilde{\mathcal {C}}} \def\tcD{\widetilde{\mathcal {D}}} \def\tcE{\widetilde{\mathcal {E}}} \def\tcF{\widetilde{\mathcal {F}}} \def\tcG{\widetilde{\mathcal {G}}} \def\tcH{\widetilde{\mathcal {H}}} \def\tcI{\widetilde{\mathcal {I}}} \def\tcJ{\widetilde{\mathcal {J}}} \def\tcK{\widetilde{\mathcal {K}}} \def\tcL{\widetilde{\mathcal {L}}} \def\tcM{\widetilde{\mathcal {M}}} \def\tcN{\widetilde{\mathcal {N}}} \def\tcO{\widetilde{\mathcal {O}}} \def\tcP{\widetilde{\mathcal {P}}} \def\tcQ{\widetilde{\mathcal {Q}}} \def\tcR{\widetilde{\mathcal {R}}} \def\tcS{\widetilde{\mathcal {S}}} \def\tcT{\widetilde{\mathcal {T}}} \def\tcU{\widetilde{\mathcal {U}}} \def\tcV{\widetilde{\mathcal {V}}} \def\tcW{\widetilde{\mathcal {W}}} \def\tcX{\widetilde{\mathcal {X}}} \def\tcY{\widetilde{\mathcal {Y}}} \def\tcZ{\widetilde{\mathcal {Z}}} \def\tfA{\widetilde{\mathfrak {A}}} \def\tfB{\widetilde{\mathfrak {B}}} \def\tfC{\widetilde{\mathfrak {C}}} \def\tfD{\widetilde{\mathfrak {D}}} \def\tfE{\widetilde{\mathfrak {E}}} \def\tfF{\widetilde{\mathfrak {F}}} \def\tfG{\widetilde{\mathfrak {G}}} \def\tfH{\widetilde{\mathfrak {H}}} \def\tfI{\widetilde{\mathfrak {I}}} \def\tfJ{\widetilde{\mathfrak {J}}} \def\tfK{\widetilde{\mathfrak {K}}} \def\tfL{\widetilde{\mathfrak {L}}} \def\tfM{\widetilde{\mathfrak {M}}} \def\tfN{\widetilde{\mathfrak {N}}} \def\tfO{\widetilde{\mathfrak {O}}} \def\tfP{\widetilde{\mathfrak {P}}} \def\tfQ{\widetilde{\mathfrak {Q}}} \def\tfR{\widetilde{\mathfrak {R}}} \def\tfS{\widetilde{\mathfrak {S}}} \def\tfT{\widetilde{\mathfrak {T}}} \def\tfU{\widetilde{\mathfrak {U}}} \def\tfV{\widetilde{\mathfrak {V}}} \def\tfW{\widetilde{\mathfrak {W}}} \def\tfX{\widetilde{\mathfrak {X}}} \def\tfY{\widetilde{\mathfrak {Y}}} \def\tfZ{\widetilde{\mathfrak {Z}}} \def\Atil{\widetilde A} \def\atil{\tilde a} \def\Btil{\widetilde B} \def\btil{\tilde b} \def\Ctil{\widetilde C} \def\ctil{\tilde c} \def\Dtil{\widetilde D} \def\dtil{\tilde d} \def\Etil{\widetilde E} \def\etil{\tilde e} \def\Ftil{\widetilde F} \def\ftil{\tilde f} \def\Gtil{\widetilde G} \def\gtil{\tilde g} \def\Htil{\widetilde H} \def\htil{\tilde h} \def\Itil{\widetilde I} \def\itil{\tilde i} \def\Jtil{\widetilde J} \def\jtil{\tilde j} \def\Ktil{\widetilde K} \def\ktil{\tilde k} \def\Ltil{\widetilde L} \def\ltil{\tilde l} \def\Mtil{\widetilde M} \def\mtil{\tilde m} \def\Ntil{\widetilde N} \def\ntil{\tilde n} \def\Otil{\widetilde O} \def\otil{\tilde o} \def\Ptil{\widetilde P} \def\ptil{\tilde p} \def\Qtil{\widetilde Q} \def\qtil{\tilde q} \def\Rtil{\widetilde R} \def\rtil{\tilde r} \def\Stil{\widetilde S} \def\stil{\tilde s} \def\Ttil{\widetilde T} \def\ttil{\tilde t} \def\Util{\widetilde U} \def\util{\tilde u} \def\Vtil{\widetilde V} \def\vtil{\tilde v} \def\Wtil{\widetilde W} \def\wtil{\tilde w} \def\Xtil{\widetilde X} \def\xtil{\tilde x} \def\Ytil{\widetilde Y} \def\ytil{\tilde y} \def\Ztil{\widetilde Z} \def\ztil{\tilde z} \def\ahat{\hat a} \def\Ahat{\widehat A} \def\bhat{\hat b} \def\Bhat{\widehat B} \def\chat{\hat c} \def\Chat{\widehat C} \def\dhat{\hat d} \def\Dhat{\widehat D} \def\ehat{\hat e} \def\Ehat{\widehat E} \def\fhat{\hat f} \def\Fhat{\widehat F} \def\ghat{\hat g} \def\Ghat{\widehat G} \def\hhat{\hat h} \def\Hhat{\widehat H} \def\ihat{\hat i} \def\Ihat{\widehat I} \def\jhat{\hat j} \def\Jhat{\widehat J} \def\khat{\hat k} \def\Khat{\widehat K} \def\lhat{\hat l} \def\Lhat{\widehat L} \def\mhat{\hat m} \def\Mhat{\widehat M} \def\nhat{\hat n} \def\Nhat{\widehat N} \def\ohat{\hat o} \def\Ohat{\widehat O} \def\phat{\hat p} \def\Phat{\widehat P} \def\qhat{\hat q} \def\Qhat{\widehat Q} \def\rhat{\hat r} \def\Rhat{\widehat R} \def\shat{\hat s} \def\Shat{\widehat S} \def\that{\hat t} \def\That{\widehat T} \def\uhat{\hat u} \def\Uhat{\widehat U} \def\vhat{\hat v} \def\Vhat{\widehat V} \def\what{\hat w} \def\What{\widehat W} \def\xhat{\hat x} \def\Xhat{\widehat X} \def\yhat{\hat y} \def\Yhat{\widehat Y} \def\zhat{\hat z} \def\Zhat{\widehat Z} \def\be#1{\begin{equation}\label{ #1}} \def\endeq{\end{equation}} \def\endal{\end{align}} \def\bas{\begin{align*}} \def\eas{\end{align*}} \def\bi{\begin{itemize}} \def\ei{\end{itemize}} \def\eps{\varepsilon} \def\textbf#1{\bf #1} \def\into{\hookrightarrow} \newcommand{\inf}{\infty} \newcommand{\os}[2]{\overset{#1}{#2}} \newcommand{\ms}{(X, \cM, \mu)} \newcommand{\salg}{\sig\text{-algebra}} \newcommand{\ol}[1]{\overline{#1}} \newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}} \newcommand{\onto}{\twoheadrightarrow} \newcommand{\id}{\text{id}} \newcommand{\Stab}{\text{Stab}} \def \bl {\backslash} \def \sfin {\sig\text{-finite}} \def \mum {\mu\text{-measurable}} \def \emps {\varnothing} \newcommand{\m}[1]{\boldsymbol{#1}} \newcommand{\bs}[1]{\boldsymbol{#1}} \newcommand{\Inf}{\text{inf}} \newcommand{\wb}[1]{\overline{#1}} \newcommand{\lto}{\longrightarrow} \newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}} \newcommand{\char}[1]{\cX_{#1}} \newcommand{\fp}{f\^+} \newcommand{\fm}{f\^-} \newcommand{\infm}{\text{inf}} \newcommand{\onorm}[1]{\Norm{#1}_1} \newcommand{\tnorm}[1]{\Norm{#1}_2} \newcommand{\infn}[1]{\Norm{#1}_\inf} \newcommand{\pnorm}[1]{\Norm{#1}_p} \newcommand{\End}{\text{End}} \newcommand{\Ob}{\text{Ob}} \newcommand{\Hom}{\text{Hom}} \newcommand{\intall}{\int_{-\inf}\^{\inf}} \newcommand{\intpmpi}{\int_{-\pi}\^{\pi}} \newcommand{\div}{\bigr|} \newcommand{\when}{\biggr|} \def \bsp {\begin{split}} \def \esp {\end{split}} \def \bc {\begin{cases}} \def \ec {\end{cases}} \newcommand{\sech}{\text{sech}} \newcommand{\vectk}{\text{Vect}_\text{k}} \newcommand{\top}{\text{Top}} \newcommand{\grp}{\text{Grp}} \newcommand{\pathx}{\text{Paths}_X} \newcommand{\from}{\leftarrow} \newcommand{\lfrom}{\longleftarrow} \newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}} \newcommand{\sym}{\text{Sym}} \newcommand{\Set}{\text{Set}} \newcommand{\zn}{\Z/n\Z} \newcommand{\Mor}{\text{Mor}} \newcommand{\acton}{\circlearrowright} \DeclareMathOperator{\tr}{Tr} \newcommand{\par}{\partial} \newcommand{\Fun}{\text{Fun}} \newcommand{\triv}{\text{triv}} \newcommand{\zmnz}[1]{\Z/{#1}\Z} \newcommand{\tl}{\triangleleft} \newcommand{\paren}[1]{\left({#1}\right)} \newcommand{\ceil}[1]{\lceil{#1}\rceil} \newcommand{\floor}[1]{\lfloor{#1}\rfloor} \end{equation} $$]]></summary></entry><entry><title type="html">Sprague-Grundy Theorem and the Game of Nim</title><link href="http://localhost:4000/posts/2021/07/sprague-grundy-theorem-and-the-game-of-nim/" rel="alternate" type="text/html" title="Sprague-Grundy Theorem and the Game of Nim" /><published>2021-07-18T00:00:00+00:00</published><updated>2021-07-18T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/07/Sprague-Grundy-Theorem-and-the-Game-of-Nim</id><content type="html" xml:base="http://localhost:4000/posts/2021/07/sprague-grundy-theorem-and-the-game-of-nim/"><![CDATA[<p>$$
-\begin{equation}
-\def\pr{\text{\rm pr}}
-\def\sec{\text{\rm sect}}
-\def\R{\mathbb{R}}
-\def\N{\mathbb{N}}
-\def\C{\mathbb{C}}
-\def\Z{\mathbb{Z}}
-\def\H{\mathcal{H}}
-\def\beq{\begin{equation}}
-\def\endeq{\end{equation}}
-\def\lesim{\lesssim}
-\def\mc{\mathcal}
-\def\h{\mathcal{H}}
-\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
-\def\mn{M\^{(n)}}
-\def\lam{\lambda}
-\def\wide{\widehat}
-\def\uk{u\^{(k_0)}}
-\def\uo{u\^{(0)}}
-\def\pj{P\^{(2)}}
-\def\pii{P\^{(1)}}
-\def\pc{P\^{Cone}}
-\def\tx{\tilde x}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\sgn}{sgn}
-\def\cplus{c\ci+}
-\def\cmin{c\ci-}
-\def\cplusmin{c\ci\pm}
-\def\chiplus{\chi\ci+}
-\def\chimin{\chi\ci-}
-\def\chiplusmin{\chi\ci\pm}
-\def\psiplus{\psi\ci+}
-\def\psimin{\psi\ci-}
-\def\psiplusmin{\psi\ci\pm}
-\def\sigmaplus{\sigma\ci+}
-\def\sigmamin{\sigma\ci-}
-\def\sigmaplusmin{\sigma\ci\pm}
-\def\bbone{\mathbbm 1}
-\newcommand{\dil}{\text{\rm Dil}}
-\newcommand{\spec}{\operatorname{spec}}
-\newcommand{\ls}{\lesssim}
-\newcommand{\sL}{\mathscr L}
-\newcommand{\sJ}{\mathscr J}
-\newcommand{\sK}{\mathscr K}
-\newcommand{\wh}{\widehat}
-\newcommand{\wt}{\widetilde}
-\newcommand{\A}{\mathcal A}
-\newcommand{\E}{\mathcal E}
-\newcommand{\F}{\mathcal F}
-\newcommand{\D}{\mathcal D}
-\newcommand{\K}{\mathcal K}
-\newcommand{\QQ}{\mathcal Q}
-\newcommand{\RR}{\mathcal R}
-\newcommand{\f}[2]{\frac{#1}{#2}}
-\newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)}
-\newcommand{\norm}[1]{ \left| #1 \right| }
-\newcommand{\abs}[1]{ \left| #1 \right| }
-\newcommand{\Norm}[1]{ \left\| #1 \right\| }
-\newcommand{\iff}{\Leftrightarrow}
-\newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\Be}{\begin{equation}}
-\newcommand{\Ee}{\end{equation}}
-\newcommand{\Bm}{\begin{multline}}
-\newcommand{\Em}{\end{multline}}
-\newcommand{\Bea}{\begin{eqnarray}}
-\newcommand{\Eea}{\end{eqnarray}}
-\newcommand{\Beas}{\begin{eqnarray*}}
-\newcommand{\Eeas}{\end{eqnarray*}}
-\newcommand{\Benu}{\begin{enumerate}}
-\newcommand{\Eenu}{\end{enumerate}}
-\newcommand{\Bi}{\begin{itemize}}
-\newcommand{\Ei}{\end{itemize}}
-\def\conv{\text{Conv}}
-\def\tp{\tilde p}
-\def\tq{\tilde q}
-\def\crit{\text{\rm cr}}
-\def\sparse{\text{\rm sp}}
-\def\dyad{\text{\rm dyad}}
-\def\mart{\text{dyad}}
-\def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int}
-\def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
-\def\Re{\operatorname{Re\,}}
-\def\Im{\operatorname{Im\,}}
-\def\mx
-\def\mn
-\def\vth{\vartheta}
-\def\rn{\rr\^{n}}
-\def\rr{\mathbb R}
-\def\Q{\mathbb Q}
-\def\N{\mathbb N}
-\def\complex{\mathbb C}
-\def\emph#1{\it #1 }
-\def\diam{\text{\rm diam}}
-\def\osc{\text{\rm osc}}
-\def\ffB{\mathcal B}
-\def\seq{\subseteq}
-\def\Ga{\Gamma}
-\def\ga{\gamma}
-\def\Th{\Theta}
-\def\prd{\text{\it prod}}
-\def\parab{\text{\it parabolic}}
-\def\eg{\it e.g. }
-\def\cf{\it cf}
-\def\Rn{\mathbb R\^n}
-\def\Rd{\mathbb R\^d}
-\def\sgn{\text{\rm sign }}
-\def\rank{\text{\rm rank }}
-\def\corank{\text{\rm corank }}
-\def\coker{\text{\rm Coker }}
-\def\loc{\text{\rm loc}}
-\def\spec{\text{\rm spec}}
-\def\comp{\text{comp}}
-\def\Coi{C\^\infty_0}
-\def\dist{\text{\it dist}}
-\def\diag{\text{\rm diag}}
-\def\supp{text{\rm supp}}
-\def\rad{\text{\it rad}}
-\def\sph{\text{sph}}
-\def\Lip{\text{\rm Lip}}
-\def\ev{\text{\rm ev}}
-\def\odd{\text{\rm odd}}
-\def\inn#1#2{\langle#1,#2\rangle}
-\def\biginn#1#2{\big\langle#1,#2\big\rangle}
-\def\rta{\rightarrow}
-\def\lta{\leftarrow}
-\def\noi{\noindent}
-\def\lcontr{\rfloor}
-\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
-\def\meas{\text{\rm meas}}
-\def\card{\text{\rm card}}
-\def\lc{\lesssim}
-\def\gc{\gtrsim}
-\def\pv{\text{\rm p.v.}}
-\def\a{\alpha}
-\def\alp{\alpha} \def\Alp{\Alpha}
-\def\bet{\beta}
-\def\gam{\gamma} \def\Gam{\Gamma}
-\def\del{\delta} \def\Del{\Delta}
-\def\eps{\varepsilon}
-\def\ep{\epsilon}
-\def\zet{\zeta}
-\def\tet{\theta} \def\Tet{\Theta}
-\def\iot{\iota}
-\def\kap{\kappa}
-\def\ka{\kappa}
-\def\lam{\lambda} \def\Lam{\Lambda}
-\def\la{\lambda} \def\La{\Lambda}
-\def\sig{\sigma} \def\Sig{\Sigma}
-\def\si{\sigma} \def\Si{\Sigma}
-\def\vphi{\varphi}
-\def\ome{\omega} \def\Ome{\Omega}
-\def\om{\omega}
-\def\fA{\mathfrak {A}}
-\def\fB{\mathfrak {B}}
-\def\fC{\mathfrak {C}}
-\def\fD{\mathfrak {D}}
-\def\fE{\mathfrak {E}}
-\def\fF{\mathfrak {F}}
-\def\fG{mathfrak {G}}
-\def\fH{\mathfrak {H}}
-\def\fI{\mathfrak {I}}
-\def\fJ{\mathfrak {J}}
-\def\fK{\mathfrak {K}}
-\def\fL{\mathfrak {L}}
-\def\fM{\mathfrak {M}}
-\def\fN{\mathfrak {N}}
-\def\fO{\mathfrak {O}}
-\def\fP{\mathfrak {P}}
-\def\fQ{\mathfrak {Q}}
-\def\fR{\mathfrak {R}}
-\def\fS{\mathfrak {S}}
-\def\fT{\mathfrak {T}}
-\def\fU{\mathfrak {U}}
-\def\fV{\mathfrak {V}}
-\def\fW{\mathfrak {W}}
-\def\fX{\mathfrak {X}}
-\def\fY{\mathfrak {Y}}
-\def\fZ{\mathfrak {Z}}
-\def\fa{\mathfrak {a}}
-\def\fb{\mathfrak {b}}
-\def\fc{\mathfrak {c}}
-\def\fd{\mathfrak {d}}
-\def\fe{\mathfrak {e}}
-\def\ff{\mathfrak {f}}
-\def\fg{\mathfrak {g}}
-\def\fh{\mathfrak {h}}
-\def\fj{\mathfrak {j}}
-\def\fk{\mathfrak {k}}
-\def\fl{\mathfrak {l}}
-\def\fn{\mathfrak {n}}
-\def\fo{\mathfrak {o}}
-\def\fq{\mathfrak {q}}
-\def\fr{\mathfrak {r}}
-\def\fs{\mathfrak {s}}
-\def\ft{\mathfrak {t}}
-\def\fu{\mathfrak {u}}
-\def\fv{\mathfrak {v}}
-\def\fw{\mathfrak {w}}
-\def\fx{\mathfrak {x}}
-\def\fy{\mathfrak {y}}
-\def\fz{\mathfrak {z}}
-\def\bbA{\mathbb {A}}
-\def\bbB{\mathbb {B}}
-\def\bbC{\mathbb {C}}
-\def\bbD{\mathbb {D}}
-\def\bbE{\mathbb {E}}
-\def\bbF{\mathbb {F}}
-\def\bbG{\mathbb {G}}
-\def\bbH{\mathbb {H}}
-\def\bbI{\mathbb {I}}
-\def\bbJ{\mathbb {J}}
-\def\bbK{\mathbb {K}}
-\def\bbL{\mathbb {L}}
-\def\bbM{\mathbb {M}}
-\def\bbN{\mathbb {N}}
-\def\bbO{\mathbb {O}}
-\def\bbP{\mathbb {P}}
-\def\bbQ{\mathbb {Q}}
-\def\bbR{\mathbb {R}}
-\def\bbS{\mathbb {S}}
-\def\bbT{\mathbb {T}}
-\def\bbU{\mathbb {U}}
-\def\bbV{\mathbb {V}}
-\def\bbW{\mathbb {W}}
-\def\bbX{\mathbb {X}}
-\def\bbY{\mathbb {Y}}
-\def\bbZ{\mathbb {Z}}
-\def\cA{\mathcal {A}}
-\def\cB{\mathcal {B}}
-\def\cC{\mathcal {C}}
-\def\cD{\mathcal {D}}
-\def\cE{\mathcal {E}}
-\def\cF{\mathcal {F}}
-\def\cG{\mathcal {G}}
-\def\cH{\mathcal {H}}
-\def\cI{\mathcal {I}}
-\def\cJ{\mathcal {J}}
-\def\cK{\mathcal {K}}
-\def\cL{\mathcal {L}}
-\def\cM{\mathcal {M}}
-\def\cN{\mathcal {N}}
-\def\cO{\mathcal {O}}
-\def\cP{\mathcal {P}}
-\def\cQ{\mathcal {Q}}
-\def\cR{\mathcal {R}}
-\def\cS{\mathcal {S}}
-\def\cT{\mathcal {T}}
-\def\cU{\mathcal {U}}
-\def\cV{\mathcal {V}}
-\def\cW{\mathcal {W}}
-\def\cX{\mathcal {X}}
-\def\cY{\mathcal {Y}}
-\def\cZ{\mathcal {Z}}
-\def\tA{\widetilde{A}}
-\def\tB{\widetilde{B}}
-\def\tC{\widetilde{C}}
-\def\tD{\widetilde{D}}
-\def\tE{\widetilde{E}}
-\def\tF{\widetilde{F}}
-\def\tG{\widetilde{G}}
-\def\tH{\widetilde{H}}
-\def\tI{\widetilde{I}}
-\def\tJ{\widetilde{J}}
-\def\tK{\widetilde{K}}
-\def\tL{\widetilde{L}}
-\def\tM{\widetilde{M}}
-\def\tN{\widetilde{N}}
-\def\tO{\widetilde{O}}
-\def\tP{\widetilde{P}}
-\def\tQ{\widetilde{Q}}
-\def\tR{\widetilde{R}}
-\def\tS{\widetilde{S}}
-\def\tT{\widetilde{T}}
-\def\tU{\widetilde{U}}
-\def\tV{\widetilde{V}}
-\def\tW{\widetilde{W}}
-\def\tX{\widetilde{X}}
-\def\tY{\widetilde{Y}}
-\def\tZ{\widetilde{Z}}
-\def\tcA{\widetilde{\mathcal {A}}}
-\def\tcB{\widetilde{\mathcal {B}}}
-\def\tcC{\widetilde{\mathcal {C}}}
-\def\tcD{\widetilde{\mathcal {D}}}
-\def\tcE{\widetilde{\mathcal {E}}}
-\def\tcF{\widetilde{\mathcal {F}}}
-\def\tcG{\widetilde{\mathcal {G}}}
-\def\tcH{\widetilde{\mathcal {H}}}
-\def\tcI{\widetilde{\mathcal {I}}}
-\def\tcJ{\widetilde{\mathcal {J}}}
-\def\tcK{\widetilde{\mathcal {K}}}
-\def\tcL{\widetilde{\mathcal {L}}}
-\def\tcM{\widetilde{\mathcal {M}}}
-\def\tcN{\widetilde{\mathcal {N}}}
-\def\tcO{\widetilde{\mathcal {O}}}
-\def\tcP{\widetilde{\mathcal {P}}}
-\def\tcQ{\widetilde{\mathcal {Q}}}
-\def\tcR{\widetilde{\mathcal {R}}}
-\def\tcS{\widetilde{\mathcal {S}}}
-\def\tcT{\widetilde{\mathcal {T}}}
-\def\tcU{\widetilde{\mathcal {U}}}
-\def\tcV{\widetilde{\mathcal {V}}}
-\def\tcW{\widetilde{\mathcal {W}}}
-\def\tcX{\widetilde{\mathcal {X}}}
-\def\tcY{\widetilde{\mathcal {Y}}}
-\def\tcZ{\widetilde{\mathcal {Z}}}
-\def\tfA{\widetilde{\mathfrak {A}}}
-\def\tfB{\widetilde{\mathfrak {B}}}
-\def\tfC{\widetilde{\mathfrak {C}}}
-\def\tfD{\widetilde{\mathfrak {D}}}
-\def\tfE{\widetilde{\mathfrak {E}}}
-\def\tfF{\widetilde{\mathfrak {F}}}
-\def\tfG{\widetilde{\mathfrak {G}}}
-\def\tfH{\widetilde{\mathfrak {H}}}
-\def\tfI{\widetilde{\mathfrak {I}}}
-\def\tfJ{\widetilde{\mathfrak {J}}}
-\def\tfK{\widetilde{\mathfrak {K}}}
-\def\tfL{\widetilde{\mathfrak {L}}}
-\def\tfM{\widetilde{\mathfrak {M}}}
-\def\tfN{\widetilde{\mathfrak {N}}}
-\def\tfO{\widetilde{\mathfrak {O}}}
-\def\tfP{\widetilde{\mathfrak {P}}}
-\def\tfQ{\widetilde{\mathfrak {Q}}}
-\def\tfR{\widetilde{\mathfrak {R}}}
-\def\tfS{\widetilde{\mathfrak {S}}}
-\def\tfT{\widetilde{\mathfrak {T}}}
-\def\tfU{\widetilde{\mathfrak {U}}}
-\def\tfV{\widetilde{\mathfrak {V}}}
-\def\tfW{\widetilde{\mathfrak {W}}}
-\def\tfX{\widetilde{\mathfrak {X}}}
-\def\tfY{\widetilde{\mathfrak {Y}}}
-\def\tfZ{\widetilde{\mathfrak {Z}}}
-\def\Atil{\widetilde A} \def\atil{\tilde a}
-\def\Btil{\widetilde B} \def\btil{\tilde b}
-\def\Ctil{\widetilde C} \def\ctil{\tilde c}
-\def\Dtil{\widetilde D} \def\dtil{\tilde d}
-\def\Etil{\widetilde E} \def\etil{\tilde e}
-\def\Ftil{\widetilde F} \def\ftil{\tilde f}
-\def\Gtil{\widetilde G} \def\gtil{\tilde g}
-\def\Htil{\widetilde H} \def\htil{\tilde h}
-\def\Itil{\widetilde I} \def\itil{\tilde i}
-\def\Jtil{\widetilde J} \def\jtil{\tilde j}
-\def\Ktil{\widetilde K} \def\ktil{\tilde k}
-\def\Ltil{\widetilde L} \def\ltil{\tilde l}
-\def\Mtil{\widetilde M} \def\mtil{\tilde m}
-\def\Ntil{\widetilde N} \def\ntil{\tilde n}
-\def\Otil{\widetilde O} \def\otil{\tilde o}
-\def\Ptil{\widetilde P} \def\ptil{\tilde p}
-\def\Qtil{\widetilde Q} \def\qtil{\tilde q}
-\def\Rtil{\widetilde R} \def\rtil{\tilde r}
-\def\Stil{\widetilde S} \def\stil{\tilde s}
-\def\Ttil{\widetilde T} \def\ttil{\tilde t}
-\def\Util{\widetilde U} \def\util{\tilde u}
-\def\Vtil{\widetilde V} \def\vtil{\tilde v}
-\def\Wtil{\widetilde W} \def\wtil{\tilde w}
-\def\Xtil{\widetilde X} \def\xtil{\tilde x}
-\def\Ytil{\widetilde Y} \def\ytil{\tilde y}
-\def\Ztil{\widetilde Z} \def\ztil{\tilde z}
-\def\ahat{\hat a} \def\Ahat{\widehat A}
-\def\bhat{\hat b} \def\Bhat{\widehat B}
-\def\chat{\hat c} \def\Chat{\widehat C}
-\def\dhat{\hat d} \def\Dhat{\widehat D}
-\def\ehat{\hat e} \def\Ehat{\widehat E}
-\def\fhat{\hat f} \def\Fhat{\widehat F}
-\def\ghat{\hat g} \def\Ghat{\widehat G}
-\def\hhat{\hat h} \def\Hhat{\widehat H}
-\def\ihat{\hat i} \def\Ihat{\widehat I}
-\def\jhat{\hat j} \def\Jhat{\widehat J}
-\def\khat{\hat k} \def\Khat{\widehat K}
-\def\lhat{\hat l} \def\Lhat{\widehat L}
-\def\mhat{\hat m} \def\Mhat{\widehat M}
-\def\nhat{\hat n} \def\Nhat{\widehat N}
-\def\ohat{\hat o} \def\Ohat{\widehat O}
-\def\phat{\hat p} \def\Phat{\widehat P}
-\def\qhat{\hat q} \def\Qhat{\widehat Q}
-\def\rhat{\hat r} \def\Rhat{\widehat R}
-\def\shat{\hat s} \def\Shat{\widehat S}
-\def\that{\hat t} \def\That{\widehat T}
-\def\uhat{\hat u} \def\Uhat{\widehat U}
-\def\vhat{\hat v} \def\Vhat{\widehat V}
-\def\what{\hat w} \def\What{\widehat W}
-\def\xhat{\hat x} \def\Xhat{\widehat X}
-\def\yhat{\hat y} \def\Yhat{\widehat Y}
-\def\zhat{\hat z} \def\Zhat{\widehat Z}
-\def\be#1{\begin{equation}\label{ #1}}
-\def\endeq{\end{equation}}
-\def\endal{\end{align}}
-\def\bas{\begin{align*}}
-\def\eas{\end{align*}}
-\def\bi{\begin{itemize}}
-\def\ei{\end{itemize}}
-\def\eps{\varepsilon}
-\def\textbf#1{\bf #1}
-\def\into{\hookrightarrow}
-\newcommand{\inf}{\infty}
-\newcommand{\os}[2]{\overset{#1}{#2}}
-\newcommand{\ms}{(X, \cM, \mu)}
-\newcommand{\salg}{\sig\text{-algebra}}
-\newcommand{\ol}[1]{\overline{#1}}
-\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
-\newcommand{\onto}{\twoheadrightarrow}
-\newcommand{\id}{\text{id}}
-\newcommand{\Stab}{\text{Stab}}
-\def \bl {\backslash}
-\def \sfin {\sig\text{-finite}}
-\def \mum {\mu\text{-measurable}}
-\def \emps {\varnothing}
-\newcommand{\m}[1]{\boldsymbol{#1}}
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\Inf}{\text{inf}}
-\newcommand{\wb}[1]{\overline{#1}}
-\newcommand{\lto}{\longrightarrow}
-\newcommand{\todo}[1]{\bf\color{red}{[ToDo]
-\text{#1}}}
-\newcommand{\char}[1]{\cX_{#1}}
-\newcommand{\fp}{f\^+}
-\newcommand{\fm}{f\^-}
-\newcommand{\infm}{\text{inf}}
-\newcommand{\onorm}[1]{\Norm{#1}_1}
-\newcommand{\tnorm}[1]{\Norm{#1}_2}
-\newcommand{\infn}[1]{\Norm{#1}_\inf}
-\newcommand{\pnorm}[1]{\Norm{#1}_p}
-\newcommand{\End}{\text{End}}
-\newcommand{\Ob}{\text{Ob}}
-\newcommand{\Hom}{\text{Hom}}
-\newcommand{\intall}{\int_{-\inf}\^{\inf}}
-\newcommand{\intpmpi}{\int_{-\pi}\^{\pi}}
-\newcommand{\div}{\bigr|}
-\newcommand{\when}{\biggr|}
-\def \bsp {\begin{split}}
-\def \esp {\end{split}}
-\def \bc {\begin{cases}}
-\def \ec {\end{cases}}
-\newcommand{\sech}{\text{sech}}
-\newcommand{\vectk}{\text{Vect}_\text{k}}
-\newcommand{\top}{\text{Top}}
-\newcommand{\grp}{\text{Grp}}
-\newcommand{\pathx}{\text{Paths}_X}
-\newcommand{\from}{\leftarrow}
-\newcommand{\lfrom}{\longleftarrow}
-\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
-\newcommand{\sym}{\text{Sym}}
-\newcommand{\Set}{\text{Set}}
-\newcommand{\zn}{\Z/n\Z}
-\newcommand{\Mor}{\text{Mor}}
-\newcommand{\acton}{\circlearrowright}
-\DeclareMathOperator{\tr}{Tr}
-\newcommand{\par}{\partial}
-\newcommand{\Fun}{\text{Fun}}
-\newcommand{\triv}{\text{triv}}
-\newcommand{\zmnz}[1]{\Z/{#1}\Z}
-\newcommand{\tl}{\triangleleft}
-\newcommand{\paren}[1]{\left({#1}\right)}
-\newcommand{\ceil}[1]{\lceil{#1}\rceil}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\newcommand{\mod}{\textrm{mod}}
-\newcommand{\ndiv}{\nmid}
-\end{equation}
-$$</p>
-
-<p>Halo, recently I reacquainted myself with the Sprague-Grundy theorem
-and would like to introduce the gist of it. I think <a href="https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem">Wikipedia</a>{rel=”noopener” target=”_blank”}
+有macro确实爽。不过打latex得不断切换中英输入法很麻烦，下次用英语写得了。</p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="math" /><category term="differential equation" /><summary type="html"><![CDATA[最近在看Dayan和Abbott的Theoretical Neuroscience。虽然是数学系学生但是由于太浪，分析代数几何都学了个遍，感觉哪科都没学好，于是后遗症就是像傅里叶变换这种极为重要的东西竟然不是很熟。 于是我决定先把书后面的数学Appendix先光速过一遍，以免在读正文的时候尴尬卡壳。在附录讲微分方程的部分有一个方程： \(\begin{equation} C\frac{dV}{dt} = \frac{E-V}{R} + I_e \end{equation}\) 这是比较容易求解的，令$W = -V+E+RI_e$, 我们有 \(\begin{equation} RC(-W)' = W \end{equation}\) 愉快地分离变量就能得到$W = C’\exp(-t/\tau)$. 把$V(0)$ 这个初始条件代进去就有$C’ = W(0) = -V(0)+E+RI_e$。 我们就能得到书上列出的解 \(\begin{equation} V(t) = V\_\inf +(V(0)- V\_\inf) \exp(-t/\tau) \end{equation}\)]]></summary></entry><entry><title type="html">Sprague-Grundy Theorem and the Game of Nim</title><link href="http://localhost:4000/posts/2021/07/sprague-grundy-theorem-and-the-game-of-nim/" rel="alternate" type="text/html" title="Sprague-Grundy Theorem and the Game of Nim" /><published>2021-07-18T00:00:00+00:00</published><updated>2021-07-18T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/07/Sprague-Grundy-Theorem-and-the-Game-of-Nim</id><content type="html" xml:base="http://localhost:4000/posts/2021/07/sprague-grundy-theorem-and-the-game-of-nim/"><![CDATA[<p>Halo, recently I reacquainted myself with the Sprague-Grundy theorem
+and would like to introduce the gist of it. I think <a href="https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem" rel="noopener" target="_blank">Wikipedia</a>
 does a great job explaining the detailed proof, but I would like to fill
 in some gaps and provide some intuitions. It is recommended to read
 about the rule of the game of nim (and the wiki page if you are
@@ -1044,26 +93,24 @@ explain.</p>
 of operations given a fixed position of the game. Chess and Go are not
 impartial games, because one player can only move or place pieces that
 have the same color (either black or white).</li>
-  <li>What does it mean that two games $G$ and $G'$are "equivalent"? One may give a
+  <li>What does it mean that two games $G$ and $G’$are "equivalent"? One may give a
 definition stating that if one game has a winning strategy for the
 player that goes first (or the second player), so does the equivalent
 game and vice versa. However, having this condition is not enough.
 Consider any game that has a winning strategy for the second player.
 Clearly every nim game with non-zero number of stones is equivalent to
 that game, making Grundy number an ill-defined number. Therefore, we
-additionally require that the combined games of $G+H$ and $G'+H$ have winning strategies for the
+additionally require that the combined games of $G+H$ and $G’+H$ have winning strategies for the
 same player for any given impartial game $H$.</li>
 </ol>
 
 <p>Now the Sprague-Grundy theorem gives a recursive definition of what
 the Grundy number of any given impartial game is: Suppose we can go from
 the current position $G_0$ of the
-game to $k$ other positions, $\set{G_1, G_2, \dots, G_k}$, and each of
+game to $k$ other positions, ${G_1, G_2, \dots, G_k}$, and each of
 $G_i$ is equivalent to the game of
 nim with $n_i$ stones. Then $G_0$ is equivalent to the game of nim with
-$n_0$ stones given by $$
-n_0 = \text{mex}(n_1, n_2,\dots, n_k)
-$$ Here $\text{mex}(A)$ for
+$n_0$ stones given by \(n_0 = \text{mex}(n_1, n_2,\dots, n_k)\) Here $\text{mex}(A)$ for
 some non-negative integer set $A$ is
 the smallest non-negative integer that is not in $A$.</p>
 
@@ -1075,7 +122,7 @@ be huge. This is where bit xor operation comes to rescue!</p>
 
 <p>In the following we will consider just one quantity: the xor of all
 numbers of stones in each heap, i.e. $Q =
-\bigoplus n_i$. Let's consider the game bottom-up. Which
+\bigoplus n_i$. Let’s consider the game bottom-up. Which
 position will the losing player face at the end? Obviously, the position
 where no stone is left, and $Q = \bigoplus 0
 = 0$. It turns out that the winning strategy is to keep leaving
@@ -1110,41 +157,43 @@ second player if we start off with $Q =
 0$. One more thing: how do we show that the Grundy number is
 exactly $Q$, instead of any non-zero
 number in the case of non-zero $Q$?
-This actually follows from the conclusion of the theorem. Let's consider
+This actually follows from the conclusion of the theorem. Let’s consider
 a simplified case where there are only two heaps. Situations where there
 are 3 or more heaps can be reduced by merging two of them at a time.
 Following the notation convention in Wikipedia, we denote a single heap
-nim game of size $n$ as $\set{*n}$. We want to show that $\set{*a}+\set{*b}\equiv \set{*(a\oplus
+nim game of size $n$ as ${*n}$. We want to show that ${*a}+{*b}\equiv {*(a\oplus
 b)}$, i.e. the combined game of two single heap nim games is
 equivalent to one single heap nim game in the sense defined in the
-theorem. From the theorem we know that $$
-\set{*a}+\set{*b}\equiv \text{mex}\left(\bigcup_{i = 0}\^{a-1}
-(\set{*i}+\set{*b})\cup\bigcup_{j =
-0}\^{b-1}(\set{*a}+\set{*j})\right):=\text{mex}(A)
-$$ By induction on $a+b$, we
-assume that $\set{*i}+\set{*b}\equiv
-\set{*(i\oplus b)}$ and $+ $ holds. To see that the right hand
+theorem. From the theorem we know that 
+\(\{*a\}+\{*b\}\equiv \text{mex}\left(\bigcup_{i = 0}^{a-1}
+(\{*i\}+\{*b\})\cup\bigcup_{j =
+0}^{b-1}(\{*a\}+\{*j\})\right):=\text{mex}(A)\) 
+By induction on $a+b$, we
+assume that ${*i}+{*b}\equiv
+{*(i\oplus b)}$ and the inductive hypothesis holds. To see that the right hand
 side is exactly $a\oplus b$, we note
-that $$
-\bsp
-i\oplus b\oplus a\oplus b &amp;= i\oplus a \neq 0\<br />
-a\oplus j\oplus a\oplus b &amp;= j\oplus b \neq 0\<br />
-i\oplus b\oplus i'\oplus b &amp;= i\oplus i'\<br />
+that</p>
+
+\[\begin{split}
+i\oplus b\oplus a\oplus b &amp;= i\oplus a \neq 0\\
+a\oplus j\oplus a\oplus b &amp;= j\oplus b \neq 0\\
+i\oplus b\oplus i'\oplus b &amp;= i\oplus i'\\
 a\oplus j\oplus a\oplus j' &amp;= j\oplus j'
-\esp
-$$ i.e. no element in $A$ is
+\end{split}\]
+
+<p>i.e. no element in $A$ is
 equal to $a\oplus b$. Moreover, there
 are at least $\max(a,b)$ different
 elements in $A$. The result follows,
 because $a\oplus b \leq \max(a,b)$.
-It's left to check the base cases, but they are trivial, so we are done.
+It’s left to check the base cases, but they are trivial, so we are done.
 $\blacksquare$</p>
 
 <p>Now the Grundy theorem is much more practically useful, since it can
 deal with games that have multiple component games efficiently. Remember
 that each component game is equivalent to a single heap nim game!</p>
 
-<p>Coding time! <a href="https://atcoder.jp/contests/abc206/tasks/abc206_f">Here</a>{rel=”noopener” target=”_blank”} is a
+<p>Coding time! <a href="https://atcoder.jp/contests/abc206/tasks/abc206_f" rel="noopener" target="_blank">Here</a> is a
 sample problem. Consider the game to be played on interval $[1,100]$, and choosing an interval results
 in a position that can be split into two component games. For each
 position we can apply the bit xor operation to get the Grundy number.
@@ -1242,473 +291,13 @@ int main(){
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/figure&gt;
-</ii></code></pre></td></tr></tbody></table></figure>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="Competitive Programming" /><category term="Game Theory" /><category term="Combinatorics" /><summary type="html"><![CDATA[$$ \begin{equation} \def\pr{\text{\rm pr}} \def\sec{\text{\rm sect}} \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation}} \def\endeq{\end{equation}} \def\lesim{\lesssim} \def\mc{\mathcal} \def\h{\mathcal{H}} \newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}} \def\mn{M\^{(n)}} \def\lam{\lambda} \def\wide{\widehat} \def\uk{u\^{(k_0)}} \def\uo{u\^{(0)}} \def\pj{P\^{(2)}} \def\pii{P\^{(1)}} \def\pc{P\^{Cone}} \def\tx{\tilde x} \DeclareMathOperator{\re}{Re} \DeclareMathOperator{\sgn}{sgn} \def\cplus{c\ci+} \def\cmin{c\ci-} \def\cplusmin{c\ci\pm} \def\chiplus{\chi\ci+} \def\chimin{\chi\ci-} \def\chiplusmin{\chi\ci\pm} \def\psiplus{\psi\ci+} \def\psimin{\psi\ci-} \def\psiplusmin{\psi\ci\pm} \def\sigmaplus{\sigma\ci+} \def\sigmamin{\sigma\ci-} \def\sigmaplusmin{\sigma\ci\pm} \def\bbone{\mathbbm 1} \newcommand{\dil}{\text{\rm Dil}} \newcommand{\spec}{\operatorname{spec}} \newcommand{\ls}{\lesssim} \newcommand{\sL}{\mathscr L} \newcommand{\sJ}{\mathscr J} \newcommand{\sK}{\mathscr K} \newcommand{\wh}{\widehat} \newcommand{\wt}{\widetilde} \newcommand{\A}{\mathcal A} \newcommand{\E}{\mathcal E} \newcommand{\F}{\mathcal F} \newcommand{\D}{\mathcal D} \newcommand{\K}{\mathcal K} \newcommand{\QQ}{\mathcal Q} \newcommand{\RR}{\mathcal R} \newcommand{\f}[2]{\frac{#1}{#2}} \newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)} \newcommand{\norm}[1]{ \left| #1 \right| } \newcommand{\abs}[1]{ \left| #1 \right| } \newcommand{\Norm}[1]{ \left\| #1 \right\| } \newcommand{\iff}{\Leftrightarrow} \newcommand{\set}[1]{ \left\{ #1 \right\} } \newcommand{\Be}{\begin{equation}} \newcommand{\Ee}{\end{equation}} \newcommand{\Bm}{\begin{multline}} \newcommand{\Em}{\end{multline}} \newcommand{\Bea}{\begin{eqnarray}} \newcommand{\Eea}{\end{eqnarray}} \newcommand{\Beas}{\begin{eqnarray*}} \newcommand{\Eeas}{\end{eqnarray*}} \newcommand{\Benu}{\begin{enumerate}} \newcommand{\Eenu}{\end{enumerate}} \newcommand{\Bi}{\begin{itemize}} \newcommand{\Ei}{\end{itemize}} \def\conv{\text{Conv}} \def\tp{\tilde p} \def\tq{\tilde q} \def\crit{\text{\rm cr}} \def\sparse{\text{\rm sp}} \def\dyad{\text{\rm dyad}} \def\mart{\text{dyad}} \def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int} \def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}} \def\Re{\operatorname{Re\,}} \def\Im{\operatorname{Im\,}} \def\mx \def\mn \def\vth{\vartheta} \def\rn{\rr\^{n}} \def\rr{\mathbb R} \def\Q{\mathbb Q} \def\N{\mathbb N} \def\complex{\mathbb C} \def\emph#1{\it #1 } \def\diam{\text{\rm diam}} \def\osc{\text{\rm osc}} \def\ffB{\mathcal B} \def\seq{\subseteq} \def\Ga{\Gamma} \def\ga{\gamma} \def\Th{\Theta} \def\prd{\text{\it prod}} \def\parab{\text{\it parabolic}} \def\eg{\it e.g. } \def\cf{\it cf} \def\Rn{\mathbb R\^n} \def\Rd{\mathbb R\^d} \def\sgn{\text{\rm sign }} \def\rank{\text{\rm rank }} \def\corank{\text{\rm corank }} \def\coker{\text{\rm Coker }} \def\loc{\text{\rm loc}} \def\spec{\text{\rm spec}} \def\comp{\text{comp}} \def\Coi{C\^\infty_0} \def\dist{\text{\it dist}} \def\diag{\text{\rm diag}} \def\supp{text{\rm supp}} \def\rad{\text{\it rad}} \def\sph{\text{sph}} \def\Lip{\text{\rm Lip}} \def\ev{\text{\rm ev}} \def\odd{\text{\rm odd}} \def\inn#1#2{\langle#1,#2\rangle} \def\biginn#1#2{\big\langle#1,#2\big\rangle} \def\rta{\rightarrow} \def\lta{\leftarrow} \def\noi{\noindent} \def\lcontr{\rfloor} \newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}} \def\meas{\text{\rm meas}} \def\card{\text{\rm card}} \def\lc{\lesssim} \def\gc{\gtrsim} \def\pv{\text{\rm p.v.}} \def\a{\alpha} \def\alp{\alpha} \def\Alp{\Alpha} \def\bet{\beta} \def\gam{\gamma} \def\Gam{\Gamma} \def\del{\delta} \def\Del{\Delta} \def\eps{\varepsilon} \def\ep{\epsilon} \def\zet{\zeta} \def\tet{\theta} \def\Tet{\Theta} \def\iot{\iota} \def\kap{\kappa} \def\ka{\kappa} \def\lam{\lambda} \def\Lam{\Lambda} \def\la{\lambda} \def\La{\Lambda} \def\sig{\sigma} \def\Sig{\Sigma} \def\si{\sigma} \def\Si{\Sigma} \def\vphi{\varphi} \def\ome{\omega} \def\Ome{\Omega} \def\om{\omega} \def\fA{\mathfrak {A}} \def\fB{\mathfrak {B}} \def\fC{\mathfrak {C}} \def\fD{\mathfrak {D}} \def\fE{\mathfrak {E}} \def\fF{\mathfrak {F}} \def\fG{mathfrak {G}} \def\fH{\mathfrak {H}} \def\fI{\mathfrak {I}} \def\fJ{\mathfrak {J}} \def\fK{\mathfrak {K}} \def\fL{\mathfrak {L}} \def\fM{\mathfrak {M}} \def\fN{\mathfrak {N}} \def\fO{\mathfrak {O}} \def\fP{\mathfrak {P}} \def\fQ{\mathfrak {Q}} \def\fR{\mathfrak {R}} \def\fS{\mathfrak {S}} \def\fT{\mathfrak {T}} \def\fU{\mathfrak {U}} \def\fV{\mathfrak {V}} \def\fW{\mathfrak {W}} \def\fX{\mathfrak {X}} \def\fY{\mathfrak {Y}} \def\fZ{\mathfrak {Z}} \def\fa{\mathfrak {a}} \def\fb{\mathfrak {b}} \def\fc{\mathfrak {c}} \def\fd{\mathfrak {d}} \def\fe{\mathfrak {e}} \def\ff{\mathfrak {f}} \def\fg{\mathfrak {g}} \def\fh{\mathfrak {h}} \def\fj{\mathfrak {j}} \def\fk{\mathfrak {k}} \def\fl{\mathfrak {l}} \def\fn{\mathfrak {n}} \def\fo{\mathfrak {o}} \def\fq{\mathfrak {q}} \def\fr{\mathfrak {r}} \def\fs{\mathfrak {s}} \def\ft{\mathfrak {t}} \def\fu{\mathfrak {u}} \def\fv{\mathfrak {v}} \def\fw{\mathfrak {w}} \def\fx{\mathfrak {x}} \def\fy{\mathfrak {y}} \def\fz{\mathfrak {z}} \def\bbA{\mathbb {A}} \def\bbB{\mathbb {B}} \def\bbC{\mathbb {C}} \def\bbD{\mathbb {D}} \def\bbE{\mathbb {E}} \def\bbF{\mathbb {F}} \def\bbG{\mathbb {G}} \def\bbH{\mathbb {H}} \def\bbI{\mathbb {I}} \def\bbJ{\mathbb {J}} \def\bbK{\mathbb {K}} \def\bbL{\mathbb {L}} \def\bbM{\mathbb {M}} \def\bbN{\mathbb {N}} \def\bbO{\mathbb {O}} \def\bbP{\mathbb {P}} \def\bbQ{\mathbb {Q}} \def\bbR{\mathbb {R}} \def\bbS{\mathbb {S}} \def\bbT{\mathbb {T}} \def\bbU{\mathbb {U}} \def\bbV{\mathbb {V}} \def\bbW{\mathbb {W}} \def\bbX{\mathbb {X}} \def\bbY{\mathbb {Y}} \def\bbZ{\mathbb {Z}} \def\cA{\mathcal {A}} \def\cB{\mathcal {B}} \def\cC{\mathcal {C}} \def\cD{\mathcal {D}} \def\cE{\mathcal {E}} \def\cF{\mathcal {F}} \def\cG{\mathcal {G}} \def\cH{\mathcal {H}} \def\cI{\mathcal {I}} \def\cJ{\mathcal {J}} \def\cK{\mathcal {K}} \def\cL{\mathcal {L}} \def\cM{\mathcal {M}} \def\cN{\mathcal {N}} \def\cO{\mathcal {O}} \def\cP{\mathcal {P}} \def\cQ{\mathcal {Q}} \def\cR{\mathcal {R}} \def\cS{\mathcal {S}} \def\cT{\mathcal {T}} \def\cU{\mathcal {U}} \def\cV{\mathcal {V}} \def\cW{\mathcal {W}} \def\cX{\mathcal {X}} \def\cY{\mathcal {Y}} \def\cZ{\mathcal {Z}} \def\tA{\widetilde{A}} \def\tB{\widetilde{B}} \def\tC{\widetilde{C}} \def\tD{\widetilde{D}} \def\tE{\widetilde{E}} \def\tF{\widetilde{F}} \def\tG{\widetilde{G}} \def\tH{\widetilde{H}} \def\tI{\widetilde{I}} \def\tJ{\widetilde{J}} \def\tK{\widetilde{K}} \def\tL{\widetilde{L}} \def\tM{\widetilde{M}} \def\tN{\widetilde{N}} \def\tO{\widetilde{O}} \def\tP{\widetilde{P}} \def\tQ{\widetilde{Q}} \def\tR{\widetilde{R}} \def\tS{\widetilde{S}} \def\tT{\widetilde{T}} \def\tU{\widetilde{U}} \def\tV{\widetilde{V}} \def\tW{\widetilde{W}} \def\tX{\widetilde{X}} \def\tY{\widetilde{Y}} \def\tZ{\widetilde{Z}} \def\tcA{\widetilde{\mathcal {A}}} \def\tcB{\widetilde{\mathcal {B}}} \def\tcC{\widetilde{\mathcal {C}}} \def\tcD{\widetilde{\mathcal {D}}} \def\tcE{\widetilde{\mathcal {E}}} \def\tcF{\widetilde{\mathcal {F}}} \def\tcG{\widetilde{\mathcal {G}}} \def\tcH{\widetilde{\mathcal {H}}} \def\tcI{\widetilde{\mathcal {I}}} \def\tcJ{\widetilde{\mathcal {J}}} \def\tcK{\widetilde{\mathcal {K}}} \def\tcL{\widetilde{\mathcal {L}}} \def\tcM{\widetilde{\mathcal {M}}} \def\tcN{\widetilde{\mathcal {N}}} \def\tcO{\widetilde{\mathcal {O}}} \def\tcP{\widetilde{\mathcal {P}}} \def\tcQ{\widetilde{\mathcal {Q}}} \def\tcR{\widetilde{\mathcal {R}}} \def\tcS{\widetilde{\mathcal {S}}} \def\tcT{\widetilde{\mathcal {T}}} \def\tcU{\widetilde{\mathcal {U}}} \def\tcV{\widetilde{\mathcal {V}}} \def\tcW{\widetilde{\mathcal {W}}} \def\tcX{\widetilde{\mathcal {X}}} \def\tcY{\widetilde{\mathcal {Y}}} \def\tcZ{\widetilde{\mathcal {Z}}} \def\tfA{\widetilde{\mathfrak {A}}} \def\tfB{\widetilde{\mathfrak {B}}} \def\tfC{\widetilde{\mathfrak {C}}} \def\tfD{\widetilde{\mathfrak {D}}} \def\tfE{\widetilde{\mathfrak {E}}} \def\tfF{\widetilde{\mathfrak {F}}} \def\tfG{\widetilde{\mathfrak {G}}} \def\tfH{\widetilde{\mathfrak {H}}} \def\tfI{\widetilde{\mathfrak {I}}} \def\tfJ{\widetilde{\mathfrak {J}}} \def\tfK{\widetilde{\mathfrak {K}}} \def\tfL{\widetilde{\mathfrak {L}}} \def\tfM{\widetilde{\mathfrak {M}}} \def\tfN{\widetilde{\mathfrak {N}}} \def\tfO{\widetilde{\mathfrak {O}}} \def\tfP{\widetilde{\mathfrak {P}}} \def\tfQ{\widetilde{\mathfrak {Q}}} \def\tfR{\widetilde{\mathfrak {R}}} \def\tfS{\widetilde{\mathfrak {S}}} \def\tfT{\widetilde{\mathfrak {T}}} \def\tfU{\widetilde{\mathfrak {U}}} \def\tfV{\widetilde{\mathfrak {V}}} \def\tfW{\widetilde{\mathfrak {W}}} \def\tfX{\widetilde{\mathfrak {X}}} \def\tfY{\widetilde{\mathfrak {Y}}} \def\tfZ{\widetilde{\mathfrak {Z}}} \def\Atil{\widetilde A} \def\atil{\tilde a} \def\Btil{\widetilde B} \def\btil{\tilde b} \def\Ctil{\widetilde C} \def\ctil{\tilde c} \def\Dtil{\widetilde D} \def\dtil{\tilde d} \def\Etil{\widetilde E} \def\etil{\tilde e} \def\Ftil{\widetilde F} \def\ftil{\tilde f} \def\Gtil{\widetilde G} \def\gtil{\tilde g} \def\Htil{\widetilde H} \def\htil{\tilde h} \def\Itil{\widetilde I} \def\itil{\tilde i} \def\Jtil{\widetilde J} \def\jtil{\tilde j} \def\Ktil{\widetilde K} \def\ktil{\tilde k} \def\Ltil{\widetilde L} \def\ltil{\tilde l} \def\Mtil{\widetilde M} \def\mtil{\tilde m} \def\Ntil{\widetilde N} \def\ntil{\tilde n} \def\Otil{\widetilde O} \def\otil{\tilde o} \def\Ptil{\widetilde P} \def\ptil{\tilde p} \def\Qtil{\widetilde Q} \def\qtil{\tilde q} \def\Rtil{\widetilde R} \def\rtil{\tilde r} \def\Stil{\widetilde S} \def\stil{\tilde s} \def\Ttil{\widetilde T} \def\ttil{\tilde t} \def\Util{\widetilde U} \def\util{\tilde u} \def\Vtil{\widetilde V} \def\vtil{\tilde v} \def\Wtil{\widetilde W} \def\wtil{\tilde w} \def\Xtil{\widetilde X} \def\xtil{\tilde x} \def\Ytil{\widetilde Y} \def\ytil{\tilde y} \def\Ztil{\widetilde Z} \def\ztil{\tilde z} \def\ahat{\hat a} \def\Ahat{\widehat A} \def\bhat{\hat b} \def\Bhat{\widehat B} \def\chat{\hat c} \def\Chat{\widehat C} \def\dhat{\hat d} \def\Dhat{\widehat D} \def\ehat{\hat e} \def\Ehat{\widehat E} \def\fhat{\hat f} \def\Fhat{\widehat F} \def\ghat{\hat g} \def\Ghat{\widehat G} \def\hhat{\hat h} \def\Hhat{\widehat H} \def\ihat{\hat i} \def\Ihat{\widehat I} \def\jhat{\hat j} \def\Jhat{\widehat J} \def\khat{\hat k} \def\Khat{\widehat K} \def\lhat{\hat l} \def\Lhat{\widehat L} \def\mhat{\hat m} \def\Mhat{\widehat M} \def\nhat{\hat n} \def\Nhat{\widehat N} \def\ohat{\hat o} \def\Ohat{\widehat O} \def\phat{\hat p} \def\Phat{\widehat P} \def\qhat{\hat q} \def\Qhat{\widehat Q} \def\rhat{\hat r} \def\Rhat{\widehat R} \def\shat{\hat s} \def\Shat{\widehat S} \def\that{\hat t} \def\That{\widehat T} \def\uhat{\hat u} \def\Uhat{\widehat U} \def\vhat{\hat v} \def\Vhat{\widehat V} \def\what{\hat w} \def\What{\widehat W} \def\xhat{\hat x} \def\Xhat{\widehat X} \def\yhat{\hat y} \def\Yhat{\widehat Y} \def\zhat{\hat z} \def\Zhat{\widehat Z} \def\be#1{\begin{equation}\label{ #1}} \def\endeq{\end{equation}} \def\endal{\end{align}} \def\bas{\begin{align*}} \def\eas{\end{align*}} \def\bi{\begin{itemize}} \def\ei{\end{itemize}} \def\eps{\varepsilon} \def\textbf#1{\bf #1} \def\into{\hookrightarrow} \newcommand{\inf}{\infty} \newcommand{\os}[2]{\overset{#1}{#2}} \newcommand{\ms}{(X, \cM, \mu)} \newcommand{\salg}{\sig\text{-algebra}} \newcommand{\ol}[1]{\overline{#1}} \newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}} \newcommand{\onto}{\twoheadrightarrow} \newcommand{\id}{\text{id}} \newcommand{\Stab}{\text{Stab}} \def \bl {\backslash} \def \sfin {\sig\text{-finite}} \def \mum {\mu\text{-measurable}} \def \emps {\varnothing} \newcommand{\m}[1]{\boldsymbol{#1}} \newcommand{\bs}[1]{\boldsymbol{#1}} \newcommand{\Inf}{\text{inf}} \newcommand{\wb}[1]{\overline{#1}} \newcommand{\lto}{\longrightarrow} \newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}} \newcommand{\char}[1]{\cX_{#1}} \newcommand{\fp}{f\^+} \newcommand{\fm}{f\^-} \newcommand{\infm}{\text{inf}} \newcommand{\onorm}[1]{\Norm{#1}_1} \newcommand{\tnorm}[1]{\Norm{#1}_2} \newcommand{\infn}[1]{\Norm{#1}_\inf} \newcommand{\pnorm}[1]{\Norm{#1}_p} \newcommand{\End}{\text{End}} \newcommand{\Ob}{\text{Ob}} \newcommand{\Hom}{\text{Hom}} \newcommand{\intall}{\int_{-\inf}\^{\inf}} \newcommand{\intpmpi}{\int_{-\pi}\^{\pi}} \newcommand{\div}{\bigr|} \newcommand{\when}{\biggr|} \def \bsp {\begin{split}} \def \esp {\end{split}} \def \bc {\begin{cases}} \def \ec {\end{cases}} \newcommand{\sech}{\text{sech}} \newcommand{\vectk}{\text{Vect}_\text{k}} \newcommand{\top}{\text{Top}} \newcommand{\grp}{\text{Grp}} \newcommand{\pathx}{\text{Paths}_X} \newcommand{\from}{\leftarrow} \newcommand{\lfrom}{\longleftarrow} \newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}} \newcommand{\sym}{\text{Sym}} \newcommand{\Set}{\text{Set}} \newcommand{\zn}{\Z/n\Z} \newcommand{\Mor}{\text{Mor}} \newcommand{\acton}{\circlearrowright} \DeclareMathOperator{\tr}{Tr} \newcommand{\par}{\partial} \newcommand{\Fun}{\text{Fun}} \newcommand{\triv}{\text{triv}} \newcommand{\zmnz}[1]{\Z/{#1}\Z} \newcommand{\tl}{\triangleleft} \newcommand{\paren}[1]{\left({#1}\right)} \newcommand{\ceil}[1]{\lceil{#1}\rceil} \newcommand{\floor}[1]{\lfloor{#1}\rfloor} \newcommand{\mod}{\textrm{mod}} \newcommand{\ndiv}{\nmid} \end{equation} $$]]></summary></entry><entry><title type="html">Chinese Remainder Theorem</title><link href="http://localhost:4000/posts/2021/07/chinese-remainder-theorem/" rel="alternate" type="text/html" title="Chinese Remainder Theorem" /><published>2021-07-01T00:00:00+00:00</published><updated>2021-07-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/07/Chinese-Remainder-Theorem</id><content type="html" xml:base="http://localhost:4000/posts/2021/07/chinese-remainder-theorem/"><![CDATA[<p>$$
-\begin{equation}
-\def\pr{\text{\rm pr}}
-\def\sec{\text{\rm sect}}
-\def\R{\mathbb{R}}
-\def\N{\mathbb{N}}
-\def\C{\mathbb{C}}
-\def\Z{\mathbb{Z}}
-\def\H{\mathcal{H}}
-\def\beq{\begin{equation}}
-\def\endeq{\end{equation}}
-\def\lesim{\lesssim}
-\def\mc{\mathcal}
-\def\h{\mathcal{H}}
-\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
-\def\mn{M\^{(n)}}
-\def\lam{\lambda}
-\def\wide{\widehat}
-\def\uk{u\^{(k_0)}}
-\def\uo{u\^{(0)}}
-\def\pj{P\^{(2)}}
-\def\pii{P\^{(1)}}
-\def\pc{P\^{Cone}}
-\def\tx{\tilde x}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\sgn}{sgn}
-\def\cplus{c\ci+}
-\def\cmin{c\ci-}
-\def\cplusmin{c\ci\pm}
-\def\chiplus{\chi\ci+}
-\def\chimin{\chi\ci-}
-\def\chiplusmin{\chi\ci\pm}
-\def\psiplus{\psi\ci+}
-\def\psimin{\psi\ci-}
-\def\psiplusmin{\psi\ci\pm}
-\def\sigmaplus{\sigma\ci+}
-\def\sigmamin{\sigma\ci-}
-\def\sigmaplusmin{\sigma\ci\pm}
-\def\bbone{\mathbbm 1}
-\newcommand{\dil}{\text{\rm Dil}}
-\newcommand{\spec}{\operatorname{spec}}
-\newcommand{\ls}{\lesssim}
-\newcommand{\sL}{\mathscr L}
-\newcommand{\sJ}{\mathscr J}
-\newcommand{\sK}{\mathscr K}
-\newcommand{\wh}{\widehat}
-\newcommand{\wt}{\widetilde}
-\newcommand{\A}{\mathcal A}
-\newcommand{\E}{\mathcal E}
-\newcommand{\F}{\mathcal F}
-\newcommand{\D}{\mathcal D}
-\newcommand{\K}{\mathcal K}
-\newcommand{\QQ}{\mathcal Q}
-\newcommand{\RR}{\mathcal R}
-\newcommand{\f}[2]{\frac{#1}{#2}}
-\newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)}
-\newcommand{\norm}[1]{ \left| #1 \right| }
-\newcommand{\abs}[1]{ \left| #1 \right| }
-\newcommand{\Norm}[1]{ \left\| #1 \right\| }
-\newcommand{\iff}{\Leftrightarrow}
-\newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\Be}{\begin{equation}}
-\newcommand{\Ee}{\end{equation}}
-\newcommand{\Bm}{\begin{multline}}
-\newcommand{\Em}{\end{multline}}
-\newcommand{\Bea}{\begin{eqnarray}}
-\newcommand{\Eea}{\end{eqnarray}}
-\newcommand{\Beas}{\begin{eqnarray*}}
-\newcommand{\Eeas}{\end{eqnarray*}}
-\newcommand{\Benu}{\begin{enumerate}}
-\newcommand{\Eenu}{\end{enumerate}}
-\newcommand{\Bi}{\begin{itemize}}
-\newcommand{\Ei}{\end{itemize}}
-\def\conv{\text{Conv}}
-\def\tp{\tilde p}
-\def\tq{\tilde q}
-\def\crit{\text{\rm cr}}
-\def\sparse{\text{\rm sp}}
-\def\dyad{\text{\rm dyad}}
-\def\mart{\text{dyad}}
-\def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int}
-\def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
-\def\Re{\operatorname{Re\,}}
-\def\Im{\operatorname{Im\,}}
-\def\mx
-\def\mn
-\def\vth{\vartheta}
-\def\rn{\rr\^{n}}
-\def\rr{\mathbb R}
-\def\Q{\mathbb Q}
-\def\N{\mathbb N}
-\def\complex{\mathbb C}
-\def\emph#1{\it #1 }
-\def\diam{\text{\rm diam}}
-\def\osc{\text{\rm osc}}
-\def\ffB{\mathcal B}
-\def\seq{\subseteq}
-\def\Ga{\Gamma}
-\def\ga{\gamma}
-\def\Th{\Theta}
-\def\prd{\text{\it prod}}
-\def\parab{\text{\it parabolic}}
-\def\eg{\it e.g. }
-\def\cf{\it cf}
-\def\Rn{\mathbb R\^n}
-\def\Rd{\mathbb R\^d}
-\def\sgn{\text{\rm sign }}
-\def\rank{\text{\rm rank }}
-\def\corank{\text{\rm corank }}
-\def\coker{\text{\rm Coker }}
-\def\loc{\text{\rm loc}}
-\def\spec{\text{\rm spec}}
-\def\comp{\text{comp}}
-\def\Coi{C\^\infty_0}
-\def\dist{\text{\it dist}}
-\def\diag{\text{\rm diag}}
-\def\supp{text{\rm supp}}
-\def\rad{\text{\it rad}}
-\def\sph{\text{sph}}
-\def\Lip{\text{\rm Lip}}
-\def\ev{\text{\rm ev}}
-\def\odd{\text{\rm odd}}
-\def\inn#1#2{\langle#1,#2\rangle}
-\def\biginn#1#2{\big\langle#1,#2\big\rangle}
-\def\rta{\rightarrow}
-\def\lta{\leftarrow}
-\def\noi{\noindent}
-\def\lcontr{\rfloor}
-\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
-\def\meas{\text{\rm meas}}
-\def\card{\text{\rm card}}
-\def\lc{\lesssim}
-\def\gc{\gtrsim}
-\def\pv{\text{\rm p.v.}}
-\def\a{\alpha}
-\def\alp{\alpha} \def\Alp{\Alpha}
-\def\bet{\beta}
-\def\gam{\gamma} \def\Gam{\Gamma}
-\def\del{\delta} \def\Del{\Delta}
-\def\eps{\varepsilon}
-\def\ep{\epsilon}
-\def\zet{\zeta}
-\def\tet{\theta} \def\Tet{\Theta}
-\def\iot{\iota}
-\def\kap{\kappa}
-\def\ka{\kappa}
-\def\lam{\lambda} \def\Lam{\Lambda}
-\def\la{\lambda} \def\La{\Lambda}
-\def\sig{\sigma} \def\Sig{\Sigma}
-\def\si{\sigma} \def\Si{\Sigma}
-\def\vphi{\varphi}
-\def\ome{\omega} \def\Ome{\Omega}
-\def\om{\omega}
-\def\fA{\mathfrak {A}}
-\def\fB{\mathfrak {B}}
-\def\fC{\mathfrak {C}}
-\def\fD{\mathfrak {D}}
-\def\fE{\mathfrak {E}}
-\def\fF{\mathfrak {F}}
-\def\fG{mathfrak {G}}
-\def\fH{\mathfrak {H}}
-\def\fI{\mathfrak {I}}
-\def\fJ{\mathfrak {J}}
-\def\fK{\mathfrak {K}}
-\def\fL{\mathfrak {L}}
-\def\fM{\mathfrak {M}}
-\def\fN{\mathfrak {N}}
-\def\fO{\mathfrak {O}}
-\def\fP{\mathfrak {P}}
-\def\fQ{\mathfrak {Q}}
-\def\fR{\mathfrak {R}}
-\def\fS{\mathfrak {S}}
-\def\fT{\mathfrak {T}}
-\def\fU{\mathfrak {U}}
-\def\fV{\mathfrak {V}}
-\def\fW{\mathfrak {W}}
-\def\fX{\mathfrak {X}}
-\def\fY{\mathfrak {Y}}
-\def\fZ{\mathfrak {Z}}
-\def\fa{\mathfrak {a}}
-\def\fb{\mathfrak {b}}
-\def\fc{\mathfrak {c}}
-\def\fd{\mathfrak {d}}
-\def\fe{\mathfrak {e}}
-\def\ff{\mathfrak {f}}
-\def\fg{\mathfrak {g}}
-\def\fh{\mathfrak {h}}
-\def\fj{\mathfrak {j}}
-\def\fk{\mathfrak {k}}
-\def\fl{\mathfrak {l}}
-\def\fn{\mathfrak {n}}
-\def\fo{\mathfrak {o}}
-\def\fq{\mathfrak {q}}
-\def\fr{\mathfrak {r}}
-\def\fs{\mathfrak {s}}
-\def\ft{\mathfrak {t}}
-\def\fu{\mathfrak {u}}
-\def\fv{\mathfrak {v}}
-\def\fw{\mathfrak {w}}
-\def\fx{\mathfrak {x}}
-\def\fy{\mathfrak {y}}
-\def\fz{\mathfrak {z}}
-\def\bbA{\mathbb {A}}
-\def\bbB{\mathbb {B}}
-\def\bbC{\mathbb {C}}
-\def\bbD{\mathbb {D}}
-\def\bbE{\mathbb {E}}
-\def\bbF{\mathbb {F}}
-\def\bbG{\mathbb {G}}
-\def\bbH{\mathbb {H}}
-\def\bbI{\mathbb {I}}
-\def\bbJ{\mathbb {J}}
-\def\bbK{\mathbb {K}}
-\def\bbL{\mathbb {L}}
-\def\bbM{\mathbb {M}}
-\def\bbN{\mathbb {N}}
-\def\bbO{\mathbb {O}}
-\def\bbP{\mathbb {P}}
-\def\bbQ{\mathbb {Q}}
-\def\bbR{\mathbb {R}}
-\def\bbS{\mathbb {S}}
-\def\bbT{\mathbb {T}}
-\def\bbU{\mathbb {U}}
-\def\bbV{\mathbb {V}}
-\def\bbW{\mathbb {W}}
-\def\bbX{\mathbb {X}}
-\def\bbY{\mathbb {Y}}
-\def\bbZ{\mathbb {Z}}
-\def\cA{\mathcal {A}}
-\def\cB{\mathcal {B}}
-\def\cC{\mathcal {C}}
-\def\cD{\mathcal {D}}
-\def\cE{\mathcal {E}}
-\def\cF{\mathcal {F}}
-\def\cG{\mathcal {G}}
-\def\cH{\mathcal {H}}
-\def\cI{\mathcal {I}}
-\def\cJ{\mathcal {J}}
-\def\cK{\mathcal {K}}
-\def\cL{\mathcal {L}}
-\def\cM{\mathcal {M}}
-\def\cN{\mathcal {N}}
-\def\cO{\mathcal {O}}
-\def\cP{\mathcal {P}}
-\def\cQ{\mathcal {Q}}
-\def\cR{\mathcal {R}}
-\def\cS{\mathcal {S}}
-\def\cT{\mathcal {T}}
-\def\cU{\mathcal {U}}
-\def\cV{\mathcal {V}}
-\def\cW{\mathcal {W}}
-\def\cX{\mathcal {X}}
-\def\cY{\mathcal {Y}}
-\def\cZ{\mathcal {Z}}
-\def\tA{\widetilde{A}}
-\def\tB{\widetilde{B}}
-\def\tC{\widetilde{C}}
-\def\tD{\widetilde{D}}
-\def\tE{\widetilde{E}}
-\def\tF{\widetilde{F}}
-\def\tG{\widetilde{G}}
-\def\tH{\widetilde{H}}
-\def\tI{\widetilde{I}}
-\def\tJ{\widetilde{J}}
-\def\tK{\widetilde{K}}
-\def\tL{\widetilde{L}}
-\def\tM{\widetilde{M}}
-\def\tN{\widetilde{N}}
-\def\tO{\widetilde{O}}
-\def\tP{\widetilde{P}}
-\def\tQ{\widetilde{Q}}
-\def\tR{\widetilde{R}}
-\def\tS{\widetilde{S}}
-\def\tT{\widetilde{T}}
-\def\tU{\widetilde{U}}
-\def\tV{\widetilde{V}}
-\def\tW{\widetilde{W}}
-\def\tX{\widetilde{X}}
-\def\tY{\widetilde{Y}}
-\def\tZ{\widetilde{Z}}
-\def\tcA{\widetilde{\mathcal {A}}}
-\def\tcB{\widetilde{\mathcal {B}}}
-\def\tcC{\widetilde{\mathcal {C}}}
-\def\tcD{\widetilde{\mathcal {D}}}
-\def\tcE{\widetilde{\mathcal {E}}}
-\def\tcF{\widetilde{\mathcal {F}}}
-\def\tcG{\widetilde{\mathcal {G}}}
-\def\tcH{\widetilde{\mathcal {H}}}
-\def\tcI{\widetilde{\mathcal {I}}}
-\def\tcJ{\widetilde{\mathcal {J}}}
-\def\tcK{\widetilde{\mathcal {K}}}
-\def\tcL{\widetilde{\mathcal {L}}}
-\def\tcM{\widetilde{\mathcal {M}}}
-\def\tcN{\widetilde{\mathcal {N}}}
-\def\tcO{\widetilde{\mathcal {O}}}
-\def\tcP{\widetilde{\mathcal {P}}}
-\def\tcQ{\widetilde{\mathcal {Q}}}
-\def\tcR{\widetilde{\mathcal {R}}}
-\def\tcS{\widetilde{\mathcal {S}}}
-\def\tcT{\widetilde{\mathcal {T}}}
-\def\tcU{\widetilde{\mathcal {U}}}
-\def\tcV{\widetilde{\mathcal {V}}}
-\def\tcW{\widetilde{\mathcal {W}}}
-\def\tcX{\widetilde{\mathcal {X}}}
-\def\tcY{\widetilde{\mathcal {Y}}}
-\def\tcZ{\widetilde{\mathcal {Z}}}
-\def\tfA{\widetilde{\mathfrak {A}}}
-\def\tfB{\widetilde{\mathfrak {B}}}
-\def\tfC{\widetilde{\mathfrak {C}}}
-\def\tfD{\widetilde{\mathfrak {D}}}
-\def\tfE{\widetilde{\mathfrak {E}}}
-\def\tfF{\widetilde{\mathfrak {F}}}
-\def\tfG{\widetilde{\mathfrak {G}}}
-\def\tfH{\widetilde{\mathfrak {H}}}
-\def\tfI{\widetilde{\mathfrak {I}}}
-\def\tfJ{\widetilde{\mathfrak {J}}}
-\def\tfK{\widetilde{\mathfrak {K}}}
-\def\tfL{\widetilde{\mathfrak {L}}}
-\def\tfM{\widetilde{\mathfrak {M}}}
-\def\tfN{\widetilde{\mathfrak {N}}}
-\def\tfO{\widetilde{\mathfrak {O}}}
-\def\tfP{\widetilde{\mathfrak {P}}}
-\def\tfQ{\widetilde{\mathfrak {Q}}}
-\def\tfR{\widetilde{\mathfrak {R}}}
-\def\tfS{\widetilde{\mathfrak {S}}}
-\def\tfT{\widetilde{\mathfrak {T}}}
-\def\tfU{\widetilde{\mathfrak {U}}}
-\def\tfV{\widetilde{\mathfrak {V}}}
-\def\tfW{\widetilde{\mathfrak {W}}}
-\def\tfX{\widetilde{\mathfrak {X}}}
-\def\tfY{\widetilde{\mathfrak {Y}}}
-\def\tfZ{\widetilde{\mathfrak {Z}}}
-\def\Atil{\widetilde A} \def\atil{\tilde a}
-\def\Btil{\widetilde B} \def\btil{\tilde b}
-\def\Ctil{\widetilde C} \def\ctil{\tilde c}
-\def\Dtil{\widetilde D} \def\dtil{\tilde d}
-\def\Etil{\widetilde E} \def\etil{\tilde e}
-\def\Ftil{\widetilde F} \def\ftil{\tilde f}
-\def\Gtil{\widetilde G} \def\gtil{\tilde g}
-\def\Htil{\widetilde H} \def\htil{\tilde h}
-\def\Itil{\widetilde I} \def\itil{\tilde i}
-\def\Jtil{\widetilde J} \def\jtil{\tilde j}
-\def\Ktil{\widetilde K} \def\ktil{\tilde k}
-\def\Ltil{\widetilde L} \def\ltil{\tilde l}
-\def\Mtil{\widetilde M} \def\mtil{\tilde m}
-\def\Ntil{\widetilde N} \def\ntil{\tilde n}
-\def\Otil{\widetilde O} \def\otil{\tilde o}
-\def\Ptil{\widetilde P} \def\ptil{\tilde p}
-\def\Qtil{\widetilde Q} \def\qtil{\tilde q}
-\def\Rtil{\widetilde R} \def\rtil{\tilde r}
-\def\Stil{\widetilde S} \def\stil{\tilde s}
-\def\Ttil{\widetilde T} \def\ttil{\tilde t}
-\def\Util{\widetilde U} \def\util{\tilde u}
-\def\Vtil{\widetilde V} \def\vtil{\tilde v}
-\def\Wtil{\widetilde W} \def\wtil{\tilde w}
-\def\Xtil{\widetilde X} \def\xtil{\tilde x}
-\def\Ytil{\widetilde Y} \def\ytil{\tilde y}
-\def\Ztil{\widetilde Z} \def\ztil{\tilde z}
-\def\ahat{\hat a} \def\Ahat{\widehat A}
-\def\bhat{\hat b} \def\Bhat{\widehat B}
-\def\chat{\hat c} \def\Chat{\widehat C}
-\def\dhat{\hat d} \def\Dhat{\widehat D}
-\def\ehat{\hat e} \def\Ehat{\widehat E}
-\def\fhat{\hat f} \def\Fhat{\widehat F}
-\def\ghat{\hat g} \def\Ghat{\widehat G}
-\def\hhat{\hat h} \def\Hhat{\widehat H}
-\def\ihat{\hat i} \def\Ihat{\widehat I}
-\def\jhat{\hat j} \def\Jhat{\widehat J}
-\def\khat{\hat k} \def\Khat{\widehat K}
-\def\lhat{\hat l} \def\Lhat{\widehat L}
-\def\mhat{\hat m} \def\Mhat{\widehat M}
-\def\nhat{\hat n} \def\Nhat{\widehat N}
-\def\ohat{\hat o} \def\Ohat{\widehat O}
-\def\phat{\hat p} \def\Phat{\widehat P}
-\def\qhat{\hat q} \def\Qhat{\widehat Q}
-\def\rhat{\hat r} \def\Rhat{\widehat R}
-\def\shat{\hat s} \def\Shat{\widehat S}
-\def\that{\hat t} \def\That{\widehat T}
-\def\uhat{\hat u} \def\Uhat{\widehat U}
-\def\vhat{\hat v} \def\Vhat{\widehat V}
-\def\what{\hat w} \def\What{\widehat W}
-\def\xhat{\hat x} \def\Xhat{\widehat X}
-\def\yhat{\hat y} \def\Yhat{\widehat Y}
-\def\zhat{\hat z} \def\Zhat{\widehat Z}
-\def\be#1{\begin{equation}\label{ #1}}
-\def\endeq{\end{equation}}
-\def\endal{\end{align}}
-\def\bas{\begin{align*}}
-\def\eas{\end{align*}}
-\def\bi{\begin{itemize}}
-\def\ei{\end{itemize}}
-\def\eps{\varepsilon}
-\def\textbf#1{\bf #1}
-\def\into{\hookrightarrow}
-\newcommand{\inf}{\infty}
-\newcommand{\os}[2]{\overset{#1}{#2}}
-\newcommand{\ms}{(X, \cM, \mu)}
-\newcommand{\salg}{\sig\text{-algebra}}
-\newcommand{\ol}[1]{\overline{#1}}
-\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
-\newcommand{\onto}{\twoheadrightarrow}
-\newcommand{\id}{\text{id}}
-\newcommand{\Stab}{\text{Stab}}
-\def \bl {\backslash}
-\def \sfin {\sig\text{-finite}}
-\def \mum {\mu\text{-measurable}}
-\def \emps {\varnothing}
-\newcommand{\m}[1]{\boldsymbol{#1}}
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\Inf}{\text{inf}}
-\newcommand{\wb}[1]{\overline{#1}}
-\newcommand{\lto}{\longrightarrow}
-\newcommand{\todo}[1]{\bf\color{red}{[ToDo]
-\text{#1}}}
-\newcommand{\char}[1]{\cX_{#1}}
-\newcommand{\fp}{f\^+}
-\newcommand{\fm}{f\^-}
-\newcommand{\infm}{\text{inf}}
-\newcommand{\onorm}[1]{\Norm{#1}_1}
-\newcommand{\tnorm}[1]{\Norm{#1}_2}
-\newcommand{\infn}[1]{\Norm{#1}_\inf}
-\newcommand{\pnorm}[1]{\Norm{#1}_p}
-\newcommand{\End}{\text{End}}
-\newcommand{\Ob}{\text{Ob}}
-\newcommand{\Hom}{\text{Hom}}
-\newcommand{\intall}{\int_{-\inf}\^{\inf}}
-\newcommand{\intpmpi}{\int_{-\pi}\^{\pi}}
-\newcommand{\div}{\bigr|}
-\newcommand{\when}{\biggr|}
-\def \bsp {\begin{split}}
-\def \esp {\end{split}}
-\def \bc {\begin{cases}}
-\def \ec {\end{cases}}
-\newcommand{\sech}{\text{sech}}
-\newcommand{\vectk}{\text{Vect}_\text{k}}
-\newcommand{\top}{\text{Top}}
-\newcommand{\grp}{\text{Grp}}
-\newcommand{\pathx}{\text{Paths}_X}
-\newcommand{\from}{\leftarrow}
-\newcommand{\lfrom}{\longleftarrow}
-\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
-\newcommand{\sym}{\text{Sym}}
-\newcommand{\Set}{\text{Set}}
-\newcommand{\zn}{\Z/n\Z}
-\newcommand{\Mor}{\text{Mor}}
-\newcommand{\acton}{\circlearrowright}
-\DeclareMathOperator{\tr}{Tr}
-\newcommand{\par}{\partial}
-\newcommand{\Fun}{\text{Fun}}
-\newcommand{\triv}{\text{triv}}
-\newcommand{\zmnz}[1]{\Z/{#1}\Z}
-\newcommand{\tl}{\triangleleft}
-\newcommand{\paren}[1]{\left({#1}\right)}
-\newcommand{\ceil}[1]{\lceil{#1}\rceil}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\newcommand{\mod}{\textrm{mod}}
-\newcommand{\ndiv}{\nmid}
-\end{equation}
-$$</p>
-
-<p>I recently decided to pick up competitive programming, not only
+</ii></code></pre></td></tr></tbody></table></figure>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="Competitive Programming" /><category term="Game Theory" /><category term="Combinatorics" /><summary type="html"><![CDATA[Halo, recently I reacquainted myself with the Sprague-Grundy theorem and would like to introduce the gist of it. I think Wikipedia does a great job explaining the detailed proof, but I would like to fill in some gaps and provide some intuitions. It is recommended to read about the rule of the game of nim (and the wiki page if you are interested in technical details) before reading.]]></summary></entry><entry><title type="html">Chinese Remainder Theorem</title><link href="http://localhost:4000/posts/2021/07/chinese-remainder-theorem/" rel="alternate" type="text/html" title="Chinese Remainder Theorem" /><published>2021-07-01T00:00:00+00:00</published><updated>2021-07-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/07/Chinese-Remainder-Theorem</id><content type="html" xml:base="http://localhost:4000/posts/2021/07/chinese-remainder-theorem/"><![CDATA[<p>I recently decided to pick up competitive programming, not only
 because I enjoy programming, but also because this is a fail safe for my
 academic career. With the tension between China and US rises, any
 Chinese research personnel in the US is bound to be persecuted in one
 way or another (it already begins with the visa application). It will be
-increasingly risky to put all the eggs in one basket. And the recent <a href="https://www.universityworldnews.com/post.php?story=20210611084120155">Wenhua
-Jiang Incident</a>{rel=”noopener” target=”_blank”} further dims the light on the path to tenure in China
+increasingly risky to put all the eggs in one basket. And the recent <a href="https://www.universityworldnews.com/post.php?story=20210611084120155" rel="noopener" target="_blank">Wenhua
+Jiang Incident</a> further dims the light on the path to tenure in China
 for many researchers. So in short, doing competitive programming is an
 act of interest (pun intended).</p>
 
@@ -1716,7 +305,7 @@ act of interest (pun intended).</p>
 Theorem, which basically says that given a set of coprime integers, and
 we know the remainders of an unknown integer modulo those coprime
 numbers, then the smallest such unknown number can be uniquely
-determined. For a rigorous definition, see <a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">wiki</a>{rel=”noopener” target=”_blank”}.
+determined. For a rigorous definition, see <a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem" rel="noopener" target="_blank">wiki</a>.
 The proof is quite simply, say the set of coprime numbers are $n_1, n_2, \dots, n_k$, and $N = \Pi_i n_i$. And the aforementioned
 remainders are $r_1, r_2, \dots,
 r_k$. We only consider integers in the range $[1, N]$. The key observation is that if
@@ -1728,23 +317,15 @@ integer within that range and a set of all possible remainders. Note
 that the range of each $r_i$ is $[0, r_i-1]$, so both sides have the same
 cardinality.</p>
 
-<p>Now let's look at implementation of this theorem in competitive
-programming. An example problem is <a href="https://atcoder.jp/contests/abc193/tasks/abc193_e">here</a>{rel=”noopener” target=”_blank”}. So
-the problem is to solve the following set of congruence equations $$
-x \equiv a_1 \pmod{m_1}\<br />
-x\equiv a_2 \pmod{m_2}
-$$ which is equivalent to $$
-x = a_1+n_1 m_1 = a_2+n_2m_2
-$$ for some integer $n_1$ and
-$n_2$, i.e. $$
-\beq
+<p>Now let’s look at implementation of this theorem in competitive
+programming. An example problem is <a href="https://atcoder.jp/contests/abc193/tasks/abc193_e" rel="noopener" target="_blank">here</a>. So
+the problem is to solve the following set of congruence equations \(x \equiv a_1 \pmod{m_1}\\
+x\equiv a_2 \pmod{m_2}\) which is equivalent to \(x = a_1+n_1 m_1 = a_2+n_2m_2\) for some integer $n_1$ and
+$n_2$, i.e. \(\begin{equation}
 a_2 - a_1 = n_1m_1 - n_2m_2 \tag{1} \label{eq:1}
-\end{equation}
-$$ We can use extended Euclidean algorithm to solve for $n_i$ given $m_i$ in the following equation $$
-\beq
+\end{equation}\) We can use extended Euclidean algorithm to solve for $n_i$ given $m_i$ in the following equation \(\begin{equation}
 n_1m_1 - n_2m_2 = \gcd(m_1, m_2) := d \tag{2}\label{eq:2}
-\endeq
-$$ <em>Detour (please skip at will)</em>: There is a proof of
+\end{equation}\) <em>Detour (please skip at will)</em>: There is a proof of
 existence of an integer solution that I really like about the above
 equation. Since we can divide both sides by $\gcd(m_1, m_2)$, we can just deal with the
 case $n_1m_1 - n_2m_2 = 1$ where
@@ -1752,16 +333,14 @@ $m_1$ and $m_2$ are coprime to each other. Now here
 is the clever proof: Let $r$ be the
 smallest positive integer such that $n_1m_1 -
 n_2m_2 = r$ has an integer solution. And we can express $m_1$ as multiple of $r$ plus a remainder term, i.e. $m_1 = q_1r+r_1$. So the equation becomes
-$$
-n_1m_1 - n_2m_2 = r = (m_1 - r_1)/q_1
-$$ Some algebra shows that $(1-q_1n_1)m_1+n_2q_1m_2 = r_1$, note that
+\(n_1m_1 - n_2m_2 = r = (m_1 - r_1)/q_1\) Some algebra shows that $(1-q_1n_1)m_1+n_2q_1m_2 = r_1$, note that
 $r_1$, as a remainder of division by
 $r$, is strictly smaller than $r$. So there is only one possibility:
 $r_1 = 0$. So $m_1$ is actually a multiple of $r$ ! By symmetry, $m_2$ is a multiple of $r$ as well. However since $m_1$ and $m_2$ are coprime, $r $ can only be 1. Note
 that this is effectively a proof of existence since such smallest $r$ must exist as everything here is
 finite. $\blacksquare$</p>
 
-<p>Now if $d\ndiv a_1 - a_2$, then we
+<p>Now if $d\nmid a_1 - a_2$, then we
 can already claim that the pair of congruent equations have no solution.
 If otherwise, we can multiply both sides of $\eqref{eq:2}$ by $(a_2 - a_1)/d$ to get $\eqref{eq:1}$. For equation sets that
 contain 3 or more equations, we can process and merge two of them at a
@@ -1820,8 +399,8 @@ ll china(int n, ll* a, ll* m){
 </table>
 </figure>
 
-<p>The extended Euler's algorithm can be implemented by just two lines
-of C++, pretty surprising, isn't it? One last thing to note, as there is
+<p>The extended Euler’s algorithm can be implemented by just two lines
+of C++, pretty surprising, isn’t it? One last thing to note, as there is
 a 10\^18 numeric limit in most competitive programming contest, we need
 to handle the overflow problem using $c(a\pmod{b})\equiv ca \pmod{cb}$ in the
 following line of code</p>
@@ -1841,490 +420,29 @@ following line of code</p>
 </table>
 </figure>
 
-<p>That's it, happy coding until next time!</p>
+<p>That’s it, happy coding until next time!</p>
 
 <h6 id="reference">Reference</h6>
 
-<p>[<a href="https://codeforces.com/blog/entry/61290">Tutorial] Chinese
-Remainder Theorem - Codeforces</a>{rel=”noopener” target=”_blank”}</p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="Competitive Programming" /><category term="Chinese Remainder Theorem" /><summary type="html"><![CDATA[$$ \begin{equation} \def\pr{\text{\rm pr}} \def\sec{\text{\rm sect}} \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation}} \def\endeq{\end{equation}} \def\lesim{\lesssim} \def\mc{\mathcal} \def\h{\mathcal{H}} \newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}} \def\mn{M\^{(n)}} \def\lam{\lambda} \def\wide{\widehat} \def\uk{u\^{(k_0)}} \def\uo{u\^{(0)}} \def\pj{P\^{(2)}} \def\pii{P\^{(1)}} \def\pc{P\^{Cone}} \def\tx{\tilde x} \DeclareMathOperator{\re}{Re} \DeclareMathOperator{\sgn}{sgn} \def\cplus{c\ci+} \def\cmin{c\ci-} \def\cplusmin{c\ci\pm} \def\chiplus{\chi\ci+} \def\chimin{\chi\ci-} \def\chiplusmin{\chi\ci\pm} \def\psiplus{\psi\ci+} \def\psimin{\psi\ci-} \def\psiplusmin{\psi\ci\pm} \def\sigmaplus{\sigma\ci+} \def\sigmamin{\sigma\ci-} \def\sigmaplusmin{\sigma\ci\pm} \def\bbone{\mathbbm 1} \newcommand{\dil}{\text{\rm Dil}} \newcommand{\spec}{\operatorname{spec}} \newcommand{\ls}{\lesssim} \newcommand{\sL}{\mathscr L} \newcommand{\sJ}{\mathscr J} \newcommand{\sK}{\mathscr K} \newcommand{\wh}{\widehat} \newcommand{\wt}{\widetilde} \newcommand{\A}{\mathcal A} \newcommand{\E}{\mathcal E} \newcommand{\F}{\mathcal F} \newcommand{\D}{\mathcal D} \newcommand{\K}{\mathcal K} \newcommand{\QQ}{\mathcal Q} \newcommand{\RR}{\mathcal R} \newcommand{\f}[2]{\frac{#1}{#2}} \newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)} \newcommand{\norm}[1]{ \left| #1 \right| } \newcommand{\abs}[1]{ \left| #1 \right| } \newcommand{\Norm}[1]{ \left\| #1 \right\| } \newcommand{\iff}{\Leftrightarrow} \newcommand{\set}[1]{ \left\{ #1 \right\} } \newcommand{\Be}{\begin{equation}} \newcommand{\Ee}{\end{equation}} \newcommand{\Bm}{\begin{multline}} \newcommand{\Em}{\end{multline}} \newcommand{\Bea}{\begin{eqnarray}} \newcommand{\Eea}{\end{eqnarray}} \newcommand{\Beas}{\begin{eqnarray*}} \newcommand{\Eeas}{\end{eqnarray*}} \newcommand{\Benu}{\begin{enumerate}} \newcommand{\Eenu}{\end{enumerate}} \newcommand{\Bi}{\begin{itemize}} \newcommand{\Ei}{\end{itemize}} \def\conv{\text{Conv}} \def\tp{\tilde p} \def\tq{\tilde q} \def\crit{\text{\rm cr}} \def\sparse{\text{\rm sp}} \def\dyad{\text{\rm dyad}} \def\mart{\text{dyad}} \def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int} \def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}} \def\Re{\operatorname{Re\,}} \def\Im{\operatorname{Im\,}} \def\mx \def\mn \def\vth{\vartheta} \def\rn{\rr\^{n}} \def\rr{\mathbb R} \def\Q{\mathbb Q} \def\N{\mathbb N} \def\complex{\mathbb C} \def\emph#1{\it #1 } \def\diam{\text{\rm diam}} \def\osc{\text{\rm osc}} \def\ffB{\mathcal B} \def\seq{\subseteq} \def\Ga{\Gamma} \def\ga{\gamma} \def\Th{\Theta} \def\prd{\text{\it prod}} \def\parab{\text{\it parabolic}} \def\eg{\it e.g. } \def\cf{\it cf} \def\Rn{\mathbb R\^n} \def\Rd{\mathbb R\^d} \def\sgn{\text{\rm sign }} \def\rank{\text{\rm rank }} \def\corank{\text{\rm corank }} \def\coker{\text{\rm Coker }} \def\loc{\text{\rm loc}} \def\spec{\text{\rm spec}} \def\comp{\text{comp}} \def\Coi{C\^\infty_0} \def\dist{\text{\it dist}} \def\diag{\text{\rm diag}} \def\supp{text{\rm supp}} \def\rad{\text{\it rad}} \def\sph{\text{sph}} \def\Lip{\text{\rm Lip}} \def\ev{\text{\rm ev}} \def\odd{\text{\rm odd}} \def\inn#1#2{\langle#1,#2\rangle} \def\biginn#1#2{\big\langle#1,#2\big\rangle} \def\rta{\rightarrow} \def\lta{\leftarrow} \def\noi{\noindent} \def\lcontr{\rfloor} \newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}} \def\meas{\text{\rm meas}} \def\card{\text{\rm card}} \def\lc{\lesssim} \def\gc{\gtrsim} \def\pv{\text{\rm p.v.}} \def\a{\alpha} \def\alp{\alpha} \def\Alp{\Alpha} \def\bet{\beta} \def\gam{\gamma} \def\Gam{\Gamma} \def\del{\delta} \def\Del{\Delta} \def\eps{\varepsilon} \def\ep{\epsilon} \def\zet{\zeta} \def\tet{\theta} \def\Tet{\Theta} \def\iot{\iota} \def\kap{\kappa} \def\ka{\kappa} \def\lam{\lambda} \def\Lam{\Lambda} \def\la{\lambda} \def\La{\Lambda} \def\sig{\sigma} \def\Sig{\Sigma} \def\si{\sigma} \def\Si{\Sigma} \def\vphi{\varphi} \def\ome{\omega} \def\Ome{\Omega} \def\om{\omega} \def\fA{\mathfrak {A}} \def\fB{\mathfrak {B}} \def\fC{\mathfrak {C}} \def\fD{\mathfrak {D}} \def\fE{\mathfrak {E}} \def\fF{\mathfrak {F}} \def\fG{mathfrak {G}} \def\fH{\mathfrak {H}} \def\fI{\mathfrak {I}} \def\fJ{\mathfrak {J}} \def\fK{\mathfrak {K}} \def\fL{\mathfrak {L}} \def\fM{\mathfrak {M}} \def\fN{\mathfrak {N}} \def\fO{\mathfrak {O}} \def\fP{\mathfrak {P}} \def\fQ{\mathfrak {Q}} \def\fR{\mathfrak {R}} \def\fS{\mathfrak {S}} \def\fT{\mathfrak {T}} \def\fU{\mathfrak {U}} \def\fV{\mathfrak {V}} \def\fW{\mathfrak {W}} \def\fX{\mathfrak {X}} \def\fY{\mathfrak {Y}} \def\fZ{\mathfrak {Z}} \def\fa{\mathfrak {a}} \def\fb{\mathfrak {b}} \def\fc{\mathfrak {c}} \def\fd{\mathfrak {d}} \def\fe{\mathfrak {e}} \def\ff{\mathfrak {f}} \def\fg{\mathfrak {g}} \def\fh{\mathfrak {h}} \def\fj{\mathfrak {j}} \def\fk{\mathfrak {k}} \def\fl{\mathfrak {l}} \def\fn{\mathfrak {n}} \def\fo{\mathfrak {o}} \def\fq{\mathfrak {q}} \def\fr{\mathfrak {r}} \def\fs{\mathfrak {s}} \def\ft{\mathfrak {t}} \def\fu{\mathfrak {u}} \def\fv{\mathfrak {v}} \def\fw{\mathfrak {w}} \def\fx{\mathfrak {x}} \def\fy{\mathfrak {y}} \def\fz{\mathfrak {z}} \def\bbA{\mathbb {A}} \def\bbB{\mathbb {B}} \def\bbC{\mathbb {C}} \def\bbD{\mathbb {D}} \def\bbE{\mathbb {E}} \def\bbF{\mathbb {F}} \def\bbG{\mathbb {G}} \def\bbH{\mathbb {H}} \def\bbI{\mathbb {I}} \def\bbJ{\mathbb {J}} \def\bbK{\mathbb {K}} \def\bbL{\mathbb {L}} \def\bbM{\mathbb {M}} \def\bbN{\mathbb {N}} \def\bbO{\mathbb {O}} \def\bbP{\mathbb {P}} \def\bbQ{\mathbb {Q}} \def\bbR{\mathbb {R}} \def\bbS{\mathbb {S}} \def\bbT{\mathbb {T}} \def\bbU{\mathbb {U}} \def\bbV{\mathbb {V}} \def\bbW{\mathbb {W}} \def\bbX{\mathbb {X}} \def\bbY{\mathbb {Y}} \def\bbZ{\mathbb {Z}} \def\cA{\mathcal {A}} \def\cB{\mathcal {B}} \def\cC{\mathcal {C}} \def\cD{\mathcal {D}} \def\cE{\mathcal {E}} \def\cF{\mathcal {F}} \def\cG{\mathcal {G}} \def\cH{\mathcal {H}} \def\cI{\mathcal {I}} \def\cJ{\mathcal {J}} \def\cK{\mathcal {K}} \def\cL{\mathcal {L}} \def\cM{\mathcal {M}} \def\cN{\mathcal {N}} \def\cO{\mathcal {O}} \def\cP{\mathcal {P}} \def\cQ{\mathcal {Q}} \def\cR{\mathcal {R}} \def\cS{\mathcal {S}} \def\cT{\mathcal {T}} \def\cU{\mathcal {U}} \def\cV{\mathcal {V}} \def\cW{\mathcal {W}} \def\cX{\mathcal {X}} \def\cY{\mathcal {Y}} \def\cZ{\mathcal {Z}} \def\tA{\widetilde{A}} \def\tB{\widetilde{B}} \def\tC{\widetilde{C}} \def\tD{\widetilde{D}} \def\tE{\widetilde{E}} \def\tF{\widetilde{F}} \def\tG{\widetilde{G}} \def\tH{\widetilde{H}} \def\tI{\widetilde{I}} \def\tJ{\widetilde{J}} \def\tK{\widetilde{K}} \def\tL{\widetilde{L}} \def\tM{\widetilde{M}} \def\tN{\widetilde{N}} \def\tO{\widetilde{O}} \def\tP{\widetilde{P}} \def\tQ{\widetilde{Q}} \def\tR{\widetilde{R}} \def\tS{\widetilde{S}} \def\tT{\widetilde{T}} \def\tU{\widetilde{U}} \def\tV{\widetilde{V}} \def\tW{\widetilde{W}} \def\tX{\widetilde{X}} \def\tY{\widetilde{Y}} \def\tZ{\widetilde{Z}} \def\tcA{\widetilde{\mathcal {A}}} \def\tcB{\widetilde{\mathcal {B}}} \def\tcC{\widetilde{\mathcal {C}}} \def\tcD{\widetilde{\mathcal {D}}} \def\tcE{\widetilde{\mathcal {E}}} \def\tcF{\widetilde{\mathcal {F}}} \def\tcG{\widetilde{\mathcal {G}}} \def\tcH{\widetilde{\mathcal {H}}} \def\tcI{\widetilde{\mathcal {I}}} \def\tcJ{\widetilde{\mathcal {J}}} \def\tcK{\widetilde{\mathcal {K}}} \def\tcL{\widetilde{\mathcal {L}}} \def\tcM{\widetilde{\mathcal {M}}} \def\tcN{\widetilde{\mathcal {N}}} \def\tcO{\widetilde{\mathcal {O}}} \def\tcP{\widetilde{\mathcal {P}}} \def\tcQ{\widetilde{\mathcal {Q}}} \def\tcR{\widetilde{\mathcal {R}}} \def\tcS{\widetilde{\mathcal {S}}} \def\tcT{\widetilde{\mathcal {T}}} \def\tcU{\widetilde{\mathcal {U}}} \def\tcV{\widetilde{\mathcal {V}}} \def\tcW{\widetilde{\mathcal {W}}} \def\tcX{\widetilde{\mathcal {X}}} \def\tcY{\widetilde{\mathcal {Y}}} \def\tcZ{\widetilde{\mathcal {Z}}} \def\tfA{\widetilde{\mathfrak {A}}} \def\tfB{\widetilde{\mathfrak {B}}} \def\tfC{\widetilde{\mathfrak {C}}} \def\tfD{\widetilde{\mathfrak {D}}} \def\tfE{\widetilde{\mathfrak {E}}} \def\tfF{\widetilde{\mathfrak {F}}} \def\tfG{\widetilde{\mathfrak {G}}} \def\tfH{\widetilde{\mathfrak {H}}} \def\tfI{\widetilde{\mathfrak {I}}} \def\tfJ{\widetilde{\mathfrak {J}}} \def\tfK{\widetilde{\mathfrak {K}}} \def\tfL{\widetilde{\mathfrak {L}}} \def\tfM{\widetilde{\mathfrak {M}}} \def\tfN{\widetilde{\mathfrak {N}}} \def\tfO{\widetilde{\mathfrak {O}}} \def\tfP{\widetilde{\mathfrak {P}}} \def\tfQ{\widetilde{\mathfrak {Q}}} \def\tfR{\widetilde{\mathfrak {R}}} \def\tfS{\widetilde{\mathfrak {S}}} \def\tfT{\widetilde{\mathfrak {T}}} \def\tfU{\widetilde{\mathfrak {U}}} \def\tfV{\widetilde{\mathfrak {V}}} \def\tfW{\widetilde{\mathfrak {W}}} \def\tfX{\widetilde{\mathfrak {X}}} \def\tfY{\widetilde{\mathfrak {Y}}} \def\tfZ{\widetilde{\mathfrak {Z}}} \def\Atil{\widetilde A} \def\atil{\tilde a} \def\Btil{\widetilde B} \def\btil{\tilde b} \def\Ctil{\widetilde C} \def\ctil{\tilde c} \def\Dtil{\widetilde D} \def\dtil{\tilde d} \def\Etil{\widetilde E} \def\etil{\tilde e} \def\Ftil{\widetilde F} \def\ftil{\tilde f} \def\Gtil{\widetilde G} \def\gtil{\tilde g} \def\Htil{\widetilde H} \def\htil{\tilde h} \def\Itil{\widetilde I} \def\itil{\tilde i} \def\Jtil{\widetilde J} \def\jtil{\tilde j} \def\Ktil{\widetilde K} \def\ktil{\tilde k} \def\Ltil{\widetilde L} \def\ltil{\tilde l} \def\Mtil{\widetilde M} \def\mtil{\tilde m} \def\Ntil{\widetilde N} \def\ntil{\tilde n} \def\Otil{\widetilde O} \def\otil{\tilde o} \def\Ptil{\widetilde P} \def\ptil{\tilde p} \def\Qtil{\widetilde Q} \def\qtil{\tilde q} \def\Rtil{\widetilde R} \def\rtil{\tilde r} \def\Stil{\widetilde S} \def\stil{\tilde s} \def\Ttil{\widetilde T} \def\ttil{\tilde t} \def\Util{\widetilde U} \def\util{\tilde u} \def\Vtil{\widetilde V} \def\vtil{\tilde v} \def\Wtil{\widetilde W} \def\wtil{\tilde w} \def\Xtil{\widetilde X} \def\xtil{\tilde x} \def\Ytil{\widetilde Y} \def\ytil{\tilde y} \def\Ztil{\widetilde Z} \def\ztil{\tilde z} \def\ahat{\hat a} \def\Ahat{\widehat A} \def\bhat{\hat b} \def\Bhat{\widehat B} \def\chat{\hat c} \def\Chat{\widehat C} \def\dhat{\hat d} \def\Dhat{\widehat D} \def\ehat{\hat e} \def\Ehat{\widehat E} \def\fhat{\hat f} \def\Fhat{\widehat F} \def\ghat{\hat g} \def\Ghat{\widehat G} \def\hhat{\hat h} \def\Hhat{\widehat H} \def\ihat{\hat i} \def\Ihat{\widehat I} \def\jhat{\hat j} \def\Jhat{\widehat J} \def\khat{\hat k} \def\Khat{\widehat K} \def\lhat{\hat l} \def\Lhat{\widehat L} \def\mhat{\hat m} \def\Mhat{\widehat M} \def\nhat{\hat n} \def\Nhat{\widehat N} \def\ohat{\hat o} \def\Ohat{\widehat O} \def\phat{\hat p} \def\Phat{\widehat P} \def\qhat{\hat q} \def\Qhat{\widehat Q} \def\rhat{\hat r} \def\Rhat{\widehat R} \def\shat{\hat s} \def\Shat{\widehat S} \def\that{\hat t} \def\That{\widehat T} \def\uhat{\hat u} \def\Uhat{\widehat U} \def\vhat{\hat v} \def\Vhat{\widehat V} \def\what{\hat w} \def\What{\widehat W} \def\xhat{\hat x} \def\Xhat{\widehat X} \def\yhat{\hat y} \def\Yhat{\widehat Y} \def\zhat{\hat z} \def\Zhat{\widehat Z} \def\be#1{\begin{equation}\label{ #1}} \def\endeq{\end{equation}} \def\endal{\end{align}} \def\bas{\begin{align*}} \def\eas{\end{align*}} \def\bi{\begin{itemize}} \def\ei{\end{itemize}} \def\eps{\varepsilon} \def\textbf#1{\bf #1} \def\into{\hookrightarrow} \newcommand{\inf}{\infty} \newcommand{\os}[2]{\overset{#1}{#2}} \newcommand{\ms}{(X, \cM, \mu)} \newcommand{\salg}{\sig\text{-algebra}} \newcommand{\ol}[1]{\overline{#1}} \newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}} \newcommand{\onto}{\twoheadrightarrow} \newcommand{\id}{\text{id}} \newcommand{\Stab}{\text{Stab}} \def \bl {\backslash} \def \sfin {\sig\text{-finite}} \def \mum {\mu\text{-measurable}} \def \emps {\varnothing} \newcommand{\m}[1]{\boldsymbol{#1}} \newcommand{\bs}[1]{\boldsymbol{#1}} \newcommand{\Inf}{\text{inf}} \newcommand{\wb}[1]{\overline{#1}} \newcommand{\lto}{\longrightarrow} \newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}} \newcommand{\char}[1]{\cX_{#1}} \newcommand{\fp}{f\^+} \newcommand{\fm}{f\^-} \newcommand{\infm}{\text{inf}} \newcommand{\onorm}[1]{\Norm{#1}_1} \newcommand{\tnorm}[1]{\Norm{#1}_2} \newcommand{\infn}[1]{\Norm{#1}_\inf} \newcommand{\pnorm}[1]{\Norm{#1}_p} \newcommand{\End}{\text{End}} \newcommand{\Ob}{\text{Ob}} \newcommand{\Hom}{\text{Hom}} \newcommand{\intall}{\int_{-\inf}\^{\inf}} \newcommand{\intpmpi}{\int_{-\pi}\^{\pi}} \newcommand{\div}{\bigr|} \newcommand{\when}{\biggr|} \def \bsp {\begin{split}} \def \esp {\end{split}} \def \bc {\begin{cases}} \def \ec {\end{cases}} \newcommand{\sech}{\text{sech}} \newcommand{\vectk}{\text{Vect}_\text{k}} \newcommand{\top}{\text{Top}} \newcommand{\grp}{\text{Grp}} \newcommand{\pathx}{\text{Paths}_X} \newcommand{\from}{\leftarrow} \newcommand{\lfrom}{\longleftarrow} \newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}} \newcommand{\sym}{\text{Sym}} \newcommand{\Set}{\text{Set}} \newcommand{\zn}{\Z/n\Z} \newcommand{\Mor}{\text{Mor}} \newcommand{\acton}{\circlearrowright} \DeclareMathOperator{\tr}{Tr} \newcommand{\par}{\partial} \newcommand{\Fun}{\text{Fun}} \newcommand{\triv}{\text{triv}} \newcommand{\zmnz}[1]{\Z/{#1}\Z} \newcommand{\tl}{\triangleleft} \newcommand{\paren}[1]{\left({#1}\right)} \newcommand{\ceil}[1]{\lceil{#1}\rceil} \newcommand{\floor}[1]{\lfloor{#1}\rfloor} \newcommand{\mod}{\textrm{mod}} \newcommand{\ndiv}{\nmid} \end{equation} $$]]></summary></entry><entry><title type="html">Limit of Binomial Distribution</title><link href="http://localhost:4000/posts/2021/06/limit-of-binomial-distribution/" rel="alternate" type="text/html" title="Limit of Binomial Distribution" /><published>2021-06-19T00:00:00+00:00</published><updated>2021-06-19T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/06/Limit-of-Binomial-Distribution</id><content type="html" xml:base="http://localhost:4000/posts/2021/06/limit-of-binomial-distribution/"><![CDATA[<p>$$
-\begin{equation}
-\def\pr{\text{\rm pr}}
-\def\sec{\text{\rm sect}}
-\def\R{\mathbb{R}}
-\def\N{\mathbb{N}}
-\def\C{\mathbb{C}}
-\def\Z{\mathbb{Z}}
-\def\H{\mathcal{H}}
-\def\beq{\begin{equation}}
-\def\endeq{\end{equation}}
-\def\lesim{\lesssim}
-\def\mc{\mathcal}
-\def\h{\mathcal{H}}
-\newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}}
-\def\mn{M\^{(n)}}
-\def\lam{\lambda}
-\def\wide{\widehat}
-\def\uk{u\^{(k_0)}}
-\def\uo{u\^{(0)}}
-\def\pj{P\^{(2)}}
-\def\pii{P\^{(1)}}
-\def\pc{P\^{Cone}}
-\def\tx{\tilde x}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\sgn}{sgn}
-\def\cplus{c\ci+}
-\def\cmin{c\ci-}
-\def\cplusmin{c\ci\pm}
-\def\chiplus{\chi\ci+}
-\def\chimin{\chi\ci-}
-\def\chiplusmin{\chi\ci\pm}
-\def\psiplus{\psi\ci+}
-\def\psimin{\psi\ci-}
-\def\psiplusmin{\psi\ci\pm}
-\def\sigmaplus{\sigma\ci+}
-\def\sigmamin{\sigma\ci-}
-\def\sigmaplusmin{\sigma\ci\pm}
-\def\bbone{\mathbbm 1}
-\newcommand{\dil}{\text{\rm Dil}}
-\newcommand{\spec}{\operatorname{spec}}
-\newcommand{\ls}{\lesssim}
-\newcommand{\sL}{\mathscr L}
-\newcommand{\sJ}{\mathscr J}
-\newcommand{\sK}{\mathscr K}
-\newcommand{\wh}{\widehat}
-\newcommand{\wt}{\widetilde}
-\newcommand{\A}{\mathcal A}
-\newcommand{\E}{\mathcal E}
-\newcommand{\F}{\mathcal F}
-\newcommand{\D}{\mathcal D}
-\newcommand{\K}{\mathcal K}
-\newcommand{\QQ}{\mathcal Q}
-\newcommand{\RR}{\mathcal R}
-\newcommand{\f}[2]{\frac{#1}{#2}}
-\newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)}
-\newcommand{\norm}[1]{ \left| #1 \right| }
-\newcommand{\abs}[1]{ \left| #1 \right| }
-\newcommand{\Norm}[1]{ \left\| #1 \right\| }
-\newcommand{\iff}{\Leftrightarrow}
-\newcommand{\set}[1]{ \left\{ #1 \right\} }
-\newcommand{\Be}{\begin{equation}}
-\newcommand{\Ee}{\end{equation}}
-\newcommand{\Bm}{\begin{multline}}
-\newcommand{\Em}{\end{multline}}
-\newcommand{\Bea}{\begin{eqnarray}}
-\newcommand{\Eea}{\end{eqnarray}}
-\newcommand{\Beas}{\begin{eqnarray*}}
-\newcommand{\Eeas}{\end{eqnarray*}}
-\newcommand{\Benu}{\begin{enumerate}}
-\newcommand{\Eenu}{\end{enumerate}}
-\newcommand{\Bi}{\begin{itemize}}
-\newcommand{\Ei}{\end{itemize}}
-\def\conv{\text{Conv}}
-\def\tp{\tilde p}
-\def\tq{\tilde q}
-\def\crit{\text{\rm cr}}
-\def\sparse{\text{\rm sp}}
-\def\dyad{\text{\rm dyad}}
-\def\mart{\text{dyad}}
-\def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int}
-\def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}}
-\def\Re{\operatorname{Re\,}}
-\def\Im{\operatorname{Im\,}}
-\def\mx
-\def\mn
-\def\vth{\vartheta}
-\def\rn{\rr\^{n}}
-\def\rr{\mathbb R}
-\def\Q{\mathbb Q}
-\def\N{\mathbb N}
-\def\complex{\mathbb C}
-\def\emph#1{\it #1 }
-\def\diam{\text{\rm diam}}
-\def\osc{\text{\rm osc}}
-\def\ffB{\mathcal B}
-\def\seq{\subseteq}
-\def\Ga{\Gamma}
-\def\ga{\gamma}
-\def\Th{\Theta}
-\def\prd{\text{\it prod}}
-\def\parab{\text{\it parabolic}}
-\def\eg{\it e.g. }
-\def\cf{\it cf}
-\def\Rn{\mathbb R\^n}
-\def\Rd{\mathbb R\^d}
-\def\sgn{\text{\rm sign }}
-\def\rank{\text{\rm rank }}
-\def\corank{\text{\rm corank }}
-\def\coker{\text{\rm Coker }}
-\def\loc{\text{\rm loc}}
-\def\spec{\text{\rm spec}}
-\def\comp{\text{comp}}
-\def\Coi{C\^\infty_0}
-\def\dist{\text{\it dist}}
-\def\diag{\text{\rm diag}}
-\def\supp{text{\rm supp}}
-\def\rad{\text{\it rad}}
-\def\sph{\text{sph}}
-\def\Lip{\text{\rm Lip}}
-\def\ev{\text{\rm ev}}
-\def\odd{\text{\rm odd}}
-\def\inn#1#2{\langle#1,#2\rangle}
-\def\biginn#1#2{\big\langle#1,#2\big\rangle}
-\def\rta{\rightarrow}
-\def\lta{\leftarrow}
-\def\noi{\noindent}
-\def\lcontr{\rfloor}
-\newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}}
-\def\meas{\text{\rm meas}}
-\def\card{\text{\rm card}}
-\def\lc{\lesssim}
-\def\gc{\gtrsim}
-\def\pv{\text{\rm p.v.}}
-\def\a{\alpha}
-\def\alp{\alpha} \def\Alp{\Alpha}
-\def\bet{\beta}
-\def\gam{\gamma} \def\Gam{\Gamma}
-\def\del{\delta} \def\Del{\Delta}
-\def\eps{\varepsilon}
-\def\ep{\epsilon}
-\def\zet{\zeta}
-\def\tet{\theta} \def\Tet{\Theta}
-\def\iot{\iota}
-\def\kap{\kappa}
-\def\ka{\kappa}
-\def\lam{\lambda} \def\Lam{\Lambda}
-\def\la{\lambda} \def\La{\Lambda}
-\def\sig{\sigma} \def\Sig{\Sigma}
-\def\si{\sigma} \def\Si{\Sigma}
-\def\vphi{\varphi}
-\def\ome{\omega} \def\Ome{\Omega}
-\def\om{\omega}
-\def\fA{\mathfrak {A}}
-\def\fB{\mathfrak {B}}
-\def\fC{\mathfrak {C}}
-\def\fD{\mathfrak {D}}
-\def\fE{\mathfrak {E}}
-\def\fF{\mathfrak {F}}
-\def\fG{mathfrak {G}}
-\def\fH{\mathfrak {H}}
-\def\fI{\mathfrak {I}}
-\def\fJ{\mathfrak {J}}
-\def\fK{\mathfrak {K}}
-\def\fL{\mathfrak {L}}
-\def\fM{\mathfrak {M}}
-\def\fN{\mathfrak {N}}
-\def\fO{\mathfrak {O}}
-\def\fP{\mathfrak {P}}
-\def\fQ{\mathfrak {Q}}
-\def\fR{\mathfrak {R}}
-\def\fS{\mathfrak {S}}
-\def\fT{\mathfrak {T}}
-\def\fU{\mathfrak {U}}
-\def\fV{\mathfrak {V}}
-\def\fW{\mathfrak {W}}
-\def\fX{\mathfrak {X}}
-\def\fY{\mathfrak {Y}}
-\def\fZ{\mathfrak {Z}}
-\def\fa{\mathfrak {a}}
-\def\fb{\mathfrak {b}}
-\def\fc{\mathfrak {c}}
-\def\fd{\mathfrak {d}}
-\def\fe{\mathfrak {e}}
-\def\ff{\mathfrak {f}}
-\def\fg{\mathfrak {g}}
-\def\fh{\mathfrak {h}}
-\def\fj{\mathfrak {j}}
-\def\fk{\mathfrak {k}}
-\def\fl{\mathfrak {l}}
-\def\fn{\mathfrak {n}}
-\def\fo{\mathfrak {o}}
-\def\fq{\mathfrak {q}}
-\def\fr{\mathfrak {r}}
-\def\fs{\mathfrak {s}}
-\def\ft{\mathfrak {t}}
-\def\fu{\mathfrak {u}}
-\def\fv{\mathfrak {v}}
-\def\fw{\mathfrak {w}}
-\def\fx{\mathfrak {x}}
-\def\fy{\mathfrak {y}}
-\def\fz{\mathfrak {z}}
-\def\bbA{\mathbb {A}}
-\def\bbB{\mathbb {B}}
-\def\bbC{\mathbb {C}}
-\def\bbD{\mathbb {D}}
-\def\bbE{\mathbb {E}}
-\def\bbF{\mathbb {F}}
-\def\bbG{\mathbb {G}}
-\def\bbH{\mathbb {H}}
-\def\bbI{\mathbb {I}}
-\def\bbJ{\mathbb {J}}
-\def\bbK{\mathbb {K}}
-\def\bbL{\mathbb {L}}
-\def\bbM{\mathbb {M}}
-\def\bbN{\mathbb {N}}
-\def\bbO{\mathbb {O}}
-\def\bbP{\mathbb {P}}
-\def\bbQ{\mathbb {Q}}
-\def\bbR{\mathbb {R}}
-\def\bbS{\mathbb {S}}
-\def\bbT{\mathbb {T}}
-\def\bbU{\mathbb {U}}
-\def\bbV{\mathbb {V}}
-\def\bbW{\mathbb {W}}
-\def\bbX{\mathbb {X}}
-\def\bbY{\mathbb {Y}}
-\def\bbZ{\mathbb {Z}}
-\def\cA{\mathcal {A}}
-\def\cB{\mathcal {B}}
-\def\cC{\mathcal {C}}
-\def\cD{\mathcal {D}}
-\def\cE{\mathcal {E}}
-\def\cF{\mathcal {F}}
-\def\cG{\mathcal {G}}
-\def\cH{\mathcal {H}}
-\def\cI{\mathcal {I}}
-\def\cJ{\mathcal {J}}
-\def\cK{\mathcal {K}}
-\def\cL{\mathcal {L}}
-\def\cM{\mathcal {M}}
-\def\cN{\mathcal {N}}
-\def\cO{\mathcal {O}}
-\def\cP{\mathcal {P}}
-\def\cQ{\mathcal {Q}}
-\def\cR{\mathcal {R}}
-\def\cS{\mathcal {S}}
-\def\cT{\mathcal {T}}
-\def\cU{\mathcal {U}}
-\def\cV{\mathcal {V}}
-\def\cW{\mathcal {W}}
-\def\cX{\mathcal {X}}
-\def\cY{\mathcal {Y}}
-\def\cZ{\mathcal {Z}}
-\def\tA{\widetilde{A}}
-\def\tB{\widetilde{B}}
-\def\tC{\widetilde{C}}
-\def\tD{\widetilde{D}}
-\def\tE{\widetilde{E}}
-\def\tF{\widetilde{F}}
-\def\tG{\widetilde{G}}
-\def\tH{\widetilde{H}}
-\def\tI{\widetilde{I}}
-\def\tJ{\widetilde{J}}
-\def\tK{\widetilde{K}}
-\def\tL{\widetilde{L}}
-\def\tM{\widetilde{M}}
-\def\tN{\widetilde{N}}
-\def\tO{\widetilde{O}}
-\def\tP{\widetilde{P}}
-\def\tQ{\widetilde{Q}}
-\def\tR{\widetilde{R}}
-\def\tS{\widetilde{S}}
-\def\tT{\widetilde{T}}
-\def\tU{\widetilde{U}}
-\def\tV{\widetilde{V}}
-\def\tW{\widetilde{W}}
-\def\tX{\widetilde{X}}
-\def\tY{\widetilde{Y}}
-\def\tZ{\widetilde{Z}}
-\def\tcA{\widetilde{\mathcal {A}}}
-\def\tcB{\widetilde{\mathcal {B}}}
-\def\tcC{\widetilde{\mathcal {C}}}
-\def\tcD{\widetilde{\mathcal {D}}}
-\def\tcE{\widetilde{\mathcal {E}}}
-\def\tcF{\widetilde{\mathcal {F}}}
-\def\tcG{\widetilde{\mathcal {G}}}
-\def\tcH{\widetilde{\mathcal {H}}}
-\def\tcI{\widetilde{\mathcal {I}}}
-\def\tcJ{\widetilde{\mathcal {J}}}
-\def\tcK{\widetilde{\mathcal {K}}}
-\def\tcL{\widetilde{\mathcal {L}}}
-\def\tcM{\widetilde{\mathcal {M}}}
-\def\tcN{\widetilde{\mathcal {N}}}
-\def\tcO{\widetilde{\mathcal {O}}}
-\def\tcP{\widetilde{\mathcal {P}}}
-\def\tcQ{\widetilde{\mathcal {Q}}}
-\def\tcR{\widetilde{\mathcal {R}}}
-\def\tcS{\widetilde{\mathcal {S}}}
-\def\tcT{\widetilde{\mathcal {T}}}
-\def\tcU{\widetilde{\mathcal {U}}}
-\def\tcV{\widetilde{\mathcal {V}}}
-\def\tcW{\widetilde{\mathcal {W}}}
-\def\tcX{\widetilde{\mathcal {X}}}
-\def\tcY{\widetilde{\mathcal {Y}}}
-\def\tcZ{\widetilde{\mathcal {Z}}}
-\def\tfA{\widetilde{\mathfrak {A}}}
-\def\tfB{\widetilde{\mathfrak {B}}}
-\def\tfC{\widetilde{\mathfrak {C}}}
-\def\tfD{\widetilde{\mathfrak {D}}}
-\def\tfE{\widetilde{\mathfrak {E}}}
-\def\tfF{\widetilde{\mathfrak {F}}}
-\def\tfG{\widetilde{\mathfrak {G}}}
-\def\tfH{\widetilde{\mathfrak {H}}}
-\def\tfI{\widetilde{\mathfrak {I}}}
-\def\tfJ{\widetilde{\mathfrak {J}}}
-\def\tfK{\widetilde{\mathfrak {K}}}
-\def\tfL{\widetilde{\mathfrak {L}}}
-\def\tfM{\widetilde{\mathfrak {M}}}
-\def\tfN{\widetilde{\mathfrak {N}}}
-\def\tfO{\widetilde{\mathfrak {O}}}
-\def\tfP{\widetilde{\mathfrak {P}}}
-\def\tfQ{\widetilde{\mathfrak {Q}}}
-\def\tfR{\widetilde{\mathfrak {R}}}
-\def\tfS{\widetilde{\mathfrak {S}}}
-\def\tfT{\widetilde{\mathfrak {T}}}
-\def\tfU{\widetilde{\mathfrak {U}}}
-\def\tfV{\widetilde{\mathfrak {V}}}
-\def\tfW{\widetilde{\mathfrak {W}}}
-\def\tfX{\widetilde{\mathfrak {X}}}
-\def\tfY{\widetilde{\mathfrak {Y}}}
-\def\tfZ{\widetilde{\mathfrak {Z}}}
-\def\Atil{\widetilde A} \def\atil{\tilde a}
-\def\Btil{\widetilde B} \def\btil{\tilde b}
-\def\Ctil{\widetilde C} \def\ctil{\tilde c}
-\def\Dtil{\widetilde D} \def\dtil{\tilde d}
-\def\Etil{\widetilde E} \def\etil{\tilde e}
-\def\Ftil{\widetilde F} \def\ftil{\tilde f}
-\def\Gtil{\widetilde G} \def\gtil{\tilde g}
-\def\Htil{\widetilde H} \def\htil{\tilde h}
-\def\Itil{\widetilde I} \def\itil{\tilde i}
-\def\Jtil{\widetilde J} \def\jtil{\tilde j}
-\def\Ktil{\widetilde K} \def\ktil{\tilde k}
-\def\Ltil{\widetilde L} \def\ltil{\tilde l}
-\def\Mtil{\widetilde M} \def\mtil{\tilde m}
-\def\Ntil{\widetilde N} \def\ntil{\tilde n}
-\def\Otil{\widetilde O} \def\otil{\tilde o}
-\def\Ptil{\widetilde P} \def\ptil{\tilde p}
-\def\Qtil{\widetilde Q} \def\qtil{\tilde q}
-\def\Rtil{\widetilde R} \def\rtil{\tilde r}
-\def\Stil{\widetilde S} \def\stil{\tilde s}
-\def\Ttil{\widetilde T} \def\ttil{\tilde t}
-\def\Util{\widetilde U} \def\util{\tilde u}
-\def\Vtil{\widetilde V} \def\vtil{\tilde v}
-\def\Wtil{\widetilde W} \def\wtil{\tilde w}
-\def\Xtil{\widetilde X} \def\xtil{\tilde x}
-\def\Ytil{\widetilde Y} \def\ytil{\tilde y}
-\def\Ztil{\widetilde Z} \def\ztil{\tilde z}
-\def\ahat{\hat a} \def\Ahat{\widehat A}
-\def\bhat{\hat b} \def\Bhat{\widehat B}
-\def\chat{\hat c} \def\Chat{\widehat C}
-\def\dhat{\hat d} \def\Dhat{\widehat D}
-\def\ehat{\hat e} \def\Ehat{\widehat E}
-\def\fhat{\hat f} \def\Fhat{\widehat F}
-\def\ghat{\hat g} \def\Ghat{\widehat G}
-\def\hhat{\hat h} \def\Hhat{\widehat H}
-\def\ihat{\hat i} \def\Ihat{\widehat I}
-\def\jhat{\hat j} \def\Jhat{\widehat J}
-\def\khat{\hat k} \def\Khat{\widehat K}
-\def\lhat{\hat l} \def\Lhat{\widehat L}
-\def\mhat{\hat m} \def\Mhat{\widehat M}
-\def\nhat{\hat n} \def\Nhat{\widehat N}
-\def\ohat{\hat o} \def\Ohat{\widehat O}
-\def\phat{\hat p} \def\Phat{\widehat P}
-\def\qhat{\hat q} \def\Qhat{\widehat Q}
-\def\rhat{\hat r} \def\Rhat{\widehat R}
-\def\shat{\hat s} \def\Shat{\widehat S}
-\def\that{\hat t} \def\That{\widehat T}
-\def\uhat{\hat u} \def\Uhat{\widehat U}
-\def\vhat{\hat v} \def\Vhat{\widehat V}
-\def\what{\hat w} \def\What{\widehat W}
-\def\xhat{\hat x} \def\Xhat{\widehat X}
-\def\yhat{\hat y} \def\Yhat{\widehat Y}
-\def\zhat{\hat z} \def\Zhat{\widehat Z}
-\def\be#1{\begin{equation}\label{ #1}}
-\def\endeq{\end{equation}}
-\def\endal{\end{align}}
-\def\bas{\begin{align*}}
-\def\eas{\end{align*}}
-\def\bi{\begin{itemize}}
-\def\ei{\end{itemize}}
-\def\eps{\varepsilon}
-\def\textbf#1{\bf #1}
-\def\into{\hookrightarrow}
-\newcommand{\inf}{\infty}
-\newcommand{\os}[2]{\overset{#1}{#2}}
-\newcommand{\ms}{(X, \cM, \mu)}
-\newcommand{\salg}{\sig\text{-algebra}}
-\newcommand{\ol}[1]{\overline{#1}}
-\newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}}
-\newcommand{\onto}{\twoheadrightarrow}
-\newcommand{\id}{\text{id}}
-\newcommand{\Stab}{\text{Stab}}
-\def \bl {\backslash}
-\def \sfin {\sig\text{-finite}}
-\def \mum {\mu\text{-measurable}}
-\def \emps {\varnothing}
-\newcommand{\m}[1]{\boldsymbol{#1}}
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\Inf}{\text{inf}}
-\newcommand{\wb}[1]{\overline{#1}}
-\newcommand{\lto}{\longrightarrow}
-\newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}}
-\newcommand{\char}[1]{\cX_{#1}}
-\newcommand{\fp}{f\^+}
-\newcommand{\fm}{f\^-}
-\newcommand{\infm}{\text{inf}}
-\newcommand{\onorm}[1]{\Norm{#1}_1}
-\newcommand{\tnorm}[1]{\Norm{#1}_2}
-\newcommand{\infn}[1]{\Norm{#1}_\inf}
-\newcommand{\pnorm}[1]{\Norm{#1}_p}
-\newcommand{\End}{\text{End}}
-\newcommand{\Ob}{\text{Ob}}
-\newcommand{\Hom}{\text{Hom}}
-\newcommand{\intall}{\int_{-\inf}\^{\inf}}
-\newcommand{\intpmpi}{\int_{-\pi}\^{\pi}}
-\newcommand{\div}{\bigr|}
-\newcommand{\when}{\biggr|}
-\def \bsp {\begin{split}}
-\def \esp {\end{split}}
-\def \bc {\begin{cases}}
-\def \ec {\end{cases}}
-\newcommand{\sech}{\text{sech}}
-\newcommand{\vectk}{\text{Vect}_\text{k}}
-\newcommand{\top}{\text{Top}}
-\newcommand{\grp}{\text{Grp}}
-\newcommand{\pathx}{\text{Paths}_X}
-\newcommand{\from}{\leftarrow}
-\newcommand{\lfrom}{\longleftarrow}
-\newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}}
-\newcommand{\sym}{\text{Sym}}
-\newcommand{\Set}{\text{Set}}
-\newcommand{\zn}{\Z/n\Z}
-\newcommand{\Mor}{\text{Mor}}
-\newcommand{\acton}{\circlearrowright}
-\DeclareMathOperator{\tr}{Tr}
-\newcommand{\par}{\partial}
-\newcommand{\Fun}{\text{Fun}}
-\newcommand{\triv}{\text{triv}}
-\newcommand{\zmnz}[1]{\Z/{#1}\Z}
-\newcommand{\tl}{\triangleleft}
-\newcommand{\paren}[1]{\left({#1}\right)}
-\newcommand{\ceil}[1]{\lceil{#1}\rceil}
-\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
-\end{equation}
-$$</p>
-
-<p>In computational neuroscience, Poisson distribution is very important
+<p><a href="https://codeforces.com/blog/entry/61290" rel="noopener" target="_blank">[Tutorial] Chinese
+Remainder Theorem - Codeforces</a></p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="Competitive Programming" /><category term="Chinese Remainder Theorem" /><summary type="html"><![CDATA[I recently decided to pick up competitive programming, not only because I enjoy programming, but also because this is a fail safe for my academic career. With the tension between China and US rises, any Chinese research personnel in the US is bound to be persecuted in one way or another (it already begins with the visa application). It will be increasingly risky to put all the eggs in one basket. And the recent Wenhua Jiang Incident further dims the light on the path to tenure in China for many researchers. So in short, doing competitive programming is an act of interest (pun intended).]]></summary></entry><entry><title type="html">Limit of Binomial Distribution</title><link href="http://localhost:4000/posts/2021/06/limit-of-binomial-distribution/" rel="alternate" type="text/html" title="Limit of Binomial Distribution" /><published>2021-06-19T00:00:00+00:00</published><updated>2021-06-19T00:00:00+00:00</updated><id>http://localhost:4000/posts/2021/06/Limit-of-Binomial-Distribution</id><content type="html" xml:base="http://localhost:4000/posts/2021/06/limit-of-binomial-distribution/"><![CDATA[<p>In computational neuroscience, Poisson distribution is very important
 in that spike trains are usually modeled as a Poisson process. This
 article demonstrates that the Poisson distribution can be obtained as a
 limit of Binomial Distribution.</p>
 
-<p>[]{#more}</p>
-
 <p>Consider a time interval $[0,T]$
-in which spikes occur. Let's assume that $k$ spikes occur within that interval. Now
+in which spikes occur. Let’s assume that $k$ spikes occur within that interval. Now
 we divide the interval into $n$ bins,
 and within each time bin, a spike occurs with probability $p$. Note that we only allow one spike per
 bin. So the probability of having $k$
-spikes within $[0,T]$ is $$
-P(k) = {n\choose k}p\^k(1-p)\^{n-k}
-$$ Now this is the probability mass function of binomial
+spikes within $[0,T]$ is \(P(k) = {n\choose k}p^k(1-p)^{n-k}\) Now this is the probability mass function of binomial
 distribution. If we take the limit of $n\to
 \inf$, we quickly find that the result is zero. This is because
-it is upper-bounded by $n\^k (1-p)\^n$
-times a constant. It suffices to show that $n\alp\^n\to 0$ as $n\to \inf$, where $0&lt;\alp&lt;1$. Simply note that $n\alp\^{n-1}$ is the derivative of $\alp\^n$ which goes to 0 as $n$ goes to infinity. So we can always
+it is upper-bounded by $n^k (1-p)^n$
+times a constant. It suffices to show that $n\alpha^n\to 0$ as $n\to \inf$, where $0&lt;\alpha&lt;1$. Simply note that $n\alpha^{n-1}$ is the derivative of $\alpha^n$ which goes to 0 as $n$ goes to infinity. So we can always
 choose large enough $n$ such that any
-finite difference of $\alp\^n$ around
-$\alp$ is below any small $\eps$, QED.</p>
+finite difference of $\alpha^n$ around
+$\alpha$ is below any small $\varepsilon$, QED.</p>
 
 <p>The question now is how do we take the limit in a proper sense so
 that the result is the probability mass function of Poisson
@@ -2333,19 +451,20 @@ fires with the time interval $[0,T]$.
 Here is the key insight: as $n$
 grows, each time bin gets smaller and smaller, so the probability of a
 spike occurring $p$ is also
-increasingly smaller. More specifically, they are related by $\lam:=rT = np$.</p>
+increasingly smaller. More specifically, they are related by $\lambda:=rT = np$.</p>
 
-<p>Now here is the mathematical show: $$
-\bsp
-\lim_{\lam = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to
-\inf}\f{n!}{k!(n-k)!}(\lam/n)\^k(1-\lam/n)\^{n-k}\<br />
-&amp;=\lim_{\lam = np,\ n\to
-\inf}\f{n!}{k!(n-k)!}(\lam/n)\^k(1-\lam/n)\^{-k}((1-\lam/n)\^{-n/\lam})\^{-\lam}\<br />
-&amp;=\lim_{\lam = np,\ n\to
-\inf}\f{n!}{k!(n-k)!}\f{\lam\^k}{(n-\lam)\^k}\exp(-\lam)\<br />
-&amp;=\f{\lam\^k}{k!}\exp(-\lam)
-\esp
-$$ In the intermediate step we use the definition of Euler's
+<p>Now here is the mathematical show: 
+\(\begin{split}
+\lim_{\lambda = np,\ n\to \inf}P(k) &amp;= \lim_{rT = np,\ n\to
+\inf}\frac{n!}{k!(n-k)!}(\lambda/n)^k(1-\lambda/n)^{n-k}\\
+&amp;=\lim_{\lambda = np,\ n\to
+\inf}\frac{n!}{k!(n-k)!}(\lambda/n)^k(1-\lambda/n)^{-k}((1-\lambda/n)^{-n/\lambda})^{-\lambda}\\
+&amp;=\lim_{\lambda = np,\ n\to
+\inf}\frac{n!}{k!(n-k)!}\frac{\lambda^k}{(n-\lambda)^k}\exp(-\lambda)\\
+&amp;=\frac{\lambda^k}{k!}\exp(-\lambda)
+\end{split}\)</p>
+
+<p>In the intermediate step we use the definition of Euler’s
 number $e$, and we arrive at the
 probability mass function of Poisson Distribution. We are done, have a
-nice day :)</p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="math" /><category term="Poisson" /><summary type="html"><![CDATA[$$ \begin{equation} \def\pr{\text{\rm pr}} \def\sec{\text{\rm sect}} \def\R{\mathbb{R}} \def\N{\mathbb{N}} \def\C{\mathbb{C}} \def\Z{\mathbb{Z}} \def\H{\mathcal{H}} \def\beq{\begin{equation}} \def\endeq{\end{equation}} \def\lesim{\lesssim} \def\mc{\mathcal} \def\h{\mathcal{H}} \newcommand{\bram}[1]{\begin{bmatrix}#1\end{bmatrix}} \def\mn{M\^{(n)}} \def\lam{\lambda} \def\wide{\widehat} \def\uk{u\^{(k_0)}} \def\uo{u\^{(0)}} \def\pj{P\^{(2)}} \def\pii{P\^{(1)}} \def\pc{P\^{Cone}} \def\tx{\tilde x} \DeclareMathOperator{\re}{Re} \DeclareMathOperator{\sgn}{sgn} \def\cplus{c\ci+} \def\cmin{c\ci-} \def\cplusmin{c\ci\pm} \def\chiplus{\chi\ci+} \def\chimin{\chi\ci-} \def\chiplusmin{\chi\ci\pm} \def\psiplus{\psi\ci+} \def\psimin{\psi\ci-} \def\psiplusmin{\psi\ci\pm} \def\sigmaplus{\sigma\ci+} \def\sigmamin{\sigma\ci-} \def\sigmaplusmin{\sigma\ci\pm} \def\bbone{\mathbbm 1} \newcommand{\dil}{\text{\rm Dil}} \newcommand{\spec}{\operatorname{spec}} \newcommand{\ls}{\lesssim} \newcommand{\sL}{\mathscr L} \newcommand{\sJ}{\mathscr J} \newcommand{\sK}{\mathscr K} \newcommand{\wh}{\widehat} \newcommand{\wt}{\widetilde} \newcommand{\A}{\mathcal A} \newcommand{\E}{\mathcal E} \newcommand{\F}{\mathcal F} \newcommand{\D}{\mathcal D} \newcommand{\K}{\mathcal K} \newcommand{\QQ}{\mathcal Q} \newcommand{\RR}{\mathcal R} \newcommand{\f}[2]{\frac{#1}{#2}} \newcommand{\term}{c(z,r)F\^\Psi_r(\cdot-z)} \newcommand{\norm}[1]{ \left| #1 \right| } \newcommand{\abs}[1]{ \left| #1 \right| } \newcommand{\Norm}[1]{ \left\| #1 \right\| } \newcommand{\iff}{\Leftrightarrow} \newcommand{\set}[1]{ \left\{ #1 \right\} } \newcommand{\Be}{\begin{equation}} \newcommand{\Ee}{\end{equation}} \newcommand{\Bm}{\begin{multline}} \newcommand{\Em}{\end{multline}} \newcommand{\Bea}{\begin{eqnarray}} \newcommand{\Eea}{\end{eqnarray}} \newcommand{\Beas}{\begin{eqnarray*}} \newcommand{\Eeas}{\end{eqnarray*}} \newcommand{\Benu}{\begin{enumerate}} \newcommand{\Eenu}{\end{enumerate}} \newcommand{\Bi}{\begin{itemize}} \newcommand{\Ei}{\end{itemize}} \def\conv{\text{Conv}} \def\tp{\tilde p} \def\tq{\tilde q} \def\crit{\text{\rm cr}} \def\sparse{\text{\rm sp}} \def\dyad{\text{\rm dyad}} \def\mart{\text{dyad}} \def\intslash{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int} \def\qsl{\rlap{\kern .32em $\mspace {.5mu}\backslash$ }\int_{Q_x}} \def\Re{\operatorname{Re\,}} \def\Im{\operatorname{Im\,}} \def\mx \def\mn \def\vth{\vartheta} \def\rn{\rr\^{n}} \def\rr{\mathbb R} \def\Q{\mathbb Q} \def\N{\mathbb N} \def\complex{\mathbb C} \def\emph#1{\it #1 } \def\diam{\text{\rm diam}} \def\osc{\text{\rm osc}} \def\ffB{\mathcal B} \def\seq{\subseteq} \def\Ga{\Gamma} \def\ga{\gamma} \def\Th{\Theta} \def\prd{\text{\it prod}} \def\parab{\text{\it parabolic}} \def\eg{\it e.g. } \def\cf{\it cf} \def\Rn{\mathbb R\^n} \def\Rd{\mathbb R\^d} \def\sgn{\text{\rm sign }} \def\rank{\text{\rm rank }} \def\corank{\text{\rm corank }} \def\coker{\text{\rm Coker }} \def\loc{\text{\rm loc}} \def\spec{\text{\rm spec}} \def\comp{\text{comp}} \def\Coi{C\^\infty_0} \def\dist{\text{\it dist}} \def\diag{\text{\rm diag}} \def\supp{text{\rm supp}} \def\rad{\text{\it rad}} \def\sph{\text{sph}} \def\Lip{\text{\rm Lip}} \def\ev{\text{\rm ev}} \def\odd{\text{\rm odd}} \def\inn#1#2{\langle#1,#2\rangle} \def\biginn#1#2{\big\langle#1,#2\big\rangle} \def\rta{\rightarrow} \def\lta{\leftarrow} \def\noi{\noindent} \def\lcontr{\rfloor} \newcommand{\pmtx}[1]{\begin{pmatrix}#1\end{pmatrix}} \def\meas{\text{\rm meas}} \def\card{\text{\rm card}} \def\lc{\lesssim} \def\gc{\gtrsim} \def\pv{\text{\rm p.v.}} \def\a{\alpha} \def\alp{\alpha} \def\Alp{\Alpha} \def\bet{\beta} \def\gam{\gamma} \def\Gam{\Gamma} \def\del{\delta} \def\Del{\Delta} \def\eps{\varepsilon} \def\ep{\epsilon} \def\zet{\zeta} \def\tet{\theta} \def\Tet{\Theta} \def\iot{\iota} \def\kap{\kappa} \def\ka{\kappa} \def\lam{\lambda} \def\Lam{\Lambda} \def\la{\lambda} \def\La{\Lambda} \def\sig{\sigma} \def\Sig{\Sigma} \def\si{\sigma} \def\Si{\Sigma} \def\vphi{\varphi} \def\ome{\omega} \def\Ome{\Omega} \def\om{\omega} \def\fA{\mathfrak {A}} \def\fB{\mathfrak {B}} \def\fC{\mathfrak {C}} \def\fD{\mathfrak {D}} \def\fE{\mathfrak {E}} \def\fF{\mathfrak {F}} \def\fG{mathfrak {G}} \def\fH{\mathfrak {H}} \def\fI{\mathfrak {I}} \def\fJ{\mathfrak {J}} \def\fK{\mathfrak {K}} \def\fL{\mathfrak {L}} \def\fM{\mathfrak {M}} \def\fN{\mathfrak {N}} \def\fO{\mathfrak {O}} \def\fP{\mathfrak {P}} \def\fQ{\mathfrak {Q}} \def\fR{\mathfrak {R}} \def\fS{\mathfrak {S}} \def\fT{\mathfrak {T}} \def\fU{\mathfrak {U}} \def\fV{\mathfrak {V}} \def\fW{\mathfrak {W}} \def\fX{\mathfrak {X}} \def\fY{\mathfrak {Y}} \def\fZ{\mathfrak {Z}} \def\fa{\mathfrak {a}} \def\fb{\mathfrak {b}} \def\fc{\mathfrak {c}} \def\fd{\mathfrak {d}} \def\fe{\mathfrak {e}} \def\ff{\mathfrak {f}} \def\fg{\mathfrak {g}} \def\fh{\mathfrak {h}} \def\fj{\mathfrak {j}} \def\fk{\mathfrak {k}} \def\fl{\mathfrak {l}} \def\fn{\mathfrak {n}} \def\fo{\mathfrak {o}} \def\fq{\mathfrak {q}} \def\fr{\mathfrak {r}} \def\fs{\mathfrak {s}} \def\ft{\mathfrak {t}} \def\fu{\mathfrak {u}} \def\fv{\mathfrak {v}} \def\fw{\mathfrak {w}} \def\fx{\mathfrak {x}} \def\fy{\mathfrak {y}} \def\fz{\mathfrak {z}} \def\bbA{\mathbb {A}} \def\bbB{\mathbb {B}} \def\bbC{\mathbb {C}} \def\bbD{\mathbb {D}} \def\bbE{\mathbb {E}} \def\bbF{\mathbb {F}} \def\bbG{\mathbb {G}} \def\bbH{\mathbb {H}} \def\bbI{\mathbb {I}} \def\bbJ{\mathbb {J}} \def\bbK{\mathbb {K}} \def\bbL{\mathbb {L}} \def\bbM{\mathbb {M}} \def\bbN{\mathbb {N}} \def\bbO{\mathbb {O}} \def\bbP{\mathbb {P}} \def\bbQ{\mathbb {Q}} \def\bbR{\mathbb {R}} \def\bbS{\mathbb {S}} \def\bbT{\mathbb {T}} \def\bbU{\mathbb {U}} \def\bbV{\mathbb {V}} \def\bbW{\mathbb {W}} \def\bbX{\mathbb {X}} \def\bbY{\mathbb {Y}} \def\bbZ{\mathbb {Z}} \def\cA{\mathcal {A}} \def\cB{\mathcal {B}} \def\cC{\mathcal {C}} \def\cD{\mathcal {D}} \def\cE{\mathcal {E}} \def\cF{\mathcal {F}} \def\cG{\mathcal {G}} \def\cH{\mathcal {H}} \def\cI{\mathcal {I}} \def\cJ{\mathcal {J}} \def\cK{\mathcal {K}} \def\cL{\mathcal {L}} \def\cM{\mathcal {M}} \def\cN{\mathcal {N}} \def\cO{\mathcal {O}} \def\cP{\mathcal {P}} \def\cQ{\mathcal {Q}} \def\cR{\mathcal {R}} \def\cS{\mathcal {S}} \def\cT{\mathcal {T}} \def\cU{\mathcal {U}} \def\cV{\mathcal {V}} \def\cW{\mathcal {W}} \def\cX{\mathcal {X}} \def\cY{\mathcal {Y}} \def\cZ{\mathcal {Z}} \def\tA{\widetilde{A}} \def\tB{\widetilde{B}} \def\tC{\widetilde{C}} \def\tD{\widetilde{D}} \def\tE{\widetilde{E}} \def\tF{\widetilde{F}} \def\tG{\widetilde{G}} \def\tH{\widetilde{H}} \def\tI{\widetilde{I}} \def\tJ{\widetilde{J}} \def\tK{\widetilde{K}} \def\tL{\widetilde{L}} \def\tM{\widetilde{M}} \def\tN{\widetilde{N}} \def\tO{\widetilde{O}} \def\tP{\widetilde{P}} \def\tQ{\widetilde{Q}} \def\tR{\widetilde{R}} \def\tS{\widetilde{S}} \def\tT{\widetilde{T}} \def\tU{\widetilde{U}} \def\tV{\widetilde{V}} \def\tW{\widetilde{W}} \def\tX{\widetilde{X}} \def\tY{\widetilde{Y}} \def\tZ{\widetilde{Z}} \def\tcA{\widetilde{\mathcal {A}}} \def\tcB{\widetilde{\mathcal {B}}} \def\tcC{\widetilde{\mathcal {C}}} \def\tcD{\widetilde{\mathcal {D}}} \def\tcE{\widetilde{\mathcal {E}}} \def\tcF{\widetilde{\mathcal {F}}} \def\tcG{\widetilde{\mathcal {G}}} \def\tcH{\widetilde{\mathcal {H}}} \def\tcI{\widetilde{\mathcal {I}}} \def\tcJ{\widetilde{\mathcal {J}}} \def\tcK{\widetilde{\mathcal {K}}} \def\tcL{\widetilde{\mathcal {L}}} \def\tcM{\widetilde{\mathcal {M}}} \def\tcN{\widetilde{\mathcal {N}}} \def\tcO{\widetilde{\mathcal {O}}} \def\tcP{\widetilde{\mathcal {P}}} \def\tcQ{\widetilde{\mathcal {Q}}} \def\tcR{\widetilde{\mathcal {R}}} \def\tcS{\widetilde{\mathcal {S}}} \def\tcT{\widetilde{\mathcal {T}}} \def\tcU{\widetilde{\mathcal {U}}} \def\tcV{\widetilde{\mathcal {V}}} \def\tcW{\widetilde{\mathcal {W}}} \def\tcX{\widetilde{\mathcal {X}}} \def\tcY{\widetilde{\mathcal {Y}}} \def\tcZ{\widetilde{\mathcal {Z}}} \def\tfA{\widetilde{\mathfrak {A}}} \def\tfB{\widetilde{\mathfrak {B}}} \def\tfC{\widetilde{\mathfrak {C}}} \def\tfD{\widetilde{\mathfrak {D}}} \def\tfE{\widetilde{\mathfrak {E}}} \def\tfF{\widetilde{\mathfrak {F}}} \def\tfG{\widetilde{\mathfrak {G}}} \def\tfH{\widetilde{\mathfrak {H}}} \def\tfI{\widetilde{\mathfrak {I}}} \def\tfJ{\widetilde{\mathfrak {J}}} \def\tfK{\widetilde{\mathfrak {K}}} \def\tfL{\widetilde{\mathfrak {L}}} \def\tfM{\widetilde{\mathfrak {M}}} \def\tfN{\widetilde{\mathfrak {N}}} \def\tfO{\widetilde{\mathfrak {O}}} \def\tfP{\widetilde{\mathfrak {P}}} \def\tfQ{\widetilde{\mathfrak {Q}}} \def\tfR{\widetilde{\mathfrak {R}}} \def\tfS{\widetilde{\mathfrak {S}}} \def\tfT{\widetilde{\mathfrak {T}}} \def\tfU{\widetilde{\mathfrak {U}}} \def\tfV{\widetilde{\mathfrak {V}}} \def\tfW{\widetilde{\mathfrak {W}}} \def\tfX{\widetilde{\mathfrak {X}}} \def\tfY{\widetilde{\mathfrak {Y}}} \def\tfZ{\widetilde{\mathfrak {Z}}} \def\Atil{\widetilde A} \def\atil{\tilde a} \def\Btil{\widetilde B} \def\btil{\tilde b} \def\Ctil{\widetilde C} \def\ctil{\tilde c} \def\Dtil{\widetilde D} \def\dtil{\tilde d} \def\Etil{\widetilde E} \def\etil{\tilde e} \def\Ftil{\widetilde F} \def\ftil{\tilde f} \def\Gtil{\widetilde G} \def\gtil{\tilde g} \def\Htil{\widetilde H} \def\htil{\tilde h} \def\Itil{\widetilde I} \def\itil{\tilde i} \def\Jtil{\widetilde J} \def\jtil{\tilde j} \def\Ktil{\widetilde K} \def\ktil{\tilde k} \def\Ltil{\widetilde L} \def\ltil{\tilde l} \def\Mtil{\widetilde M} \def\mtil{\tilde m} \def\Ntil{\widetilde N} \def\ntil{\tilde n} \def\Otil{\widetilde O} \def\otil{\tilde o} \def\Ptil{\widetilde P} \def\ptil{\tilde p} \def\Qtil{\widetilde Q} \def\qtil{\tilde q} \def\Rtil{\widetilde R} \def\rtil{\tilde r} \def\Stil{\widetilde S} \def\stil{\tilde s} \def\Ttil{\widetilde T} \def\ttil{\tilde t} \def\Util{\widetilde U} \def\util{\tilde u} \def\Vtil{\widetilde V} \def\vtil{\tilde v} \def\Wtil{\widetilde W} \def\wtil{\tilde w} \def\Xtil{\widetilde X} \def\xtil{\tilde x} \def\Ytil{\widetilde Y} \def\ytil{\tilde y} \def\Ztil{\widetilde Z} \def\ztil{\tilde z} \def\ahat{\hat a} \def\Ahat{\widehat A} \def\bhat{\hat b} \def\Bhat{\widehat B} \def\chat{\hat c} \def\Chat{\widehat C} \def\dhat{\hat d} \def\Dhat{\widehat D} \def\ehat{\hat e} \def\Ehat{\widehat E} \def\fhat{\hat f} \def\Fhat{\widehat F} \def\ghat{\hat g} \def\Ghat{\widehat G} \def\hhat{\hat h} \def\Hhat{\widehat H} \def\ihat{\hat i} \def\Ihat{\widehat I} \def\jhat{\hat j} \def\Jhat{\widehat J} \def\khat{\hat k} \def\Khat{\widehat K} \def\lhat{\hat l} \def\Lhat{\widehat L} \def\mhat{\hat m} \def\Mhat{\widehat M} \def\nhat{\hat n} \def\Nhat{\widehat N} \def\ohat{\hat o} \def\Ohat{\widehat O} \def\phat{\hat p} \def\Phat{\widehat P} \def\qhat{\hat q} \def\Qhat{\widehat Q} \def\rhat{\hat r} \def\Rhat{\widehat R} \def\shat{\hat s} \def\Shat{\widehat S} \def\that{\hat t} \def\That{\widehat T} \def\uhat{\hat u} \def\Uhat{\widehat U} \def\vhat{\hat v} \def\Vhat{\widehat V} \def\what{\hat w} \def\What{\widehat W} \def\xhat{\hat x} \def\Xhat{\widehat X} \def\yhat{\hat y} \def\Yhat{\widehat Y} \def\zhat{\hat z} \def\Zhat{\widehat Z} \def\be#1{\begin{equation}\label{ #1}} \def\endeq{\end{equation}} \def\endal{\end{align}} \def\bas{\begin{align*}} \def\eas{\end{align*}} \def\bi{\begin{itemize}} \def\ei{\end{itemize}} \def\eps{\varepsilon} \def\textbf#1{\bf #1} \def\into{\hookrightarrow} \newcommand{\inf}{\infty} \newcommand{\os}[2]{\overset{#1}{#2}} \newcommand{\ms}{(X, \cM, \mu)} \newcommand{\salg}{\sig\text{-algebra}} \newcommand{\ol}[1]{\overline{#1}} \newcommand{\bij}{\mathrel{\hookrightarrow\hspace{-1.8ex}\to}} \newcommand{\onto}{\twoheadrightarrow} \newcommand{\id}{\text{id}} \newcommand{\Stab}{\text{Stab}} \def \bl {\backslash} \def \sfin {\sig\text{-finite}} \def \mum {\mu\text{-measurable}} \def \emps {\varnothing} \newcommand{\m}[1]{\boldsymbol{#1}} \newcommand{\bs}[1]{\boldsymbol{#1}} \newcommand{\Inf}{\text{inf}} \newcommand{\wb}[1]{\overline{#1}} \newcommand{\lto}{\longrightarrow} \newcommand{\todo}[1]{\bf\color{red}{[ToDo] \text{#1}}} \newcommand{\char}[1]{\cX_{#1}} \newcommand{\fp}{f\^+} \newcommand{\fm}{f\^-} \newcommand{\infm}{\text{inf}} \newcommand{\onorm}[1]{\Norm{#1}_1} \newcommand{\tnorm}[1]{\Norm{#1}_2} \newcommand{\infn}[1]{\Norm{#1}_\inf} \newcommand{\pnorm}[1]{\Norm{#1}_p} \newcommand{\End}{\text{End}} \newcommand{\Ob}{\text{Ob}} \newcommand{\Hom}{\text{Hom}} \newcommand{\intall}{\int_{-\inf}\^{\inf}} \newcommand{\intpmpi}{\int_{-\pi}\^{\pi}} \newcommand{\div}{\bigr|} \newcommand{\when}{\biggr|} \def \bsp {\begin{split}} \def \esp {\end{split}} \def \bc {\begin{cases}} \def \ec {\end{cases}} \newcommand{\sech}{\text{sech}} \newcommand{\vectk}{\text{Vect}_\text{k}} \newcommand{\top}{\text{Top}} \newcommand{\grp}{\text{Grp}} \newcommand{\pathx}{\text{Paths}_X} \newcommand{\from}{\leftarrow} \newcommand{\lfrom}{\longleftarrow} \newcommand{\tofrom}[2]{\os{\xrightarrow{#1}}{\xleftarrow[#2]{}}} \newcommand{\sym}{\text{Sym}} \newcommand{\Set}{\text{Set}} \newcommand{\zn}{\Z/n\Z} \newcommand{\Mor}{\text{Mor}} \newcommand{\acton}{\circlearrowright} \DeclareMathOperator{\tr}{Tr} \newcommand{\par}{\partial} \newcommand{\Fun}{\text{Fun}} \newcommand{\triv}{\text{triv}} \newcommand{\zmnz}[1]{\Z/{#1}\Z} \newcommand{\tl}{\triangleleft} \newcommand{\paren}[1]{\left({#1}\right)} \newcommand{\ceil}[1]{\lceil{#1}\rceil} \newcommand{\floor}[1]{\lfloor{#1}\rfloor} \end{equation} $$]]></summary></entry></feed>
+nice day :)</p>]]></content><author><name>Shirui (Carl) Chen</name><email>sc256@uw.edu</email></author><category term="math" /><category term="Poisson" /><summary type="html"><![CDATA[In computational neuroscience, Poisson distribution is very important in that spike trains are usually modeled as a Poisson process. This article demonstrates that the Poisson distribution can be obtained as a limit of Binomial Distribution.]]></summary></entry></feed>
